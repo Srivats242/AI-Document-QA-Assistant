@@ -1,0 +1,23 @@
+# Python
+.venv/
+__pycache__/
+*.pyc
+.pytest_cache/
+
+# Environment variables and API keys
+.env
+.env.*
+!.env.example
+
+# Next.js
+node_modules/
+.next/
+out/
+
+# Generated files
+chroma_db/
+uploads/
+
+# Editor and system files
+.vscode/
+.DS_Store
