@@ -1,21 +1,31 @@
+from uuid import uuid4
 
-from fastapi import FastAPI, File, UploadFile, HTTPException
 import pymupdf
+from fastapi import FastAPI, File, UploadFile, HTTPException
+from pydantic import BaseModel, Field
+
+from document_processor import chunk_document
+from vector_store import store_document, search_document
+
 
 app = FastAPI(
     title="AI Document Q&A Assistant",
-    description="Backend API for document-based AI question answering",
-    version="0.2.0"
+    description="Document processing and semantic search API",
+    version="0.3.0"
 )
 
-MAX_FILE_SIZE = 10 * 1024 * 1024  # 10 MB
+MAX_FILE_SIZE = 10 * 1024 * 1024
+
+
+class SearchRequest(BaseModel):
+    document_id: str
+    question: str = Field(min_length=1)
+    limit: int = Field(default=5, ge=1, le=20)
 
 
 @app.get("/")
 def home():
-    return {
-        "message": "AI Document Q&A Assistant is running!"
-    }
+    return {"message": "AI Document Q&A Assistant is running!"}
 
 
 @app.get("/health")
@@ -48,11 +58,7 @@ async def upload_document(file: UploadFile = File(...)):
 
         pages = []
 
-        with pymupdf.open(
-            stream=pdf_bytes,
-            filetype="pdf"
-        ) as document:
-
+        with pymupdf.open(stream=pdf_bytes, filetype="pdf") as document:
             if document.needs_pass:
                 raise HTTPException(
                     status_code=400,
@@ -60,17 +66,33 @@ async def upload_document(file: UploadFile = File(...)):
                 )
 
             for page_index, page in enumerate(document):
-                text = page.get_text("text")
-
                 pages.append({
                     "page_number": page_index + 1,
-                    "text": text.strip()
+                    "text": page.get_text("text")
                 })
 
+        chunks = chunk_document(pages)
+
+        if not chunks:
+            raise HTTPException(
+                status_code=422,
+                detail="No extractable text found in PDF"
+            )
+
+        document_id = str(uuid4())
+
+        stored_count = store_document(
+            document_id,
+            file.filename or "document.pdf",
+            chunks
+        )
+
         return {
+            "document_id": document_id,
             "filename": file.filename,
             "total_pages": len(pages),
-            "pages": pages
+            "total_chunks": stored_count,
+            "message": "Document processed and indexed"
         }
 
     except HTTPException:
@@ -84,3 +106,18 @@ async def upload_document(file: UploadFile = File(...)):
 
     finally:
         await file.close()
+
+
+@app.post("/search")
+def search(request: SearchRequest):
+    matches = search_document(
+        document_id=request.document_id,
+        question=request.question,
+        limit=request.limit
+    )
+
+    return {
+        "document_id": request.document_id,
+        "question": request.question,
+        "matches": matches
+    }
