@@ -108,6 +108,7 @@ async def upload_document(file: UploadFile = File(...)):
         await file.close()
 
 
+
 @app.post("/search")
 def search(request: SearchRequest):
     matches = search_document(
@@ -115,6 +116,12 @@ def search(request: SearchRequest):
         question=request.question,
         limit=request.limit
     )
+
+    if not matches:
+        raise HTTPException(
+            status_code=404,
+            detail="No indexed passages found for this document"
+        )
 
     return {
         "document_id": request.document_id,
