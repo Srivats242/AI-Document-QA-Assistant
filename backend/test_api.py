@@ -11,6 +11,9 @@ from fastapi.testclient import TestClient
 mock_vector_store = ModuleType("vector_store")
 mock_vector_store.store_document = Mock()
 mock_vector_store.search_document = Mock()
+mock_vector_store.list_documents = Mock()
+mock_vector_store.get_document_info = Mock()
+mock_vector_store.delete_document = Mock()
 
 with patch.dict(sys.modules, {"vector_store": mock_vector_store}):
     import main
@@ -116,6 +119,66 @@ class TestAPI(unittest.TestCase):
 
         self.assertEqual(response.status_code, 400)
 
+
+    def test_list_documents(self):
+        documents = [
+            {
+                "document_id": "doc-123",
+                "filename": "sample.pdf",
+                "total_chunks": 10,
+                "indexed_pages": 3
+            }
+        ]
+
+        with patch.object(
+            main, "list_documents", return_value=documents
+        ):
+            response = self.client.get("/documents")
+
+        self.assertEqual(response.status_code, 200)
+        self.assertEqual(response.json()["count"], 1)
+        self.assertEqual(response.json()["documents"], documents)
+
+    def test_get_document(self):
+        document = {
+            "document_id": "doc-123",
+            "filename": "sample.pdf",
+            "total_chunks": 10,
+            "indexed_pages": 3
+        }
+
+        with patch.object(
+            main, "get_document_info", return_value=document
+        ):
+            response = self.client.get("/documents/doc-123")
+
+        self.assertEqual(response.status_code, 200)
+        self.assertEqual(response.json(), document)
+
+    def test_document_not_found(self):
+        with patch.object(
+            main, "get_document_info", return_value=None
+        ):
+            response = self.client.get("/documents/missing")
+
+        self.assertEqual(response.status_code, 404)
+
+    def test_delete_document(self):
+        with patch.object(
+            main, "delete_document", return_value=10
+        ):
+            response = self.client.delete("/documents/doc-123")
+
+        self.assertEqual(response.status_code, 200)
+        self.assertEqual(response.json()["deleted_chunks"], 10)
+
+    def test_delete_missing_document(self):
+        with patch.object(
+            main, "delete_document", return_value=None
+        ):
+            response = self.client.delete("/documents/missing")
+
+        self.assertEqual(response.status_code, 404)
 
 if __name__ == "__main__":
     unittest.main()

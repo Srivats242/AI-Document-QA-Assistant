@@ -5,8 +5,13 @@ from fastapi import FastAPI, File, UploadFile, HTTPException
 from pydantic import BaseModel, Field
 
 from document_processor import chunk_document
-from vector_store import store_document, search_document
-
+from vector_store import (
+    store_document,
+    search_document,
+    list_documents,
+    get_document_info,
+    delete_document
+)
 
 app = FastAPI(
     title="AI Document Q&A Assistant",
@@ -107,6 +112,45 @@ async def upload_document(file: UploadFile = File(...)):
     finally:
         await file.close()
 
+
+@app.get("/documents")
+def get_documents():
+    documents = list_documents()
+
+    return {
+        "count": len(documents),
+        "documents": documents
+    }
+
+
+@app.get("/documents/{document_id}")
+def get_document(document_id: str):
+    document = get_document_info(document_id)
+
+    if document is None:
+        raise HTTPException(
+            status_code=404,
+            detail="Document not found"
+        )
+
+    return document
+
+
+@app.delete("/documents/{document_id}")
+def remove_document(document_id: str):
+    deleted_count = delete_document(document_id)
+
+    if deleted_count is None:
+        raise HTTPException(
+            status_code=404,
+            detail="Document not found"
+        )
+
+    return {
+        "document_id": document_id,
+        "deleted_chunks": deleted_count,
+        "message": "Document deleted successfully"
+    }
 
 
 @app.post("/search")
