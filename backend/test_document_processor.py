@@ -89,5 +89,108 @@ class TestDocumentProcessor(unittest.TestCase):
             chunk_document([], chunk_size=100, overlap=100)
 
 
+    def test_sentence_boundary_chunking(self):
+        pages = [
+            {
+                "page_number": 1,
+                "text": (
+                    "Cats chase mice. "
+                    "Dogs enjoy walks. "
+                    "Birds fly south. "
+                    "Fish swim quickly."
+                )
+            }
+        ]
+
+        chunks = chunk_document(
+            pages,
+            chunk_size=45,
+            overlap=8
+        )
+
+        self.assertGreater(len(chunks), 1)
+
+        self.assertEqual(
+            chunks[0]["text"],
+            "Cats chase mice. Dogs enjoy walks."
+        )
+
+        for chunk in chunks:
+            self.assertLessEqual(len(chunk["text"]), 45)
+
+    def test_word_boundary_chunking(self):
+        pages = [
+            {
+                "page_number": 1,
+                "text": (
+                    "alpha beta gamma delta epsilon "
+                    "zeta eta theta iota kappa lambda"
+                )
+            }
+        ]
+
+        chunks = chunk_document(
+            pages,
+            chunk_size=25,
+            overlap=5
+        )
+
+        original_words = set(
+            pages[0]["text"].split()
+        )
+
+        for chunk in chunks:
+            self.assertLessEqual(len(chunk["text"]), 25)
+
+            for word in chunk["text"].split():
+                self.assertIn(word, original_words)
+
+    def test_long_word_chunking(self):
+        pages = [
+            {
+                "page_number": 1,
+                "text": "A" * 100
+            }
+        ]
+
+        chunks = chunk_document(
+            pages,
+            chunk_size=30,
+            overlap=10
+        )
+
+        self.assertGreater(len(chunks), 1)
+
+        for chunk in chunks:
+            self.assertLessEqual(len(chunk["text"]), 30)
+
+        self.assertEqual(
+            chunks[-1]["text"][-1],
+            "A"
+        )
+
+    def test_chunk_page_numbers(self):
+        pages = [
+            {
+                "page_number": 1,
+                "text": "First page content."
+            },
+            {
+                "page_number": 2,
+                "text": "Second page content."
+            }
+        ]
+
+        chunks = chunk_document(
+            pages,
+            chunk_size=50,
+            overlap=10
+        )
+
+        self.assertEqual(len(chunks), 2)
+        self.assertEqual(chunks[0]["page_number"], 1)
+        self.assertEqual(chunks[1]["page_number"], 2)
+
+
 if __name__ == "__main__":
     unittest.main()

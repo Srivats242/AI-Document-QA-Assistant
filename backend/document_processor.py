@@ -55,6 +55,37 @@ def chunk_document(pages, chunk_size=800, overlap=150):
         while start < len(text):
             end = min(start + chunk_size, len(text))
 
+            if end < len(text):
+                window = text[start:end]
+
+                min_break = max(
+                    chunk_size // 2,
+                    overlap + 1
+                )
+
+                # Prefer ending at a sentence boundary
+                sentence_ends = [
+                    match.end()
+                    for match in re.finditer(
+                        r'[.!?](?:["\')\]]*)?(?=\s|$)',
+                        window
+                    )
+                    if match.end() >= min_break
+                ]
+
+                if sentence_ends:
+                    end = start + sentence_ends[-1]
+
+                else:
+                    # Otherwise, try a word boundary
+                    space_pos = window.rfind(
+                        " ",
+                        min_break
+                    )
+
+                    if space_pos != -1:
+                        end = start + space_pos
+
             chunk = text[start:end].strip()
 
             if chunk:
@@ -66,6 +97,31 @@ def chunk_document(pages, chunk_size=800, overlap=150):
             if end == len(text):
                 break
 
-            start = end - overlap
+            if overlap == 0:
+                start = end
+
+            else:
+                # Keep overlapping context
+                next_start = max(
+                    start + 1,
+                    end - overlap
+                )
+
+                # Prefer starting at a word boundary
+                search_from = max(
+                    start + 1,
+                    next_start - min(overlap, 30)
+                )
+
+                space_pos = text.rfind(
+                    " ",
+                    search_from,
+                    next_start
+                )
+
+                if space_pos != -1:
+                    next_start = space_pos + 1
+
+                start = next_start
 
     return chunks
