@@ -10,13 +10,14 @@ from vector_store import (
     search_document,
     list_documents,
     get_document_info,
-    delete_document
+    delete_document,
+    search_all_documents
 )
 
 app = FastAPI(
     title="AI Document Q&A Assistant",
     description="Document processing and semantic search API",
-    version="0.3.0"
+    version="0.5.0"
 )
 
 MAX_FILE_SIZE = 10 * 1024 * 1024
@@ -27,6 +28,9 @@ class SearchRequest(BaseModel):
     question: str = Field(min_length=1)
     limit: int = Field(default=5, ge=1, le=20)
 
+class MultiSearchRequest(BaseModel):
+    question: str = Field(min_length=1)
+    limit: int = Field(default=5, ge=1, le=20)
 
 @app.get("/")
 def home():
@@ -172,3 +176,24 @@ def search(request: SearchRequest):
         "question": request.question,
         "matches": matches
     }
+
+
+@app.post("/search/all")
+def search_across_documents(request: MultiSearchRequest):
+    matches = search_all_documents(
+        question=request.question,
+        limit=request.limit
+    )
+
+    if not matches:
+        raise HTTPException(
+            status_code=404,
+            detail="No indexed passages found"
+        )
+
+    return {
+        "question": request.question,
+        "total_matches": len(matches),
+        "matches": matches
+    }
+

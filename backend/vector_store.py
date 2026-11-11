@@ -176,3 +176,43 @@ def delete_document(document_id):
 
     return document["total_chunks"]
 
+
+def search_all_documents(question, limit=5):
+    if not question.strip():
+        return []
+
+    if limit < 1:
+        raise ValueError("Limit must be positive")
+
+    total_chunks = collection.count()
+
+    if total_chunks == 0:
+        return []
+
+    question_embedding = model.encode(
+        [question],
+        normalize_embeddings=True
+    ).tolist()
+
+    results = collection.query(
+        query_embeddings=question_embedding,
+        n_results=min(limit, total_chunks),
+        include=["documents", "metadatas", "distances"]
+    )
+
+    matches = []
+
+    for i, text in enumerate(results["documents"][0]):
+        metadata = results["metadatas"][0][i]
+
+        matches.append({
+            "document_id": metadata["document_id"],
+            "filename": metadata["filename"],
+            "page_number": metadata["page_number"],
+            "text": text,
+            "distance": results["distances"][0][i]
+        })
+
+    return matches
+
+

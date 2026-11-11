@@ -14,6 +14,7 @@ mock_vector_store.search_document = Mock()
 mock_vector_store.list_documents = Mock()
 mock_vector_store.get_document_info = Mock()
 mock_vector_store.delete_document = Mock()
+mock_vector_store.search_all_documents = Mock()
 
 with patch.dict(sys.modules, {"vector_store": mock_vector_store}):
     import main
@@ -179,6 +180,77 @@ class TestAPI(unittest.TestCase):
             response = self.client.delete("/documents/missing")
 
         self.assertEqual(response.status_code, 404)
+
+    
+    def test_search_all_documents(self):
+        matches = [
+            {
+                "document_id": "doc-1",
+                "filename": "Kim.pdf",
+                "page_number": 3,
+                "text": "Religion influences development.",
+                "distance": 0.25
+            },
+            {
+                "document_id": "doc-2",
+                "filename": "sample.pdf",
+                "page_number": 5,
+                "text": "Development involves social change.",
+                "distance": 0.35
+            }
+        ]
+
+        with patch.object(
+            main, "search_all_documents", return_value=matches
+        ):
+            response = self.client.post(
+                "/search/all",
+                json={
+                    "question": "What is development?",
+                    "limit": 5
+                }
+            )
+
+        self.assertEqual(response.status_code, 200)
+        self.assertEqual(response.json()["total_matches"], 2)
+        self.assertEqual(response.json()["matches"], matches)
+
+    def test_search_all_no_matches(self):
+        with patch.object(
+            main, "search_all_documents", return_value=[]
+        ):
+            response = self.client.post(
+                "/search/all",
+                json={
+                    "question": "What is development?",
+                    "limit": 5
+                }
+            )
+
+        self.assertEqual(response.status_code, 404)
+
+    def test_search_all_empty_question(self):
+        response = self.client.post(
+            "/search/all",
+            json={
+                "question": "",
+                "limit": 5
+            }
+        )
+
+        self.assertEqual(response.status_code, 422)
+
+    def test_search_all_invalid_limit(self):
+        response = self.client.post(
+            "/search/all",
+            json={
+                "question": "What is development?",
+                "limit": 25
+            }
+        )
+
+        self.assertEqual(response.status_code, 422)
+
 
 if __name__ == "__main__":
     unittest.main()
