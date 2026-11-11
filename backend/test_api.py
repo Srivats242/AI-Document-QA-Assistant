@@ -16,6 +16,7 @@ mock_vector_store.get_document_info = Mock()
 mock_vector_store.delete_document = Mock()
 mock_vector_store.search_all_documents = Mock()
 mock_vector_store.get_document_by_hash = Mock()
+mock_vector_store.get_document_stats = Mock()
 
 with patch.dict(sys.modules, {"vector_store": mock_vector_store}):
     import main
@@ -401,6 +402,54 @@ class TestAPI(unittest.TestCase):
         )
 
         mock_store.assert_called_once()
+
+    
+    def test_document_stats(self):
+        stats = {
+            "total_documents": 3,
+            "total_chunks": 238,
+            "total_indexed_pages": 51
+        }
+
+        with patch.object(
+            main, "get_document_stats", return_value=stats
+        ):
+            response = self.client.get("/stats")
+
+        self.assertEqual(response.status_code, 200)
+        self.assertEqual(response.json(), stats)
+
+    def test_document_stats_empty(self):
+        stats = {
+            "total_documents": 0,
+            "total_chunks": 0,
+            "total_indexed_pages": 0
+        }
+
+        with patch.object(
+            main, "get_document_stats", return_value=stats
+        ):
+            response = self.client.get("/stats")
+
+        self.assertEqual(response.status_code, 200)
+        self.assertEqual(response.json(), stats)
+
+    def test_document_stats_after_deletion(self):
+        stats = {
+            "total_documents": 1,
+            "total_chunks": 113,
+            "total_indexed_pages": 26
+        }
+
+        with patch.object(
+            main, "get_document_stats", return_value=stats
+        ):
+            response = self.client.get("/stats")
+
+        self.assertEqual(response.status_code, 200)
+        self.assertEqual(response.json()["total_documents"], 1)
+        self.assertEqual(response.json()["total_chunks"], 113)
+
 
 if __name__ == "__main__":
     unittest.main()

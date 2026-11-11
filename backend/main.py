@@ -13,7 +13,8 @@ from vector_store import (
     get_document_info,
     delete_document,
     search_all_documents,
-    get_document_by_hash
+    get_document_by_hash,
+    get_document_stats
 )
 
 app = FastAPI(
@@ -216,4 +217,10 @@ def search_across_documents(request: MultiSearchRequest):
         "total_matches": len(matches),
         "matches": matches
     }
+
+
+@app.get("/stats")
+def document_stats():
+    return get_document_stats()
+
 

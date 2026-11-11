@@ -232,4 +232,26 @@ def get_document_by_hash(file_hash):
     return get_document_info(document_id)
 
 
+def get_document_stats():
+    documents = list_documents()
+
+    total_documents = len(documents)
+
+    total_chunks = sum(
+        document["total_chunks"]
+        for document in documents
+    )
+
+    total_indexed_pages = sum(
+        document["indexed_pages"]
+        for document in documents
+    )
+
+    return {
+        "total_documents": total_documents,
+        "total_chunks": total_chunks,
+        "total_indexed_pages": total_indexed_pages
+    }
+
+
 
