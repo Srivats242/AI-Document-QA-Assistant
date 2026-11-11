@@ -1,23 +1,66 @@
-const stats = [
-  {
-    label: "Documents",
-    value: "4",
-    description: "Indexed PDF files",
-  },
-  {
-    label: "Text Chunks",
-    value: "369",
-    description: "Searchable passages",
-  },
-  {
-    label: "Indexed Pages",
-    value: "88",
-    description: "Pages with extracted text",
-  },
-];
+
+"use client";
+
+import { useEffect, useState } from "react";
+import {
+  fetchDocumentStats,
+  type DocumentStats,
+} from "@/lib/api";
+
+
+
 
 export default function Home() {
+  const [stats, setStats] =
+    useState<DocumentStats | null>(null);
+
+  const [statsError, setStatsError] =
+    useState<string | null>(null);
+
+  useEffect(() => {
+    const controller = new AbortController();
+
+    async function loadStats() {
+      try {
+        const data = await fetchDocumentStats(
+          controller.signal
+        );
+
+        setStats(data);
+      } catch {
+        if (!controller.signal.aborted) {
+          setStatsError(
+            "Unable to load statistics. Check that FastAPI is running."
+          );
+        }
+      }
+    }
+
+    void loadStats();
+
+    return () => controller.abort();
+  }, []);
+
+  const statCards = [
+    {
+      label: "Documents",
+      value: stats?.total_documents ?? "—",
+      description: "Indexed PDF files",
+    },
+    {
+      label: "Text Chunks",
+      value: stats?.total_chunks ?? "—",
+      description: "Searchable passages",
+    },
+    {
+      label: "Indexed Pages",
+      value: stats?.total_indexed_pages ?? "—",
+      description: "Pages with extracted text",
+    },
+  ];
+
   return (
+
     <div className="min-h-screen bg-slate-50 text-slate-900">
       <header className="border-b border-slate-200 bg-white">
         <div className="mx-auto flex max-w-6xl items-center justify-between px-6 py-5">
@@ -48,7 +91,7 @@ export default function Home() {
         </section>
 
         <section className="grid gap-5 md:grid-cols-3">
-          {stats.map((stat) => (
+          {statCards.map((stat) => (
             <div
               key={stat.label}
               className="rounded-xl border border-slate-200 bg-white p-6 shadow-sm"
@@ -68,10 +111,19 @@ export default function Home() {
           ))}
         </section>
 
-        <p className="text-xs text-slate-500">
-          Statistics are currently static. Live backend integration
-          is coming next.
-        </p>
+        
+        {statsError ? (
+          <p role="alert" className="text-sm text-red-600">
+            {statsError}
+          </p>
+        ) : (
+          <p className="text-xs text-slate-500">
+            {stats
+              ? "Statistics loaded from your FastAPI backend."
+              : "Loading document statistics..."}
+          </p>
+        )}
+
 
         <div className="grid gap-6 lg:grid-cols-2">
           <section className="rounded-xl border border-slate-200 bg-white p-6 shadow-sm">

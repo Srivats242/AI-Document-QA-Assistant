@@ -5,6 +5,8 @@ import pymupdf
 from fastapi import FastAPI, File, UploadFile, HTTPException
 from pydantic import BaseModel, Field
 
+from fastapi.middleware.cors import CORSMiddleware
+
 from document_processor import chunk_document
 from vector_store import (
     store_document,
@@ -22,6 +24,19 @@ app = FastAPI(
     description="Document processing and semantic search API",
     version="0.5.0"
 )
+
+
+app.add_middleware(
+    CORSMiddleware,
+    allow_origins=[
+        "http://localhost:3000",
+        "http://127.0.0.1:3000",
+    ],
+    allow_credentials=False,
+    allow_methods=["GET", "POST", "DELETE"],
+    allow_headers=["*"],
+)
+
 
 MAX_FILE_SIZE = 10 * 1024 * 1024
 
