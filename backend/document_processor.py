@@ -1,10 +1,37 @@
 import re
-
+import unicodedata
 
 def clean_text(text):
-    # Remove unwanted control characters
-    text = re.sub(r"[\x00-\x08\x0b\x0c\x0e-\x1f]", " ", text)
+    # Normalize Unicode characters
+    text = unicodedata.normalize("NFC", text)
+
+    # Replace common PDF ligatures with regular letters
+    ligatures = {
+        "ﬀ": "ff",
+        "ﬁ": "fi",
+        "ﬂ": "fl",
+        "ﬃ": "ffi",
+        "ﬄ": "ffl"
+    }
+
+    for ligature, replacement in ligatures.items():
+        text = text.replace(ligature, replacement)
+
+    # Remove invisible formatting characters
+    text = text.replace("\u00ad", "")
+    text = text.replace("\u200b", "")
+    text = text.replace("\ufeff", "")
+
+    # Replace unwanted control characters with spaces
+    text = re.sub(
+        r"[\x00-\x08\x0b\x0c\x0e-\x1f\x7f-\x9f]",
+        " ",
+        text
+    )
+
+    # Normalize repeated whitespace
     text = re.sub(r"\s+", " ", text)
+
     return text.strip()
 
 

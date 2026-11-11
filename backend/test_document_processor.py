@@ -12,6 +12,48 @@ class TestDocumentProcessor(unittest.TestCase):
             "Hello world! This is a test."
         )
 
+    
+    def test_clean_text_control_characters(self):
+        text = "Hello\x00world\x07! Testing."
+
+        self.assertEqual(
+            clean_text(text),
+            "Hello world ! Testing."
+        )
+
+    def test_clean_text_ligatures(self):
+        text = "The ﬁnal ﬂight was diﬃcult."
+
+        self.assertEqual(
+            clean_text(text),
+            "The final flight was difficult."
+        )
+
+    def test_clean_text_invisible_characters(self):
+        text = "This is a docu\u200bment with co\u00adoperation."
+
+        self.assertEqual(
+            clean_text(text),
+            "This is a document with cooperation."
+        )
+
+    def test_clean_text_unicode(self):
+        text = "Cafe\u0301 and résumé"
+
+        self.assertEqual(
+            clean_text(text),
+            "Café and résumé"
+        )
+
+    def test_clean_text_whitespace(self):
+        text = "  Hello\t\tworld!\n\nThis is a test.  "
+
+        self.assertEqual(
+            clean_text(text),
+            "Hello world! This is a test."
+        )
+
+
     def test_empty_document(self):
         self.assertEqual(chunk_document([]), [])
 
