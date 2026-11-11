@@ -17,7 +17,7 @@ collection = client.get_or_create_collection(
 )
 
 
-def store_document(document_id, filename, chunks):
+def store_document(document_id, filename, chunks, file_hash=None):
     if not chunks:
         return 0
 
@@ -38,7 +38,8 @@ def store_document(document_id, filename, chunks):
         {
             "document_id": document_id,
             "filename": filename,
-            "page_number": chunk["page_number"]
+            "page_number": chunk["page_number"],
+            **({"file_hash": file_hash} if file_hash else {})
         }
         for chunk in chunks
     ]
@@ -214,5 +215,21 @@ def search_all_documents(question, limit=5):
         })
 
     return matches
+
+
+def get_document_by_hash(file_hash):
+    results = collection.get(
+        where={"file_hash": file_hash},
+        include=["metadatas"],
+        limit=1
+    )
+
+    if not results["ids"]:
+        return None
+
+    document_id = results["metadatas"][0]["document_id"]
+
+    return get_document_info(document_id)
+
 
 

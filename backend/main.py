@@ -1,3 +1,4 @@
+import hashlib  
 from uuid import uuid4
 
 import pymupdf
@@ -11,7 +12,8 @@ from vector_store import (
     list_documents,
     get_document_info,
     delete_document,
-    search_all_documents
+    search_all_documents,
+    get_document_by_hash
 )
 
 app = FastAPI(
@@ -65,6 +67,9 @@ async def upload_document(file: UploadFile = File(...)):
                 detail="Invalid PDF file"
             )
 
+        # Generate a unique fingerprint for the PDF
+        file_hash = hashlib.sha256(pdf_bytes).hexdigest()
+
         pages = []
 
         with pymupdf.open(stream=pdf_bytes, filetype="pdf") as document:
@@ -80,6 +85,19 @@ async def upload_document(file: UploadFile = File(...)):
                     "text": page.get_text("text")
                 })
 
+
+        existing_document = get_document_by_hash(file_hash)
+
+        if existing_document is not None:
+            return {
+                "document_id": existing_document["document_id"],
+                "filename": existing_document["filename"],
+                "total_pages": len(pages),
+                "total_chunks": existing_document["total_chunks"],
+                "duplicate": True,
+                "message": "Document already indexed"
+            }
+
         chunks = chunk_document(pages)
 
         if not chunks:
@@ -93,7 +111,8 @@ async def upload_document(file: UploadFile = File(...)):
         stored_count = store_document(
             document_id,
             file.filename or "document.pdf",
-            chunks
+            chunks,
+            file_hash=file_hash
         )
 
         return {
@@ -101,6 +120,7 @@ async def upload_document(file: UploadFile = File(...)):
             "filename": file.filename,
             "total_pages": len(pages),
             "total_chunks": stored_count,
+            "duplicate": False,
             "message": "Document processed and indexed"
         }
 

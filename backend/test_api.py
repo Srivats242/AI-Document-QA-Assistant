@@ -15,6 +15,7 @@ mock_vector_store.list_documents = Mock()
 mock_vector_store.get_document_info = Mock()
 mock_vector_store.delete_document = Mock()
 mock_vector_store.search_all_documents = Mock()
+mock_vector_store.get_document_by_hash = Mock()
 
 with patch.dict(sys.modules, {"vector_store": mock_vector_store}):
     import main
@@ -24,6 +25,16 @@ class TestAPI(unittest.TestCase):
 
     def setUp(self):
         self.client = TestClient(main.app)
+
+
+    def make_test_pdf(self):
+        with main.pymupdf.open() as pdf:
+            page = pdf.new_page()
+            page.insert_text(
+                (72, 72),
+                "This is a sample PDF for testing."
+            )
+            return pdf.tobytes()
 
     def test_home(self):
         response = self.client.get("/")
@@ -251,6 +262,145 @@ class TestAPI(unittest.TestCase):
 
         self.assertEqual(response.status_code, 422)
 
+
+    def test_upload_new_pdf(self):
+        pdf_bytes = self.make_test_pdf()
+
+        chunks = [
+            {
+                "text": "This is a sample PDF for testing.",
+                "page_number": 1
+            }
+        ]
+
+        with patch.object(
+            main, "get_document_by_hash", return_value=None
+        ), patch.object(
+            main, "chunk_document", return_value=chunks
+        ), patch.object(
+            main, "store_document", return_value=1
+        ) as mock_store:
+            response = self.client.post(
+                "/upload",
+                files={
+                    "file": (
+                        "sample.pdf",
+                        pdf_bytes,
+                        "application/pdf"
+                    )
+                }
+            )
+
+        self.assertEqual(response.status_code, 200)
+        self.assertFalse(response.json()["duplicate"])
+        self.assertEqual(response.json()["total_chunks"], 1)
+
+        mock_store.assert_called_once()
+
+        import hashlib
+
+        expected_hash = hashlib.sha256(pdf_bytes).hexdigest()
+
+        self.assertEqual(
+            mock_store.call_args.kwargs["file_hash"],
+            expected_hash
+        )
+
+    def test_upload_duplicate_pdf(self):
+        pdf_bytes = self.make_test_pdf()
+
+        existing_document = {
+            "document_id": "existing-doc-123",
+            "filename": "sample.pdf",
+            "total_chunks": 1,
+            "indexed_pages": 1
+        }
+
+        with patch.object(
+            main,
+            "get_document_by_hash",
+            return_value=existing_document
+        ), patch.object(
+            main, "store_document"
+        ) as mock_store, patch.object(
+            main, "chunk_document"
+        ) as mock_chunk:
+            response = self.client.post(
+                "/upload",
+                files={
+                    "file": (
+                        "sample.pdf",
+                        pdf_bytes,
+                        "application/pdf"
+                    )
+                }
+            )
+
+        self.assertEqual(response.status_code, 200)
+        self.assertTrue(response.json()["duplicate"])
+        self.assertEqual(
+            response.json()["document_id"],
+            "existing-doc-123"
+        )
+
+        mock_store.assert_not_called()
+        mock_chunk.assert_not_called()
+
+    def test_upload_same_pdf_twice(self):
+        pdf_bytes = self.make_test_pdf()
+
+        existing_document = {
+            "document_id": "existing-doc-123",
+            "filename": "sample.pdf",
+            "total_chunks": 1,
+            "indexed_pages": 1
+        }
+
+        with patch.object(
+            main,
+            "get_document_by_hash",
+            side_effect=[None, existing_document]
+        ), patch.object(
+            main, "chunk_document",
+            return_value=[{
+                "text": "Sample text",
+                "page_number": 1
+            }]
+        ), patch.object(
+            main, "store_document",
+            return_value=1
+        ) as mock_store, patch.object(
+            main, "uuid4",
+            return_value="existing-doc-123"
+        ):
+            files = {
+                "file": (
+                    "sample.pdf",
+                    pdf_bytes,
+                    "application/pdf"
+                )
+            }
+
+            first_response = self.client.post(
+                "/upload", files=files
+            )
+
+            second_response = self.client.post(
+                "/upload", files=files
+            )
+
+        self.assertEqual(first_response.status_code, 200)
+        self.assertEqual(second_response.status_code, 200)
+
+        self.assertFalse(first_response.json()["duplicate"])
+        self.assertTrue(second_response.json()["duplicate"])
+
+        self.assertEqual(
+            first_response.json()["document_id"],
+            second_response.json()["document_id"]
+        )
+
+        mock_store.assert_called_once()
 
 if __name__ == "__main__":
     unittest.main()
