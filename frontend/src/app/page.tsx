@@ -4,14 +4,17 @@ import {
   useEffect, 
   useState, 
   type ChangeEvent,
+  type FormEvent,
 } from "react";
 import {
   fetchDocumentStats,
   fetchDocuments,
   deleteDocument,
   uploadDocument,
+  searchAllDocuments,
   type DocumentStats,
   type DocumentRecord,
+  type SearchMatch,
 } from "@/lib/api";
 
 export default function Home() {
@@ -43,6 +46,23 @@ export default function Home() {
 
   const [uploadError, setUploadError] =
     useState<string | null>(null);
+  
+
+  const [searchQuestion, setSearchQuestion] =
+    useState("");
+
+  const [searching, setSearching] =
+    useState(false);
+
+  const [searchResults, setSearchResults] =
+    useState<SearchMatch[]>([]);
+
+  const [searchError, setSearchError] =
+    useState<string | null>(null);
+
+  const [hasSearched, setHasSearched] =
+    useState(false);
+
 
 
   // Fetch document statistics.
@@ -221,6 +241,40 @@ export default function Home() {
     }
   }
 
+  async function handleSearch(
+    event: FormEvent<HTMLFormElement>
+  ) {
+    event.preventDefault();
+
+    const question = searchQuestion.trim();
+
+    if (!question || searching) {
+      return;
+    }
+
+    setSearching(true);
+    setSearchError(null);
+    setSearchResults([]);
+    setHasSearched(false);
+
+    try {
+      const result = await searchAllDocuments(
+        question,
+        5
+      );
+
+      setSearchResults(result.matches);
+      setHasSearched(true);
+    } catch (error) {
+      setSearchError(
+        error instanceof Error
+          ? error.message
+          : "Unable to search documents."
+      );
+    } finally {
+      setSearching(false);
+    }
+  }
 
   const statCards = [
     {
@@ -381,7 +435,6 @@ export default function Home() {
               )}
             </div>
           </section>
-          
           {/* Semantic search section */}
           <section className="rounded-xl border border-slate-200 bg-white p-6 shadow-sm">
             <h3 className="text-lg font-semibold">
@@ -392,7 +445,10 @@ export default function Home() {
               Find relevant passages across your uploaded PDFs.
             </p>
 
-            <div className="mt-6 space-y-4">
+            <form
+              onSubmit={(event) => void handleSearch(event)}
+              className="mt-6 space-y-4"
+            >
               <label
                 htmlFor="question"
                 className="block text-sm font-medium"
@@ -403,23 +459,84 @@ export default function Home() {
               <textarea
                 id="question"
                 rows={4}
-                disabled
+                value={searchQuestion}
+                onChange={(event) =>
+                  setSearchQuestion(event.target.value)
+                }
                 placeholder="Ask a question about your documents..."
-                className="w-full resize-none rounded-lg border border-slate-300 bg-slate-50 p-3 text-sm placeholder:text-slate-400"
+                className="w-full resize-none rounded-lg border border-slate-300 bg-white p-3 text-sm placeholder:text-slate-400 focus:border-blue-500 focus:outline-none"
               />
 
               <button
-                type="button"
-                disabled
-                className="w-full cursor-not-allowed rounded-lg bg-blue-600 px-4 py-3 font-medium text-white opacity-60"
+                type="submit"
+                disabled={searching || !searchQuestion.trim()}
+                className="w-full rounded-lg bg-blue-600 px-4 py-3 font-medium text-white transition hover:bg-blue-700 disabled:cursor-not-allowed disabled:opacity-50"
               >
-                Search Documents
+                {searching
+                  ? "Searching..."
+                  : "Search Documents"}
               </button>
+            </form>
 
-              <p className="text-xs text-slate-400">
-                Search functionality coming soon
+            {/* Search loading state */}
+            {searching && (
+              <p
+                role="status"
+                className="mt-4 text-sm text-blue-600"
+              >
+                Searching your indexed documents...
               </p>
-            </div>
+            )}
+
+            {/* Search error */}
+            {searchError && (
+              <p
+                role="alert"
+                className="mt-4 text-sm text-red-600"
+              >
+                {searchError}
+              </p>
+            )}
+
+            {/* Search results */}
+            {hasSearched && !searching && (
+              <div className="mt-6 space-y-4">
+                <h4 className="font-semibold text-slate-800">
+                  Search Results ({searchResults.length})
+                </h4>
+
+                {searchResults.length === 0 ? (
+                  <p className="text-sm text-slate-500">
+                    No matching passages were found.
+                  </p>
+                ) : (
+                  searchResults.map((match, index) => (
+                    <div
+                      key={`${match.document_id}-${match.page_number}-${index}`}
+                      className="rounded-lg border border-slate-200 bg-slate-50 p-4"
+                    >
+                      <div className="flex flex-wrap items-center justify-between gap-2">
+                        <p className="break-all text-sm font-semibold text-slate-800">
+                          📄 {match.filename}
+                        </p>
+
+                        <span className="rounded-full bg-blue-50 px-3 py-1 text-xs font-medium text-blue-700">
+                          Page {match.page_number}
+                        </span>
+                      </div>
+
+                      <p className="mt-3 whitespace-pre-wrap text-sm leading-relaxed text-slate-700">
+                        {match.text}
+                      </p>
+
+                      <p className="mt-3 text-xs text-slate-500">
+                        Cosine distance: {match.distance.toFixed(3)}
+                      </p>
+                    </div>
+                  ))
+                )}
+              </div>
+            )}
           </section>
         </div>
 

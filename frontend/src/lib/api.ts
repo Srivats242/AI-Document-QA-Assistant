@@ -102,3 +102,49 @@ export async function uploadDocument(
 }
 
 
+export type SearchMatch = {
+  document_id: string;
+  filename: string;
+  page_number: number;
+  text: string;
+  distance: number;
+};
+
+export type SearchResponse = {
+  question: string;
+  total_matches: number;
+  matches: SearchMatch[];
+};
+
+export async function searchAllDocuments(
+  question: string,
+  limit: number = 5
+): Promise<SearchResponse> {
+  const response = await fetch(
+    `${API_BASE_URL}/search/all`,
+    {
+      method: "POST",
+      headers: {
+        "Content-Type": "application/json",
+      },
+      body: JSON.stringify({
+        question,
+        limit,
+      }),
+    }
+  );
+
+  if (!response.ok) {
+    const errorData = await response
+      .json()
+      .catch(() => null);
+
+    throw new Error(
+      errorData?.detail ??
+        `Search failed: ${response.status}`
+    );
+  }
+
+  return response.json();
+}
+
