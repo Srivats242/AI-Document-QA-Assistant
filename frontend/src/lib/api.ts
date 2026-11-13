@@ -8,6 +8,18 @@ export type DocumentStats = {
   total_indexed_pages: number;
 };
 
+export type DocumentRecord = {
+  document_id: string;
+  filename: string;
+  total_chunks: number;
+  indexed_pages: number;
+};
+
+export type DocumentsResponse = {
+  count: number;
+  documents: DocumentRecord[];
+};
+
 export async function fetchDocumentStats(
   signal?: AbortSignal
 ): Promise<DocumentStats> {
@@ -24,3 +36,39 @@ export async function fetchDocumentStats(
 
   return response.json();
 }
+
+export async function fetchDocuments(
+  signal?: AbortSignal
+): Promise<DocumentsResponse> {
+  const response = await fetch(
+    `${API_BASE_URL}/documents`,
+    { signal }
+  );
+
+  if (!response.ok) {
+    throw new Error(
+      `Failed to fetch documents: ${response.status}`
+    );
+  }
+
+  return response.json();
+}
+
+
+export async function deleteDocument(
+  documentId: string
+): Promise<void> {
+  const response = await fetch(
+    `${API_BASE_URL}/documents/${encodeURIComponent(documentId)}`,
+    {
+      method: "DELETE",
+    }
+  );
+
+  if (!response.ok) {
+    throw new Error(
+      `Failed to delete document: ${response.status}`
+    );
+  }
+}
+
