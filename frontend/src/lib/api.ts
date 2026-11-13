@@ -72,3 +72,33 @@ export async function deleteDocument(
   }
 }
 
+
+export type UploadResponse = {
+  document_id: string;
+  duplicate?: boolean;
+};
+
+export async function uploadDocument(
+  file: File
+): Promise<UploadResponse> {
+  const formData = new FormData();
+  formData.append("file", file);
+
+  const response = await fetch(
+    `${API_BASE_URL}/upload`,
+    {
+      method: "POST",
+      body: formData,
+    }
+  );
+
+  if (!response.ok) {
+    throw new Error(
+      `Failed to upload document: ${response.status}`
+    );
+  }
+
+  return response.json();
+}
+
+

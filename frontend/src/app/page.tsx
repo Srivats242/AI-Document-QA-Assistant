@@ -1,10 +1,15 @@
 "use client";
 
-import { useEffect, useState } from "react";
+import { 
+  useEffect, 
+  useState, 
+  type ChangeEvent,
+} from "react";
 import {
   fetchDocumentStats,
   fetchDocuments,
   deleteDocument,
+  uploadDocument,
   type DocumentStats,
   type DocumentRecord,
 } from "@/lib/api";
@@ -30,6 +35,15 @@ export default function Home() {
 
   const [deleteError, setDeleteError] =
     useState<string | null>(null);
+  
+  const [uploading, setUploading] = useState(false);
+
+  const [uploadMessage, setUploadMessage] =
+    useState<string | null>(null);
+
+  const [uploadError, setUploadError] =
+    useState<string | null>(null);
+
 
   // Fetch document statistics.
   useEffect(() => {
@@ -136,6 +150,78 @@ export default function Home() {
     }
   }
 
+  async function handleUpload(
+    event: ChangeEvent<HTMLInputElement>
+  ) {
+    const file = event.currentTarget.files?.[0];
+
+    if (!file) {
+      return;
+    }
+
+    // Allow the same file to be selected again.
+    event.currentTarget.value = "";
+
+    setUploadMessage(null);
+    setUploadError(null);
+
+    if (!file.name.toLowerCase().endsWith(".pdf")) {
+      setUploadError("Please select a PDF file.");
+      return;
+    }
+
+    const maxFileSize = 10 * 1024 * 1024;
+
+    if (file.size > maxFileSize) {
+      setUploadError(
+        "The PDF must be 10 MB or smaller."
+      );
+      return;
+    }
+
+    setUploading(true);
+
+    try {
+      const result = await uploadDocument(file);
+
+      // Refresh the document list and statistics.
+      try {
+        const [documentData, statsData] =
+          await Promise.all([
+            fetchDocuments(),
+            fetchDocumentStats(),
+          ]);
+
+        setDocuments(documentData.documents);
+        setStats(statsData);
+
+        setDocumentsError(null);
+        setStatsError(null);
+
+        if (result.duplicate) {
+          setUploadMessage(
+            "This PDF is already indexed. No duplicate was added."
+          );
+        } else {
+          setUploadMessage(
+            `"${file.name}" was uploaded and indexed successfully.`
+          );
+        }
+      } catch {
+        setUploadMessage(
+          "The PDF was processed, but the dashboard could not refresh. Please reload the page."
+        );
+      }
+    } catch {
+      setUploadError(
+        "Unable to upload the PDF. Check that FastAPI is running and the file is valid."
+      );
+    } finally {
+      setUploading(false);
+    }
+  }
+
+
   const statCards = [
     {
       label: "Documents",
@@ -223,6 +309,7 @@ export default function Home() {
         )}
 
         <div className="grid gap-6 lg:grid-cols-2">
+          
           {/* Upload section */}
           <section className="rounded-xl border border-slate-200 bg-white p-6 shadow-sm">
             <h3 className="text-lg font-semibold">
@@ -246,12 +333,55 @@ export default function Home() {
                 Supports PDF documents up to 10 MB.
               </p>
 
-              <p className="mt-4 text-xs text-slate-400">
-                Upload functionality coming soon
-              </p>
+              <label
+                htmlFor="pdf-upload"
+                className={`mt-4 inline-block rounded-lg bg-blue-600 px-4 py-2 text-sm font-medium text-white ${
+                  uploading
+                    ? "cursor-not-allowed opacity-50"
+                    : "cursor-pointer hover:bg-blue-700"
+                }`}
+              >
+                {uploading ? "Uploading..." : "Choose PDF"}
+              </label>
+
+              <input
+                id="pdf-upload"
+                type="file"
+                accept=".pdf,application/pdf"
+                disabled={uploading}
+                onChange={(event) => void handleUpload(event)}
+                className="sr-only"
+              />
+
+              {uploading && (
+                <p
+                  role="status"
+                  className="mt-4 text-sm text-blue-600"
+                >
+                  Uploading and indexing your document...
+                </p>
+              )}
+
+              {uploadMessage && (
+                <p
+                  role="status"
+                  className="mt-4 text-sm text-green-700"
+                >
+                  {uploadMessage}
+                </p>
+              )}
+
+              {uploadError && (
+                <p
+                  role="alert"
+                  className="mt-4 text-sm text-red-600"
+                >
+                  {uploadError}
+                </p>
+              )}
             </div>
           </section>
-
+          
           {/* Semantic search section */}
           <section className="rounded-xl border border-slate-200 bg-white p-6 shadow-sm">
             <h3 className="text-lg font-semibold">
