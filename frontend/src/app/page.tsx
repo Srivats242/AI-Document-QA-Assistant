@@ -263,8 +263,16 @@ export default function Home() {
         5
       );
 
-      setSearchResults(result.matches);
-      setHasSearched(true);
+      
+    const MAX_COSINE_DISTANCE = 0.60;
+
+    const relevantMatches = result.matches.filter(
+      (match) => match.distance <= MAX_COSINE_DISTANCE
+    );
+
+    setSearchResults(relevantMatches);
+    setHasSearched(true);
+
     } catch (error) {
       setSearchError(
         error instanceof Error
@@ -519,13 +527,14 @@ export default function Home() {
               <div className="mt-6 space-y-4">
                 <h4 className="font-semibold text-slate-800">
                   Search Results ({searchResults.length})
-                </h4>
-
-                {searchResults.length === 0 ? (
-                  <p className="text-sm text-slate-500">
-                    No matching passages were found.
-                  </p>
-                ) : (
+                </h4>        
+                    {searchResults.length === 0 ? (
+                      <p className="text-sm text-slate-500">
+                        No sufficiently relevant passages were found in your
+                        uploaded documents. Try asking a question related to
+                        your PDFs.
+                      </p>
+                    ) : (
                   searchResults.map((match, index) => (
                     <div
                       key={`${match.document_id}-${match.page_number}-${index}`}
@@ -548,6 +557,12 @@ export default function Home() {
                       <p className="mt-3 text-xs text-slate-500">
                         Cosine distance: {match.distance.toFixed(3)}
                       </p>
+ 
+                      {typeof match.relevance_score === "number" && (
+                        <p className="mt-1 text-xs text-slate-500">
+                          Relevance score: {match.relevance_score.toFixed(2)}
+                        </p>
+                      )}
                     </div>
                   ))
                 )}

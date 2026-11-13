@@ -108,6 +108,7 @@ export type SearchMatch = {
   page_number: number;
   text: string;
   distance: number;
+  relevance_score: number;
 };
 
 export type SearchResponse = {

@@ -2,6 +2,7 @@ from pathlib import Path
 
 import chromadb
 from sentence_transformers import SentenceTransformer
+from relevance_evaluator import rerank_matches
 
 MODEL_NAME = "sentence-transformers/all-MiniLM-L6-v2"
 
@@ -178,6 +179,7 @@ def delete_document(document_id):
     return document["total_chunks"]
 
 
+
 def search_all_documents(question, limit=5):
     if not question.strip():
         return []
@@ -195,9 +197,15 @@ def search_all_documents(question, limit=5):
         normalize_embeddings=True
     ).tolist()
 
+    # Retrieve more candidates before evaluating relevance.
+    candidate_count = min(
+        max(limit * 4, 20),
+        total_chunks
+    )
+
     results = collection.query(
         query_embeddings=question_embedding,
-        n_results=min(limit, total_chunks),
+        n_results=candidate_count,
         include=["documents", "metadatas", "distances"]
     )
 
@@ -214,8 +222,14 @@ def search_all_documents(question, limit=5):
             "distance": results["distances"][0][i]
         })
 
-    return matches
+    # Evaluate how well each passage matches the question.
+    ranked_matches = rerank_matches(
+        question,
+        matches
+    )
 
+    # Return the highest-ranked passages.
+    return ranked_matches[:limit]
 
 def get_document_by_hash(file_hash):
     results = collection.get(
