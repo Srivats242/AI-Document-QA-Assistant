@@ -476,6 +476,22 @@ export default function Home() {
                   ? "Searching..."
                   : "Search Documents"}
               </button>
+              <button
+                type="button"
+                disabled={
+                  searching ||
+                  (!searchQuestion && !hasSearched && !searchError)
+                }
+                onClick={() => {
+                  setSearchQuestion("");
+                  setSearchResults([]);
+                  setSearchError(null);
+                  setHasSearched(false);
+                }}
+                className="w-full rounded-lg border border-slate-300 bg-white px-4 py-3 font-medium text-slate-700 transition hover:bg-slate-50 disabled:cursor-not-allowed disabled:opacity-50"
+              >
+                Clear Search
+              </button>
             </form>
 
             {/* Search loading state */}
