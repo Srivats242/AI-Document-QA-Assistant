@@ -17,6 +17,8 @@ import {
   type SearchMatch,
 } from "@/lib/api";
 
+import SearchResultCard from "@/components/SearchResultCard";
+
 export default function Home() {
   const [stats, setStats] =
     useState<DocumentStats | null>(null);
@@ -623,45 +625,35 @@ export default function Home() {
             {hasSearched && !searching && (
               <div className="mt-6 space-y-4">
                 <h4 className="font-semibold text-slate-800">
-                  Search Results ({visibleResults.length})
-                </h4>        
-                    {visibleResults.length === 0 ? (
-                      <p className="text-sm text-slate-500">
-                        No sufficiently relevant passages were found in your
-                        uploaded documents. Try asking a question related to
-                        your PDFs.
-                      </p>
-                    ) : (
-                  visibleResults.map((match, index) => (
-                    <div
-                      key={`${match.document_id}-${match.page_number}-${index}`}
-                      className="rounded-lg border border-slate-200 bg-slate-50 p-4"
-                    >
-                      <div className="flex flex-wrap items-center justify-between gap-2">
-                        <p className="break-all text-sm font-semibold text-slate-800">
-                          📄 {match.filename}
-                        </p>
+                  Search Results ({visibleResults.length} of {searchResults.length})
+                </h4>
 
-                        <span className="rounded-full bg-blue-50 px-3 py-1 text-xs font-medium text-blue-700">
-                          Page {match.page_number}
-                        </span>
-                      </div>
+                {searchResults.length > visibleResults.length && (
+                  <p className="text-sm text-amber-700">
+                    {searchResults.length - visibleResults.length} passage(s)
+                    hidden by the current cosine-distance threshold.
+                  </p>
+                )}
 
-                      <p className="mt-3 whitespace-pre-wrap text-sm leading-relaxed text-slate-700">
-                        {match.text}
-                      </p>
-
-                      <p className="mt-3 text-xs text-slate-500">
-                        Cosine distance: {match.distance.toFixed(3)}
-                      </p>
- 
-                      {typeof match.relevance_score === "number" && (
-                        <p className="mt-1 text-xs text-slate-500">
-                          Relevance score: {match.relevance_score.toFixed(2)}
-                        </p>
-                      )}
-                    </div>
-                  ))
+                {searchResults.length === 0 ? (
+                  <p className="text-sm text-slate-500">
+                    No passages were returned by the search.
+                    Try another question or upload additional PDFs.
+                  </p>
+                ) : visibleResults.length === 0 ? (
+                  <p className="text-sm text-slate-500">
+                    All retrieved passages were filtered out.
+                    Try increasing the maximum cosine distance.
+                  </p>
+                ) : (
+                  <div className="space-y-4">
+                    {visibleResults.map((match) => (
+                      <SearchResultCard
+                        key={`${match.document_id}-${match.page_number}-${match.text}`}
+                        match={match}
+                      />
+                    ))}
+                  </div>
                 )}
               </div>
             )}
