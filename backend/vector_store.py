@@ -3,6 +3,7 @@ from pathlib import Path
 import chromadb
 from sentence_transformers import SentenceTransformer
 from relevance_evaluator import rerank_matches
+from search_pipeline import run_search_pipeline
 
 MODEL_NAME = "sentence-transformers/all-MiniLM-L6-v2"
 
@@ -178,58 +179,14 @@ def delete_document(document_id):
 
     return document["total_chunks"]
 
-
-
 def search_all_documents(question, limit=5):
-    if not question.strip():
-        return []
-
-    if limit < 1:
-        raise ValueError("Limit must be positive")
-
-    total_chunks = collection.count()
-
-    if total_chunks == 0:
-        return []
-
-    question_embedding = model.encode(
-        [question],
-        normalize_embeddings=True
-    ).tolist()
-
-    # Retrieve more candidates before evaluating relevance.
-    candidate_count = min(
-        max(limit * 4, 20),
-        total_chunks
+    return run_search_pipeline(
+        question=question,
+        limit=limit,
+        collection=collection,
+        model=model,
+        rerank_fn=rerank_matches
     )
-
-    results = collection.query(
-        query_embeddings=question_embedding,
-        n_results=candidate_count,
-        include=["documents", "metadatas", "distances"]
-    )
-
-    matches = []
-
-    for i, text in enumerate(results["documents"][0]):
-        metadata = results["metadatas"][0][i]
-
-        matches.append({
-            "document_id": metadata["document_id"],
-            "filename": metadata["filename"],
-            "page_number": metadata["page_number"],
-            "text": text,
-            "distance": results["distances"][0][i]
-        })
-
-    # Evaluate how well each passage matches the question.
-    ranked_matches = rerank_matches(
-        question,
-        matches
-    )
-
-    # Return the highest-ranked passages.
-    return ranked_matches[:limit]
 
 def get_document_by_hash(file_hash):
     results = collection.get(
