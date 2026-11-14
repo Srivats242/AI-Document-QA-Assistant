@@ -4,7 +4,7 @@ import {
   useEffect, 
   useState, 
   type ChangeEvent,
-  type FormEvent,
+  type SubmitEvent,
 } from "react";
 import {
   fetchDocumentStats,
@@ -63,7 +63,13 @@ export default function Home() {
   const [hasSearched, setHasSearched] =
     useState(false);
 
+  const [maxDistance, setMaxDistance] = useState(0.60);
 
+  const [resultLimit, setResultLimit] = useState(5);
+
+  const [sortBy, setSortBy] = useState<
+    "relevance" | "distance"
+  >("relevance");
 
   // Fetch document statistics.
   useEffect(() => {
@@ -242,7 +248,7 @@ export default function Home() {
   }
 
   async function handleSearch(
-    event: FormEvent<HTMLFormElement>
+    event: SubmitEvent<HTMLFormElement>
   ) {
     event.preventDefault();
 
@@ -260,18 +266,11 @@ export default function Home() {
     try {
       const result = await searchAllDocuments(
         question,
-        5
+        resultLimit
       );
 
-      
-    const MAX_COSINE_DISTANCE = 0.60;
-
-    const relevantMatches = result.matches.filter(
-      (match) => match.distance <= MAX_COSINE_DISTANCE
-    );
-
-    setSearchResults(relevantMatches);
-    setHasSearched(true);
+      setSearchResults(result.matches);
+      setHasSearched(true);
 
     } catch (error) {
       setSearchError(
@@ -301,6 +300,23 @@ export default function Home() {
       description: "Pages with extracted text",
     },
   ];
+
+  const visibleResults = searchResults
+    .filter(
+      (match) =>
+        Number.isFinite(match.distance) &&
+        match.distance <= maxDistance
+    )
+    .sort((a, b) => {
+      if (sortBy === "distance") {
+        return a.distance - b.distance;
+      }
+
+      return (
+        (b.relevance_score ?? Number.NEGATIVE_INFINITY) -
+        (a.relevance_score ?? Number.NEGATIVE_INFINITY)
+      );
+    });
 
   return (
     <div className="min-h-screen bg-slate-50 text-slate-900">
@@ -475,6 +491,87 @@ export default function Home() {
                 className="w-full resize-none rounded-lg border border-slate-300 bg-white p-3 text-sm placeholder:text-slate-400 focus:border-blue-500 focus:outline-none"
               />
 
+              {/* Advanced Search Settings */}
+              <div className="space-y-4 rounded-lg border border-slate-200 bg-slate-50 p-4">
+                <h4 className="text-sm font-semibold text-slate-800">
+                  Advanced Search Settings
+                </h4>
+
+                <div>
+                  <label
+                    htmlFor="distance-threshold"
+                    className="flex justify-between text-sm font-medium"
+                  >
+                    <span>Maximum cosine distance</span>
+                    <span>{maxDistance.toFixed(2)}</span>
+                  </label>
+
+                  <input
+                    id="distance-threshold"
+                    type="range"
+                    min="0.30"
+                    max="0.90"
+                    step="0.05"
+                    value={maxDistance}
+                    onChange={(event) =>
+                      setMaxDistance(Number(event.target.value))
+                    }
+                    className="mt-3 w-full accent-blue-600"
+                  />
+
+                  <p className="mt-1 text-xs text-slate-500">
+                    Lower values apply stricter filtering.
+                  </p>
+                </div>
+
+                <div className="grid gap-4 sm:grid-cols-2">
+                  <div>
+                    <label
+                      htmlFor="result-limit"
+                      className="block text-sm font-medium"
+                    >
+                      Results per search
+                    </label>
+
+                    <select
+                      id="result-limit"
+                      value={resultLimit}
+                      onChange={(event) =>
+                        setResultLimit(Number(event.target.value))
+                      }
+                      className="mt-2 w-full rounded-lg border border-slate-300 bg-white p-2 text-sm"
+                    >
+                      <option value={5}>5 results</option>
+                      <option value={10}>10 results</option>
+                      <option value={20}>20 results</option>
+                    </select>
+                  </div>
+
+                  <div>
+                    <label
+                      htmlFor="sort-results"
+                      className="block text-sm font-medium"
+                    >
+                      Sort results by
+                    </label>
+
+                    <select
+                      id="sort-results"
+                      value={sortBy}
+                      onChange={(event) =>
+                        setSortBy(
+                          event.target.value as "relevance" | "distance"
+                        )
+                      }
+                      className="mt-2 w-full rounded-lg border border-slate-300 bg-white p-2 text-sm"
+                    >
+                      <option value="relevance">Relevance score</option>
+                      <option value="distance">Cosine distance</option>
+                    </select>
+                  </div>
+                </div>
+              </div>
+
               <button
                 type="submit"
                 disabled={searching || !searchQuestion.trim()}
@@ -526,16 +623,16 @@ export default function Home() {
             {hasSearched && !searching && (
               <div className="mt-6 space-y-4">
                 <h4 className="font-semibold text-slate-800">
-                  Search Results ({searchResults.length})
+                  Search Results ({visibleResults.length})
                 </h4>        
-                    {searchResults.length === 0 ? (
+                    {visibleResults.length === 0 ? (
                       <p className="text-sm text-slate-500">
                         No sufficiently relevant passages were found in your
                         uploaded documents. Try asking a question related to
                         your PDFs.
                       </p>
                     ) : (
-                  searchResults.map((match, index) => (
+                  visibleResults.map((match, index) => (
                     <div
                       key={`${match.document_id}-${match.page_number}-${index}`}
                       className="rounded-lg border border-slate-200 bg-slate-50 p-4"
