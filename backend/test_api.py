@@ -18,8 +18,17 @@ mock_vector_store.search_all_documents = Mock()
 mock_vector_store.get_document_by_hash = Mock()
 mock_vector_store.get_document_stats = Mock()
 
-with patch.dict(sys.modules, {"vector_store": mock_vector_store}):
+original_vector_store = sys.modules.get("vector_store")
+
+sys.modules["vector_store"] = mock_vector_store
+
+try:
     import main
+finally:
+    if original_vector_store is None:
+        sys.modules.pop("vector_store", None)
+    else:
+        sys.modules["vector_store"] = original_vector_store
 
 
 class TestAPI(unittest.TestCase):

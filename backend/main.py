@@ -8,6 +8,9 @@ from pydantic import BaseModel, Field
 from fastapi.middleware.cors import CORSMiddleware
 
 from document_processor import chunk_document
+from answer_generator import generate_answer
+from openai import OpenAIError
+
 from vector_store import (
     store_document,
     search_document,
@@ -238,4 +241,51 @@ def search_across_documents(request: MultiSearchRequest):
 def document_stats():
     return get_document_stats()
 
+
+@app.post("/ask")
+def ask_question(request: MultiSearchRequest):
+    """Answer a question using passages from uploaded documents."""
+
+    if not request.question.strip():
+        raise HTTPException(
+            status_code=422,
+            detail="Question cannot be empty"
+        )
+
+    matches = search_all_documents(
+        question=request.question,
+        limit=request.limit
+    )
+
+    if not matches:
+        raise HTTPException(
+            status_code=404,
+            detail="No indexed passages found"
+        )
+
+    try:
+        answer = generate_answer(
+            question=request.question,
+            matches=matches
+        )
+    except (OpenAIError, ValueError):
+        raise HTTPException(
+            status_code=502,
+            detail="Unable to generate an AI answer"
+        )
+
+    sources = [
+        {
+            **match,
+            "citation": f"[{index}]"
+        }
+        for index, match in enumerate(matches, start=1)
+    ]
+
+    return {
+        "question": request.question,
+        "answer": answer,
+        "total_sources": len(sources),
+        "sources": sources
+    }
 
