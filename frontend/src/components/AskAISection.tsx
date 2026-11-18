@@ -1,6 +1,6 @@
 "use client";
 
-import { useState, type SubmitEvent } from "react";
+import { useRef, useState, type SubmitEvent } from "react";
 import { askQuestion, type AskResponse } from "@/lib/api";
 
 export default function AskAISection() {
@@ -8,6 +8,51 @@ export default function AskAISection() {
   const [result, setResult] = useState<AskResponse | null>(null);
   const [loading, setLoading] = useState(false);
   const [error, setError] = useState<string | null>(null);
+  const [selectedCitation, setSelectedCitation] = useState<string | null>(
+    null
+  );
+
+  const sourceRefs = useRef<Record<string, HTMLDivElement | null>>({});
+
+  function handleCitationClick(citation: string) {
+    setSelectedCitation(citation);
+
+    const sourceElement = sourceRefs.current[citation];
+
+    if (sourceElement) {
+      sourceElement.focus({ preventScroll: true });
+      sourceElement.scrollIntoView({
+        behavior: "smooth",
+        block: "center",
+      });
+    }
+  }
+
+  function renderAnswerWithCitations(answer: string) {
+    const parts = answer.split(/(\[\d+\])/g);
+
+    return parts.map((part, index) => {
+      const source = result?.sources.find(
+        (item) => item.citation === part
+      );
+
+      if (!source) {
+        return <span key={index}>{part}</span>;
+      }
+
+      return (
+        <button
+          key={index}
+          type="button"
+          onClick={() => handleCitationClick(part)}
+          aria-label={`Jump to source ${part}: ${source.filename}, page ${source.page_number}`}
+          className="mx-0.5 rounded font-semibold text-blue-600 underline underline-offset-2 hover:text-blue-800 focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-blue-600"
+        >
+          {part}
+        </button>
+      );
+    });
+  }
 
   async function handleAsk(event: SubmitEvent<HTMLFormElement>) {
     event.preventDefault();
@@ -21,6 +66,8 @@ export default function AskAISection() {
     setLoading(true);
     setError(null);
     setResult(null);
+    setSelectedCitation(null);
+    sourceRefs.current = {};
 
     try {
       const response = await askQuestion(trimmedQuestion, 5);
@@ -95,7 +142,7 @@ export default function AskAISection() {
             </h4>
 
             <p className="mt-3 whitespace-pre-wrap text-sm leading-7 text-slate-700">
-              {result.answer}
+              {renderAnswerWithCitations(result.answer)}
             </p>
           </div>
 
@@ -108,7 +155,15 @@ export default function AskAISection() {
               {result.sources.map((source, index) => (
                 <div
                   key={`${source.document_id}-${source.page_number}-${index}`}
-                  className="rounded-lg border border-slate-200 p-4"
+                  ref={(element) => {
+                    sourceRefs.current[source.citation] = element;
+                  }}
+                  tabIndex={-1}
+                  className={`rounded-lg border p-4 transition-colors duration-300 focus:outline-none ${
+                    selectedCitation === source.citation
+                      ? "border-blue-400 bg-blue-50 ring-2 ring-blue-200"
+                      : "border-slate-200 bg-white"
+                  }`}
                 >
                   <p className="text-sm font-medium text-slate-800">
                     {source.citation} {source.filename}
