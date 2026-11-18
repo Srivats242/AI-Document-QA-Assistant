@@ -16,7 +16,10 @@ class TestAnswerGenerator(unittest.TestCase):
         ]
 
         self.client = MagicMock()
-        self.client.responses.create.return_value.output_text = (
+
+        self.client.chat.completions.create.return_value.choices[
+            0
+        ].message.content = (
             "Missionaries established schools [1]."
         )
 
@@ -41,12 +44,22 @@ class TestAnswerGenerator(unittest.TestCase):
             model="test-model",
         )
 
-        arguments = self.client.responses.create.call_args.kwargs
+        arguments = (
+            self.client.chat.completions.create.call_args.kwargs
+        )
 
         self.assertEqual(arguments["model"], "test-model")
-        self.assertIn("Kim.pdf", arguments["input"])
-        self.assertIn("Page: 4", arguments["input"])
-        self.assertFalse(arguments["store"])
+        self.assertEqual(arguments["temperature"], 0)
+
+        messages = arguments["messages"]
+
+        self.assertEqual(messages[0]["role"], "user")
+        self.assertIn("Kim.pdf", messages[0]["content"])
+        self.assertIn("Page: 4", messages[0]["content"])
+        self.assertIn(
+            "Missionaries established schools.",
+            messages[0]["content"],
+        )
 
     def test_empty_question_raises_error(self):
         with self.assertRaises(ValueError):
@@ -56,10 +69,12 @@ class TestAnswerGenerator(unittest.TestCase):
                 client=self.client,
             )
 
-        self.client.responses.create.assert_not_called()
+        self.client.chat.completions.create.assert_not_called()
 
     def test_empty_model_response_raises_error(self):
-        self.client.responses.create.return_value.output_text = " "
+        self.client.chat.completions.create.return_value.choices[
+            0
+        ].message.content = " "
 
         with self.assertRaises(ValueError):
             generate_answer(

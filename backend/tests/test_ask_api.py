@@ -2,7 +2,7 @@ import unittest
 from unittest.mock import patch
 
 from fastapi.testclient import TestClient
-from openai import OpenAIError
+from groq import GroqError
 
 from main import app
 
@@ -96,7 +96,7 @@ class TestAskAPI(unittest.TestCase):
     @patch("main.search_all_documents")
     def test_ai_generation_failure(self, mock_search, mock_generate):
         mock_search.return_value = self.matches
-        mock_generate.side_effect = OpenAIError(
+        mock_generate.side_effect = GroqError(
             "Model unavailable"
         )
 

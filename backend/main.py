@@ -9,7 +9,7 @@ from fastapi.middleware.cors import CORSMiddleware
 
 from document_processor import chunk_document
 from answer_generator import generate_answer
-from openai import OpenAIError
+from groq import GroqError
 
 from vector_store import (
     store_document,
@@ -268,11 +268,16 @@ def ask_question(request: MultiSearchRequest):
             question=request.question,
             matches=matches
         )
-    except (OpenAIError, ValueError):
+    except (GroqError, ValueError) as exc:
+        print(
+        f"AI generation error: {type(exc).__name__}, "
+        f"HTTP status: {getattr(exc, 'status_code', 'N/A')}"
+        )
+
         raise HTTPException(
             status_code=502,
             detail="Unable to generate an AI answer"
-        )
+        ) from exc
 
     sources = [
         {

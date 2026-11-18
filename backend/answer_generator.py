@@ -1,7 +1,6 @@
 import os
 
-from openai import OpenAI
-
+from groq import Groq
 from rag_prompt import build_rag_prompt
 
 
@@ -11,26 +10,34 @@ def generate_answer(
     client=None,
     model: str | None = None,
 ) -> str:
-    """Generate an answer using retrieved document passages."""
-
     prompt = build_rag_prompt(question, matches)
 
     if client is None:
-        client = OpenAI()
+        client = Groq()
 
     selected_model = model or os.getenv(
-        "OPENAI_MODEL", "gpt-4.1-mini"
+        "GROQ_MODEL",
+        "openai/gpt-oss-20b",
     )
 
-    response = client.responses.create(
+    response = client.chat.completions.create(
         model=selected_model,
-        input=prompt,
-        store=False,
+        messages=[
+            {
+                "role": "user",
+                "content": prompt,
+            }
+        ],
+        temperature=0,
     )
 
-    answer = (response.output_text or "").strip()
+    answer = (
+        response.choices[0].message.content or ""
+    ).strip()
 
     if not answer:
-        raise ValueError("The AI model returned an empty answer.")
+        raise ValueError(
+            "The AI model returned an empty answer."
+        )
 
     return answer

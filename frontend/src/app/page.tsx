@@ -18,6 +18,7 @@ import {
 } from "@/lib/api";
 
 import SearchResultCard from "@/components/SearchResultCard";
+import AskAISection from "@/components/AskAISection";
 
 export default function Home() {
   const [stats, setStats] =
@@ -659,7 +660,8 @@ export default function Home() {
             )}
           </section>
         </div>
-
+        {/* AI Question Answering */}
+        <AskAISection />
         {/* Document Library */}
         <section className="rounded-xl border border-slate-200 bg-white p-6 shadow-sm">
           <div className="flex flex-wrap items-center justify-between gap-3">

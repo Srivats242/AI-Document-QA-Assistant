@@ -149,3 +149,48 @@ export async function searchAllDocuments(
   return response.json();
 }
 
+
+export type AskSource = SearchMatch & {
+  citation: string;
+};
+
+export type AskResponse = {
+  question: string;
+  answer: string;
+  total_sources: number;
+  sources: AskSource[];
+};
+
+export async function askQuestion(
+  question: string,
+  limit: number = 5
+): Promise<AskResponse> {
+  const response = await fetch(
+    `${API_BASE_URL}/ask`,
+    {
+      method: "POST",
+      headers: {
+        "Content-Type": "application/json",
+      },
+      body: JSON.stringify({
+        question,
+        limit,
+      }),
+    }
+  );
+
+  if (!response.ok) {
+    const errorData = await response
+      .json()
+      .catch(() => null);
+
+    throw new Error(
+      typeof errorData?.detail === "string"
+        ? errorData.detail
+        : `AI answer generation failed: ${response.status}`
+    );
+  }
+
+  return response.json();
+}
+
