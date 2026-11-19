@@ -1,18 +1,102 @@
 "use client";
 
 import { useRef, useState, type SubmitEvent } from "react";
+import ReactMarkdown from "react-markdown";
+import { SKIP, visit } from "unist-util-visit";
+import type { Root, PhrasingContent } from "mdast";
 import { askQuestion, type AskResponse } from "@/lib/api";
+
+// Convert citation text nodes into Markdown links.
+// Existing links and inline code are left unchanged.
+function createCitationPlugin(validCitations: Set<string>) {
+  return function remarkCitations() {
+    return (tree: Root) => {
+      visit(tree, (node, index, parent) => {
+        // Don't modify citations inside existing links.
+        if (
+          node.type === "link" ||
+          node.type === "linkReference"
+        ) {
+          return SKIP;
+        }
+
+        if (
+          node.type !== "text" ||
+          !parent ||
+          index === undefined
+        ) {
+          return;
+        }
+
+        const replacements: PhrasingContent[] = [];
+        const citationPattern = /\[(\d+)\]/g;
+        let lastIndex = 0;
+
+        for (const match of node.value.matchAll(citationPattern)) {
+          const citation = match[0];
+
+          // Only link citations that correspond to real sources.
+          if (!validCitations.has(citation)) {
+            continue;
+          }
+
+          const matchIndex = match.index;
+
+          if (matchIndex > lastIndex) {
+            replacements.push({
+              type: "text",
+              value: node.value.slice(lastIndex, matchIndex),
+            });
+          }
+
+          replacements.push({
+            type: "link",
+            url: `#citation-${match[1]}`,
+            children: [
+              {
+                type: "text",
+                value: citation,
+              },
+            ],
+          });
+
+          lastIndex = matchIndex + citation.length;
+        }
+
+        if (replacements.length === 0) {
+          return;
+        }
+
+        if (lastIndex < node.value.length) {
+          replacements.push({
+            type: "text",
+            value: node.value.slice(lastIndex),
+          });
+        }
+
+        const siblings = parent.children as PhrasingContent[];
+
+        siblings.splice(index, 1, ...replacements);
+
+        // Continue after the inserted nodes.
+        return index + replacements.length;
+      });
+    };
+  };
+}
 
 export default function AskAISection() {
   const [question, setQuestion] = useState("");
   const [result, setResult] = useState<AskResponse | null>(null);
   const [loading, setLoading] = useState(false);
   const [error, setError] = useState<string | null>(null);
-  const [selectedCitation, setSelectedCitation] = useState<string | null>(
-    null
-  );
+  const [selectedCitation, setSelectedCitation] = useState<
+    string | null
+  >(null);
 
-  const sourceRefs = useRef<Record<string, HTMLDivElement | null>>({});
+  const sourceRefs = useRef<Record<string, HTMLDivElement | null>>(
+    {}
+  );
 
   function handleCitationClick(citation: string) {
     setSelectedCitation(citation);
@@ -26,32 +110,6 @@ export default function AskAISection() {
         block: "center",
       });
     }
-  }
-
-  function renderAnswerWithCitations(answer: string) {
-    const parts = answer.split(/(\[\d+\])/g);
-
-    return parts.map((part, index) => {
-      const source = result?.sources.find(
-        (item) => item.citation === part
-      );
-
-      if (!source) {
-        return <span key={index}>{part}</span>;
-      }
-
-      return (
-        <button
-          key={index}
-          type="button"
-          onClick={() => handleCitationClick(part)}
-          aria-label={`Jump to source ${part}: ${source.filename}, page ${source.page_number}`}
-          className="mx-0.5 rounded font-semibold text-blue-600 underline underline-offset-2 hover:text-blue-800 focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-blue-600"
-        >
-          {part}
-        </button>
-      );
-    });
   }
 
   async function handleAsk(event: SubmitEvent<HTMLFormElement>) {
@@ -82,6 +140,12 @@ export default function AskAISection() {
       setLoading(false);
     }
   }
+
+  const validCitations = new Set(
+    result?.sources.map((source) => source.citation) ?? []
+  );
+
+  const citationPlugin = createCitationPlugin(validCitations);
 
   return (
     <section className="rounded-xl border border-slate-200 bg-white p-6 shadow-sm">
@@ -141,9 +205,102 @@ export default function AskAISection() {
               AI-Generated Answer
             </h4>
 
-            <p className="mt-3 whitespace-pre-wrap text-sm leading-7 text-slate-700">
-              {renderAnswerWithCitations(result.answer)}
-            </p>
+            <div className="mt-3 text-sm text-slate-700">
+              <ReactMarkdown
+                remarkPlugins={[citationPlugin]}
+                components={{
+                  p: ({ children }) => (
+                    <p className="my-3 leading-7">
+                      {children}
+                    </p>
+                  ),
+                  ul: ({ children }) => (
+                    <ul className="my-3 list-disc space-y-2 pl-6">
+                      {children}
+                    </ul>
+                  ),
+                  ol: ({ children }) => (
+                    <ol className="my-3 list-decimal space-y-2 pl-6">
+                      {children}
+                    </ol>
+                  ),
+                  li: ({ children }) => (
+                    <li className="leading-7">
+                      {children}
+                    </li>
+                  ),
+                  h1: ({ children }) => (
+                    <h1 className="my-3 text-xl font-bold">
+                      {children}
+                    </h1>
+                  ),
+                  h2: ({ children }) => (
+                    <h2 className="my-3 text-lg font-bold">
+                      {children}
+                    </h2>
+                  ),
+                  h3: ({ children }) => (
+                    <h3 className="my-3 font-semibold">
+                      {children}
+                    </h3>
+                  ),
+                  strong: ({ children }) => (
+                    <strong className="font-semibold">
+                      {children}
+                    </strong>
+                  ),
+                  blockquote: ({ children }) => (
+                    <blockquote className="my-3 border-l-4 border-slate-300 pl-4 italic">
+                      {children}
+                    </blockquote>
+                  ),
+                  code: ({ children }) => (
+                    <code className="rounded bg-slate-200 px-1 py-0.5 font-mono text-xs">
+                      {children}
+                    </code>
+                  ),
+                  a: ({ href, children }) => {
+                    const citationMatch = href?.match(
+                      /^#citation-(\d+)$/
+                    );
+
+                    if (citationMatch) {
+                      const citation = `[${citationMatch[1]}]`;
+
+                      const source = result.sources.find(
+                        (item) => item.citation === citation
+                      );
+
+                      if (source) {
+                        return (
+                          <button
+                            type="button"
+                            onClick={() =>
+                              handleCitationClick(citation)
+                            }
+                            aria-label={`Jump to source ${citation}: ${source.filename}, page ${source.page_number}`}
+                            className="mx-0.5 rounded font-semibold text-blue-600 underline underline-offset-2 hover:text-blue-800 focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-blue-600"
+                          >
+                            {children}
+                          </button>
+                        );
+                      }
+                    }
+
+                    return (
+                      <a
+                        href={href}
+                        className="text-blue-600 underline hover:text-blue-800"
+                      >
+                        {children}
+                      </a>
+                    );
+                  },
+                }}
+              >
+                {result.answer}
+              </ReactMarkdown>
+            </div>
           </div>
 
           <div>

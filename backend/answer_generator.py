@@ -1,7 +1,12 @@
 import os
+from pathlib import Path
 
+from dotenv import load_dotenv
 from groq import Groq
 from rag_prompt import build_rag_prompt
+
+# Automatically load GroqCloud credentials from backend/.env
+load_dotenv(Path(__file__).resolve().parent / ".env")
 
 
 def generate_answer(
