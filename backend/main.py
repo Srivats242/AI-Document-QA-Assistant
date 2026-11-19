@@ -10,6 +10,7 @@ from fastapi.middleware.cors import CORSMiddleware
 from document_processor import chunk_document
 from answer_generator import generate_answer
 from groq import GroqError
+from pdf_extractor import extract_page_text
 
 from vector_store import (
     store_document,
@@ -99,10 +100,12 @@ async def upload_document(file: UploadFile = File(...)):
                 )
 
             for page_index, page in enumerate(document):
+                extracted_text = extract_page_text(page)
+
                 pages.append({
                     "page_number": page_index + 1,
-                    "text": page.get_text("text")
-                })
+                    "text": extracted_text
+            })
 
 
         existing_document = get_document_by_hash(file_hash)
