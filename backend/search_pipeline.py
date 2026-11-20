@@ -1,3 +1,4 @@
+from source_quality import rerank_for_source_quality
 def run_search_pipeline(
     question,
     limit,
@@ -67,4 +68,9 @@ def run_search_pipeline(
 
     ranked_matches = rerank_fn(question, matches)
 
-    return ranked_matches[:limit]
+    quality_ranked_matches = rerank_for_source_quality(
+        question,
+        ranked_matches
+    )
+
+    return quality_ranked_matches[:limit]

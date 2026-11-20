@@ -9,47 +9,88 @@ class TestRAGPrompt(unittest.TestCase):
         self.matches = [
             {
                 "filename": "Kim.pdf",
-                "page_number": 4,
-                "text": "Missionaries established schools and community programs.",
-                "distance": 0.25,
+                "page_number": 18,
+                "text": "Korean missionaries supported development in Cambodia."
             },
             {
-                "filename": "Sarfati.pdf",
-                "page_number": 7,
-                "text": "Religious organizations contributed to local development.",
-                "distance": 0.32,
-            },
+                "filename": "Kim.pdf",
+                "page_number": 16,
+                "text": "The church promoted Koreanized Pentecostalism."
+            }
         ]
 
-    def test_prompt_contains_question(self):
+    def test_includes_question(self):
         prompt = build_rag_prompt(
-            "What role do missionaries play?",
-            self.matches,
+            "What role did Korean missionaries play?",
+            self.matches
         )
 
-        self.assertIn("What role do missionaries play?", prompt)
+        self.assertIn(
+            "What role did Korean missionaries play?",
+            prompt
+        )
 
-    def test_prompt_contains_sources(self):
-        prompt = build_rag_prompt("Explain the documents.", self.matches)
+    def test_includes_source_metadata(self):
+        prompt = build_rag_prompt(
+            "Test question",
+            self.matches
+        )
 
-        self.assertIn("Kim.pdf", prompt)
-        self.assertIn("Sarfati.pdf", prompt)
-        self.assertIn("Page: 4", prompt)
-        self.assertIn("Page: 7", prompt)
+        self.assertIn("[1] Document: Kim.pdf", prompt)
+        self.assertIn("Page: 18", prompt)
+        self.assertIn("[2] Document: Kim.pdf", prompt)
+        self.assertIn("Page: 16", prompt)
 
-    def test_prompt_contains_citation_markers(self):
-        prompt = build_rag_prompt("Explain the documents.", self.matches)
+    def test_includes_grounding_rules(self):
+        prompt = build_rag_prompt(
+            "Test question",
+            self.matches
+        )
 
-        self.assertIn("[1] Document:", prompt)
-        self.assertIn("[2] Document:", prompt)
+        self.assertIn(
+            "Every factual claim must be directly supported",
+            prompt
+        )
 
-    def test_empty_question_raises_error(self):
+        self.assertIn(
+            "Do not combine passages to create conclusions",
+            prompt
+        )
+
+        self.assertIn(
+            "Never transfer activities, achievements",
+            prompt
+        )
+
+        self.assertIn(
+            "Preserve who performed an action",
+            prompt
+        )
+
+
+    def test_includes_citation_rules(self):
+        prompt = build_rag_prompt(
+            "Test question",
+            self.matches
+        )
+
+        self.assertIn(
+            "Place citations immediately after",
+            prompt
+        )
+
+        self.assertIn(
+            "Do not invent citation numbers",
+            prompt
+        )
+
+    def test_rejects_empty_question(self):
         with self.assertRaises(ValueError):
-            build_rag_prompt("", self.matches)
+            build_rag_prompt("   ", self.matches)
 
-    def test_empty_matches_raises_error(self):
+    def test_rejects_empty_matches(self):
         with self.assertRaises(ValueError):
-            build_rag_prompt("What happened?", [])
+            build_rag_prompt("Test question", [])
 
 
 if __name__ == "__main__":
