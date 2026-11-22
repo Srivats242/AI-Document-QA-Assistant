@@ -21,3 +21,5 @@ uploads/
 # Editor and system files
 .vscode/
 .DS_Store
+# Local backup files
+*.bak
