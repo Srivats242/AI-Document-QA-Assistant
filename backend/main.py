@@ -99,26 +99,26 @@ async def upload_document(file: UploadFile = File(...)):
                     detail="Password-protected PDFs are not supported"
                 )
 
+            # Check for duplicates before running text extraction or OCR.
+            existing_document = get_document_by_hash(file_hash)
+
+            if existing_document is not None:
+                return {
+                    "document_id": existing_document["document_id"],
+                    "filename": existing_document["filename"],
+                    "total_pages": len(document),
+                    "total_chunks": existing_document["total_chunks"],
+                    "duplicate": True,
+                    "message": "Document already indexed"
+                }
+
             for page_index, page in enumerate(document):
                 extracted_text = extract_page_text(page)
 
                 pages.append({
                     "page_number": page_index + 1,
                     "text": extracted_text
-            })
-
-
-        existing_document = get_document_by_hash(file_hash)
-
-        if existing_document is not None:
-            return {
-                "document_id": existing_document["document_id"],
-                "filename": existing_document["filename"],
-                "total_pages": len(pages),
-                "total_chunks": existing_document["total_chunks"],
-                "duplicate": True,
-                "message": "Document already indexed"
-            }
+                })
 
         chunks = chunk_document(pages)
 
