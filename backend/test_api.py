@@ -356,6 +356,45 @@ class TestAPI(unittest.TestCase):
         mock_store.assert_not_called()
         mock_chunk.assert_not_called()
 
+    def test_duplicate_upload_skips_text_extraction(self):
+        pdf_bytes = self.make_test_pdf()
+
+        existing_document = {
+            "document_id": "existing-doc-123",
+            "filename": "sample.pdf",
+            "total_chunks": 1,
+            "indexed_pages": 1
+        }
+
+        with patch.object(
+            main,
+            "get_document_by_hash",
+            return_value=existing_document
+        ), patch.object(
+            main, "extract_page_text"
+        ) as mock_extract:
+            response = self.client.post(
+                "/upload",
+                files={
+                    "file": (
+                        "sample.pdf",
+                        pdf_bytes,
+                        "application/pdf"
+                    )
+                }
+            )
+
+        self.assertEqual(response.status_code, 200)
+        self.assertTrue(response.json()["duplicate"])
+        self.assertEqual(
+            response.json()["document_id"],
+            "existing-doc-123"
+        )
+        self.assertEqual(response.json()["total_pages"], 1)
+        self.assertEqual(response.json()["total_chunks"], 1)
+
+        mock_extract.assert_not_called()
+
     def test_upload_same_pdf_twice(self):
         pdf_bytes = self.make_test_pdf()
 
@@ -412,7 +451,68 @@ class TestAPI(unittest.TestCase):
 
         mock_store.assert_called_once()
 
-    
+
+    def test_upload_multipage_pdf(self):
+        with main.pymupdf.open() as pdf:
+            for i in range(3):
+                page = pdf.new_page()
+                page.insert_text(
+                    (72, 72),
+                    f"Sample text on page {i + 1}."
+                )
+
+            pdf_bytes = pdf.tobytes()
+
+        chunks = [
+            {
+                "text": f"Sample text on page {i}.",
+                "page_number": i
+            }
+            for i in range(1, 4)
+        ]
+
+        with patch.object(
+            main, "get_document_by_hash", return_value=None
+        ) as mock_lookup, patch.object(
+            main, "chunk_document", return_value=chunks
+        ) as mock_chunk, patch.object(
+            main, "store_document", return_value=3
+        ) as mock_store:
+            response = self.client.post(
+                "/upload",
+                files={
+                    "file": (
+                        "multipage.pdf",
+                        pdf_bytes,
+                        "application/pdf"
+                    )
+                }
+            )
+
+        self.assertEqual(response.status_code, 200)
+        self.assertFalse(response.json()["duplicate"])
+        self.assertEqual(response.json()["total_pages"], 3)
+        self.assertEqual(response.json()["total_chunks"], 3)
+
+        mock_lookup.assert_called_once()
+        mock_chunk.assert_called_once()
+        mock_store.assert_called_once()
+
+        processed_pages = mock_chunk.call_args.args[0]
+
+        self.assertEqual(len(processed_pages), 3)
+        self.assertEqual(
+            [page["page_number"] for page in processed_pages],
+            [1, 2, 3]
+        )
+
+        for i, page in enumerate(processed_pages, start=1):
+            self.assertIn(
+                f"Sample text on page {i}.",
+                page["text"]
+            )
+
+
     def test_document_stats(self):
         stats = {
             "total_documents": 3,

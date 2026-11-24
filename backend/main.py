@@ -99,7 +99,7 @@ async def upload_document(file: UploadFile = File(...)):
                     detail="Password-protected PDFs are not supported"
                 )
 
-            # Check for duplicates before running text extraction or OCR.
+            # Check for duplicates before expensive text extraction and OCR.
             existing_document = get_document_by_hash(file_hash)
 
             if existing_document is not None:
@@ -273,8 +273,8 @@ def ask_question(request: MultiSearchRequest):
         )
     except (GroqError, ValueError) as exc:
         print(
-        f"AI generation error: {type(exc).__name__}, "
-        f"HTTP status: {getattr(exc, 'status_code', 'N/A')}"
+            f"AI generation error: {type(exc).__name__}, "
+            f"HTTP status: {getattr(exc, 'status_code', 'N/A')}"
         )
 
         raise HTTPException(
