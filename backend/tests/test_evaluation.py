@@ -1,6 +1,5 @@
 ﻿import math
-
-import pytest
+import unittest
 
 from evaluation.metrics import (
     precision_at_k,
@@ -13,96 +12,116 @@ from evaluation.metrics import (
 )
 
 
-class TestPrecision:
+class TestPrecision(unittest.TestCase):
 
     def test_perfect_precision(self):
-        assert precision_at_k(
-            ["A", "B", "C"], {"A", "B", "C"}, 3
-        ) == 1.0
+        self.assertEqual(
+            precision_at_k(["A", "B", "C"], {"A", "B", "C"}, 3),
+            1.0
+        )
 
     def test_partial_precision(self):
-        assert precision_at_k(
-            ["A", "B", "C", "D", "E"], {"B", "D", "F"}, 5
-        ) == pytest.approx(0.4)
+        self.assertAlmostEqual(
+            precision_at_k(
+                ["A", "B", "C", "D", "E"], {"B", "D", "F"}, 5
+            ),
+            0.4
+        )
 
     def test_no_relevant_results(self):
-        assert precision_at_k(
-            ["A", "B"], {"C"}, 2
-        ) == 0.0
+        self.assertEqual(
+            precision_at_k(["A", "B"], {"C"}, 2),
+            0.0
+        )
 
     def test_fewer_results_than_k(self):
-        assert precision_at_k(
-            ["A", "B"], {"A", "B"}, 5
-        ) == pytest.approx(0.4)
+        self.assertAlmostEqual(
+            precision_at_k(["A", "B"], {"A", "B"}, 5),
+            0.4
+        )
 
     def test_duplicate_results(self):
-        assert precision_at_k(
-            ["A", "A", "B"], {"A", "B"}, 3
-        ) == pytest.approx(2 / 3)
+        self.assertAlmostEqual(
+            precision_at_k(["A", "A", "B"], {"A", "B"}, 3),
+            2 / 3
+        )
 
 
-class TestRecall:
+class TestRecall(unittest.TestCase):
 
     def test_perfect_recall(self):
-        assert recall_at_k(
-            ["A", "B", "C"], {"A", "B"}, 3
-        ) == 1.0
+        self.assertEqual(
+            recall_at_k(["A", "B", "C"], {"A", "B"}, 3),
+            1.0
+        )
 
     def test_partial_recall(self):
-        assert recall_at_k(
-            ["A", "B", "C", "D", "E"], {"B", "D", "F"}, 5
-        ) == pytest.approx(2 / 3)
+        self.assertAlmostEqual(
+            recall_at_k(
+                ["A", "B", "C", "D", "E"], {"B", "D", "F"}, 5
+            ),
+            2 / 3
+        )
 
     def test_empty_relevant_set(self):
-        assert recall_at_k(
-            ["A", "B"], set(), 2
-        ) == 0.0
+        self.assertEqual(
+            recall_at_k(["A", "B"], set(), 2),
+            0.0
+        )
 
     def test_empty_retrieval(self):
-        assert recall_at_k(
-            [], {"A", "B"}, 5
-        ) == 0.0
+        self.assertEqual(
+            recall_at_k([], {"A", "B"}, 5),
+            0.0
+        )
 
     def test_retrieval_cutoff(self):
-        assert recall_at_k(
-            ["A", "B", "C"], {"C"}, 2
-        ) == 0.0
+        self.assertEqual(
+            recall_at_k(["A", "B", "C"], {"C"}, 2),
+            0.0
+        )
 
 
-class TestHitRate:
+class TestHitRate(unittest.TestCase):
 
     def test_successful_hit(self):
-        assert hit_rate_at_k(
-            ["A", "B"], {"B"}, 2
-        ) == 1.0
+        self.assertEqual(
+            hit_rate_at_k(["A", "B"], {"B"}, 2),
+            1.0
+        )
 
     def test_unsuccessful_hit(self):
-        assert hit_rate_at_k(
-            ["A", "B"], {"C"}, 2
-        ) == 0.0
+        self.assertEqual(
+            hit_rate_at_k(["A", "B"], {"C"}, 2),
+            0.0
+        )
 
     def test_hit_outside_cutoff(self):
-        assert hit_rate_at_k(
-            ["A", "B", "C"], {"C"}, 2
-        ) == 0.0
+        self.assertEqual(
+            hit_rate_at_k(["A", "B", "C"], {"C"}, 2),
+            0.0
+        )
 
 
-class TestReciprocalRank:
+class TestReciprocalRank(unittest.TestCase):
 
     def test_first_result_relevant(self):
-        assert reciprocal_rank(
-            ["A", "B", "C"], {"A"}
-        ) == 1.0
+        self.assertEqual(
+            reciprocal_rank(["A", "B", "C"], {"A"}),
+            1.0
+        )
 
     def test_second_result_relevant(self):
-        assert reciprocal_rank(
-            ["A", "B", "C"], {"B"}
-        ) == 0.5
+        self.assertEqual(
+            reciprocal_rank(["A", "B", "C"], {"B"}),
+            0.5
+        )
 
     def test_no_relevant_result(self):
-        assert reciprocal_rank(
-            ["A", "B"], {"C"}
-        ) == 0.0
+        self.assertEqual(
+            reciprocal_rank(["A", "B"], {"C"}),
+            0.0
+        )
 
     def test_mean_reciprocal_rank(self):
         rankings = [
@@ -112,26 +131,31 @@ class TestReciprocalRank:
 
         relevant_sets = [{"B"}, {"D"}]
 
-        assert mean_reciprocal_rank(
-            rankings, relevant_sets
-        ) == pytest.approx(0.75)
+        self.assertAlmostEqual(
+            mean_reciprocal_rank(rankings, relevant_sets),
+            0.75
+        )
 
     def test_empty_rankings(self):
-        assert mean_reciprocal_rank([], []) == 0.0
+        self.assertEqual(
+            mean_reciprocal_rank([], []),
+            0.0
+        )
 
     def test_mismatched_input_lengths(self):
-        with pytest.raises(ValueError):
+        with self.assertRaises(ValueError):
             mean_reciprocal_rank(
                 [["A"], ["B"]], [{"A"}]
             )
 
 
-class TestNDCG:
+class TestNDCG(unittest.TestCase):
 
     def test_perfect_ranking(self):
-        assert ndcg_at_k(
-            ["A", "B", "C"], {"A", "B"}, 3
-        ) == pytest.approx(1.0)
+        self.assertAlmostEqual(
+            ndcg_at_k(["A", "B", "C"], {"A", "B"}, 3),
+            1.0
+        )
 
     def test_imperfect_ranking(self):
         retrieved = ["A", "B", "C", "D", "E"]
@@ -140,22 +164,25 @@ class TestNDCG:
         dcg = 1 / math.log2(3) + 1 / math.log2(5)
         ideal_dcg = 1 + 1 / math.log2(3) + 1 / math.log2(4)
 
-        assert ndcg_at_k(
-            retrieved, relevant, 5
-        ) == pytest.approx(dcg / ideal_dcg)
+        self.assertAlmostEqual(
+            ndcg_at_k(retrieved, relevant, 5),
+            dcg / ideal_dcg
+        )
 
     def test_no_relevant_results(self):
-        assert ndcg_at_k(
-            ["A", "B"], {"C"}, 2
-        ) == 0.0
+        self.assertEqual(
+            ndcg_at_k(["A", "B"], {"C"}, 2),
+            0.0
+        )
 
     def test_empty_relevant_set(self):
-        assert ndcg_at_k(
-            ["A", "B"], set(), 2
-        ) == 0.0
+        self.assertEqual(
+            ndcg_at_k(["A", "B"], set(), 2),
+            0.0
+        )
 
 
-class TestEvaluation:
+class TestEvaluation(unittest.TestCase):
 
     def test_combined_metrics(self):
         results = evaluate_retrieval(
@@ -164,18 +191,21 @@ class TestEvaluation:
             5
         )
 
-        assert len(results) == 5
-        assert results["precision@5"] == pytest.approx(0.4)
-        assert results["recall@5"] == pytest.approx(2 / 3)
-        assert results["hit_rate@5"] == 1.0
-        assert results["reciprocal_rank@5"] == 0.5
+        self.assertEqual(len(results), 5)
+        self.assertAlmostEqual(results["precision@5"], 0.4)
+        self.assertAlmostEqual(results["recall@5"], 2 / 3)
+        self.assertEqual(results["hit_rate@5"], 1.0)
+        self.assertEqual(results["reciprocal_rank@5"], 0.5)
 
         expected_ndcg = (
             (1 / math.log2(3) + 1 / math.log2(5))
             / (1 + 1 / math.log2(3) + 1 / math.log2(4))
         )
 
-        assert results["ndcg@5"] == pytest.approx(expected_ndcg)
+        self.assertAlmostEqual(
+            results["ndcg@5"],
+            expected_ndcg
+        )
 
     def test_invalid_cutoff(self):
         functions = [
@@ -188,5 +218,10 @@ class TestEvaluation:
 
         for function in functions:
             for k in [0, -1]:
-                with pytest.raises(ValueError):
-                    function(["A"], {"A"}, k)
+                with self.subTest(function=function.__name__, k=k):
+                    with self.assertRaises(ValueError):
+                        function(["A"], {"A"}, k)
+
+
+if __name__ == "__main__":
+    unittest.main()
