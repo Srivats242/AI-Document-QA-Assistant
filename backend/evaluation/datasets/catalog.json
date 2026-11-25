@@ -1,0 +1,233 @@
+[
+    {
+        "document_id": "DOC001",
+        "title": "Artificial Intelligence Risk Management Framework 1.0",
+        "publisher": "NIST",
+        "category": "government",
+        "split": "development",
+        "filename": "DOC001.pdf",
+        "source_url": "https://nvlpubs.nist.gov/nistpubs/AI/NIST.AI.100-1.pdf"
+    },
+    {
+        "document_id": "DOC002",
+        "title": "Estimated Use of Water in the United States in 2015",
+        "publisher": "USGS",
+        "category": "government",
+        "split": "test",
+        "filename": "DOC002.pdf",
+        "source_url": "https://pubs.usgs.gov/circ/1441/circ1441.pdf"
+    },
+    {
+        "document_id": "DOC003",
+        "title": "Income in the United States: 2023",
+        "publisher": "U.S. Census Bureau",
+        "category": "government",
+        "split": "test",
+        "filename": "DOC003.pdf",
+        "source_url": "https://www2.census.gov/library/publications/2024/demo/p60-282.pdf"
+    },
+    {
+        "document_id": "DOC004",
+        "title": "USGS Natural Hazards Science Strategy",
+        "publisher": "USGS",
+        "category": "government",
+        "split": "test",
+        "filename": "DOC004.pdf",
+        "source_url": "https://pubs.usgs.gov/circ/1383f/Circ1383-F.pdf"
+    },
+    {
+        "document_id": "DOC005",
+        "title": "Climate and Land Use Change Science Strategy",
+        "publisher": "USGS",
+        "category": "government",
+        "split": "test",
+        "filename": "DOC005.pdf",
+        "source_url": "https://pubs.usgs.gov/circ/1383a/circ1383-A.pdf"
+    },
+    {
+        "document_id": "DOC006",
+        "title": "Attention Is All You Need",
+        "publisher": "NeurIPS",
+        "category": "academic",
+        "split": "development",
+        "filename": "DOC006.pdf",
+        "source_url": "https://arxiv.org/pdf/1706.03762v7"
+    },
+    {
+        "document_id": "DOC007",
+        "title": "BERT: Pre-training of Deep Bidirectional Transformers for Language Understanding",
+        "publisher": "NAACL",
+        "category": "academic",
+        "split": "test",
+        "filename": "DOC007.pdf",
+        "source_url": "https://arxiv.org/pdf/1810.04805v2"
+    },
+    {
+        "document_id": "DOC008",
+        "title": "Deep Residual Learning for Image Recognition",
+        "publisher": "CVPR",
+        "category": "academic",
+        "split": "test",
+        "filename": "DOC008.pdf",
+        "source_url": "https://arxiv.org/pdf/1512.03385v1"
+    },
+    {
+        "document_id": "DOC009",
+        "title": "Observation of Gravitational Waves from a Binary Black Hole Merger",
+        "publisher": "Physical Review Letters",
+        "category": "academic",
+        "split": "test",
+        "filename": "DOC009.pdf",
+        "source_url": "https://arxiv.org/pdf/1602.03837v1"
+    },
+    {
+        "document_id": "DOC010",
+        "title": "Neural Machine Translation by Jointly Learning to Align and Translate",
+        "publisher": "ICLR",
+        "category": "academic",
+        "split": "test",
+        "filename": "DOC010.pdf",
+        "source_url": "https://arxiv.org/pdf/1409.0473v7"
+    },
+    {
+        "document_id": "DOC011",
+        "title": "RFC 9110: HTTP Semantics",
+        "publisher": "IETF",
+        "category": "technical",
+        "split": "development",
+        "filename": "DOC011.pdf",
+        "source_url": "https://www.rfc-editor.org/rfc/rfc9110.pdf"
+    },
+    {
+        "document_id": "DOC012",
+        "title": "RFC 9293: Transmission Control Protocol (TCP)",
+        "publisher": "IETF",
+        "category": "technical",
+        "split": "test",
+        "filename": "DOC012.pdf",
+        "source_url": "https://www.rfc-editor.org/rfc/rfc9293.pdf"
+    },
+    {
+        "document_id": "DOC013",
+        "title": "RFC 9562: Universally Unique Identifiers (UUIDs)",
+        "publisher": "IETF",
+        "category": "technical",
+        "split": "test",
+        "filename": "DOC013.pdf",
+        "source_url": "https://www.rfc-editor.org/rfc/rfc9562.pdf"
+    },
+    {
+        "document_id": "DOC014",
+        "title": "RFC 9210: DNS Transport over TCP - Operational Requirements",
+        "publisher": "IETF",
+        "category": "technical",
+        "split": "test",
+        "filename": "DOC014.pdf",
+        "source_url": "https://www.rfc-editor.org/rfc/rfc9210.pdf"
+    },
+    {
+        "document_id": "DOC015",
+        "title": "RFC 9000: QUIC - A UDP-Based Multiplexed and Secure Transport",
+        "publisher": "IETF",
+        "category": "technical",
+        "split": "test",
+        "filename": "DOC015.pdf",
+        "source_url": "https://www.rfc-editor.org/rfc/rfc9000.pdf"
+    },
+    {
+        "document_id": "DOC016",
+        "title": "IBM 2023 Annual Report",
+        "publisher": "IBM",
+        "category": "financial",
+        "split": "development",
+        "filename": "DOC016.pdf",
+        "source_url": "https://www.ibm.com/annualreport/assets/downloads/IBM_Annual_Report_2023.pdf"
+    },
+    {
+        "document_id": "DOC017",
+        "title": "Berkshire Hathaway 2023 Annual Report",
+        "publisher": "Berkshire Hathaway",
+        "category": "financial",
+        "split": "test",
+        "filename": "DOC017.pdf",
+        "source_url": "https://www.berkshirehathaway.com/2023ar/2023ar.pdf"
+    },
+    {
+        "document_id": "DOC018",
+        "title": "Toyota Integrated Report 2023",
+        "publisher": "Toyota Motor Corporation",
+        "category": "financial",
+        "split": "test",
+        "filename": "DOC018.pdf",
+        "source_url": "https://global.toyota/pages/global_toyota/ir/library/annual/2023_001_integrated_en.pdf"
+    },
+    {
+        "document_id": "DOC019",
+        "title": "Federal Reserve Banks 2023 Combined Financial Statements",
+        "publisher": "Federal Reserve",
+        "category": "financial",
+        "split": "test",
+        "filename": "DOC019.pdf",
+        "source_url": "https://www.federalreserve.gov/aboutthefed/files/combinedfinstmt2023.pdf"
+    },
+    {
+        "document_id": "DOC020",
+        "title": "2023 Financial Report of the United States Government",
+        "publisher": "U.S. Department of the Treasury",
+        "category": "financial",
+        "split": "test",
+        "filename": "DOC020.pdf",
+        "source_url": "https://fiscal.treasury.gov/system/files/files/reports-statements/financial-report/2023/02-15-2024-FR-%28final%29.pdf"
+    },
+    {
+        "document_id": "DOC023",
+        "title": "Psychology 2e",
+        "publisher": "OpenStax",
+        "category": "educational",
+        "split": "development",
+        "filename": "DOC023.pdf",
+        "source_url": "https://assets.openstax.org/oscms-prodcms/media/documents/Psychology2e_WEB.pdf"
+    },
+    {
+        "document_id": "DOC024",
+        "title": "Principles of Economics 3e",
+        "publisher": "OpenStax",
+        "category": "educational",
+        "split": "test",
+        "filename": "DOC024.pdf",
+        "source_url": "https://assets.openstax.org/oscms-prodcms/media/documents/principles-economics-3e_-_WEB.pdf"
+    },
+    {
+        "document_id": "DOC025",
+        "title": "Think Python, 2nd Edition",
+        "publisher": "Green Tea Press",
+        "category": "educational",
+        "split": "test",
+        "filename": "DOC025.pdf",
+        "source_url": "https://greenteapress.com/thinkpython2/thinkpython2.pdf"
+    },
+    {
+        "document_id": "DOC026",
+        "title": "Municipal Water Treatment Operations Guide",
+        "publisher": "Synthetic Benchmark Dataset",
+        "category": "scanned",
+        "split": "development",
+        "filename": "DOC026.pdf",
+        "source_url": null,
+        "manual_download": true,
+        "synthetic": true,
+        "generation_script": "evaluation/generate_scanned_documents.py"
+    },
+    {
+        "document_id": "DOC027",
+        "title": "Warehouse Inventory Management Handbook",
+        "publisher": "Synthetic Benchmark Dataset",
+        "category": "scanned",
+        "split": "test",
+        "filename": "DOC027.pdf",
+        "source_url": null,
+        "manual_download": true,
+        "synthetic": true,
+        "generation_script": "evaluation/generate_scanned_documents.py"
+    }
+]
