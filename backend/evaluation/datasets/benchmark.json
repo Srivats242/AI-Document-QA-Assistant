@@ -1,1 +1,1266 @@
-﻿[]
+[
+    {
+        "question_id": "Q001",
+        "question": "What are the four core functions of the NIST AI Risk Management Framework?",
+        "category": "government",
+        "question_type": "factual",
+        "difficulty": "easy",
+        "expected_answer": "The four core functions are GOVERN, MAP, MEASURE, and MANAGE.",
+        "relevant_sources": [
+            {
+                "document_id": "DOC001",
+                "page_number": 8
+            }
+        ],
+        "split": "development"
+    },
+    {
+        "question_id": "Q002",
+        "question": "According to the NIST AI RMF, what two factors determine the risk associated with a potential negative AI event?",
+        "category": "government",
+        "question_type": "conceptual",
+        "difficulty": "easy",
+        "expected_answer": "Risk depends on the magnitude of the potential harm and the likelihood that the event will occur.",
+        "relevant_sources": [
+            {
+                "document_id": "DOC001",
+                "page_number": 9
+            }
+        ],
+        "split": "development"
+    },
+    {
+        "question_id": "Q003",
+        "question": "Why can third-party software, hardware, and data complicate AI risk measurement according to the NIST AI RMF?",
+        "category": "government",
+        "question_type": "conceptual",
+        "difficulty": "medium",
+        "expected_answer": "Risks can arise from third-party components and how they are used or integrated. Developers and deployers may use different risk measurement methods, and developers may not disclose their methods. Insufficient governance and technical safeguards can further complicate risk measurement.",
+        "relevant_sources": [
+            {
+                "document_id": "DOC001",
+                "page_number": 10
+            }
+        ],
+        "split": "development"
+    },
+    {
+        "question_id": "Q004",
+        "question": "How does AI risk measurement in controlled environments differ from measurement in real-world settings according to the NIST AI RMF?",
+        "category": "government",
+        "question_type": "comparison",
+        "difficulty": "medium",
+        "expected_answer": "Laboratory or controlled-environment measurements can provide useful insights before deployment, but they may differ from the risks that emerge when an AI system operates in real-world settings.",
+        "relevant_sources": [
+            {
+                "document_id": "DOC001",
+                "page_number": 11
+            }
+        ],
+        "split": "development"
+    },
+    {
+        "question_id": "Q005",
+        "question": "According to the NIST AI RMF, how should organizations establish risk tolerance and respond when an AI system presents unacceptable negative risks?",
+        "category": "government",
+        "question_type": "multi_hop",
+        "difficulty": "hard",
+        "expected_answer": "Organizations should establish risk tolerance based on their objectives, applicable regulations, existing guidelines, and the context of the AI system. If established guidelines do not exist, they should define a reasonable risk tolerance. When unacceptable negative risks arise, development and deployment should cease safely until the risks can be sufficiently managed.",
+        "relevant_sources": [
+            {
+                "document_id": "DOC001",
+                "page_number": 12
+            },
+            {
+                "document_id": "DOC001",
+                "page_number": 13
+            }
+        ],
+        "split": "development"
+    },
+    {
+        "question_id": "Q006",
+        "question": "What are the two sub-layers in each encoder layer of the original Transformer architecture?",
+        "category": "academic",
+        "question_type": "factual",
+        "difficulty": "easy",
+        "expected_answer": "Each encoder layer contains a multi-head self-attention mechanism and a position-wise fully connected feed-forward network.",
+        "relevant_sources": [
+            {
+                "document_id": "DOC006",
+                "page_number": 3
+            }
+        ],
+        "split": "development"
+    },
+    {
+        "question_id": "Q007",
+        "question": "Why does scaled dot-product attention divide the dot products by the square root of the key dimension?",
+        "category": "academic",
+        "question_type": "conceptual",
+        "difficulty": "medium",
+        "expected_answer": "As the key dimension increases, dot products can become large and push the softmax function into regions with very small gradients. Scaling by the square root of the key dimension counteracts this effect.",
+        "relevant_sources": [
+            {
+                "document_id": "DOC006",
+                "page_number": 4
+            }
+        ],
+        "split": "development"
+    },
+    {
+        "question_id": "Q008",
+        "question": "How many attention heads are used in the original base Transformer model, and what is the dimension of each head's keys and values?",
+        "category": "academic",
+        "question_type": "numerical",
+        "difficulty": "easy",
+        "expected_answer": "The base Transformer uses eight attention heads, with a key dimension and value dimension of 64 for each head.",
+        "relevant_sources": [
+            {
+                "document_id": "DOC006",
+                "page_number": 5
+            },
+            {
+                "document_id": "DOC006",
+                "page_number": 9
+            }
+        ],
+        "split": "development"
+    },
+    {
+        "question_id": "Q009",
+        "question": "According to Attention Is All You Need, how do unrestricted self-attention layers compare with recurrent layers in sequential operations and maximum path length?",
+        "category": "academic",
+        "question_type": "comparison",
+        "difficulty": "medium",
+        "expected_answer": "Self-attention requires O(1) sequential operations and has an O(1) maximum path length. Recurrent layers require O(n) sequential operations and have an O(n) maximum path length, where n is the sequence length.",
+        "relevant_sources": [
+            {
+                "document_id": "DOC006",
+                "page_number": 6
+            }
+        ],
+        "split": "development"
+    },
+    {
+        "question_id": "Q010",
+        "question": "Why does the original Transformer require positional encodings, and how did the authors' experiments support their choice of sinusoidal encodings over learned positional embeddings?",
+        "category": "academic",
+        "question_type": "multi_hop",
+        "difficulty": "hard",
+        "expected_answer": "The Transformer lacks recurrence and convolution, so positional encodings provide information about token order. The authors found that learned positional embeddings and sinusoidal encodings produced nearly identical results. They selected sinusoidal encodings because they may generalize to sequence lengths longer than those encountered during training.",
+        "relevant_sources": [
+            {
+                "document_id": "DOC006",
+                "page_number": 6
+            },
+            {
+                "document_id": "DOC006",
+                "page_number": 9
+            }
+        ],
+        "split": "development"
+    },
+    {
+        "question_id": "Q011",
+        "question": "What are the four components of the HTTP message abstraction in RFC 9110?",
+        "category": "technical",
+        "question_type": "factual",
+        "difficulty": "easy",
+        "expected_answer": "Control data, headers, content, and trailers.",
+        "relevant_sources": [
+            {
+                "document_id": "DOC011",
+                "page_number": 40
+            }
+        ],
+        "split": "development"
+    },
+    {
+        "question_id": "Q012",
+        "question": "How do RFC 9110 timestamp format requirements differ for senders and recipients?",
+        "category": "technical",
+        "question_type": "comparison",
+        "difficulty": "medium",
+        "expected_answer": "Senders must use IMF-fixdate; recipients must accept all three HTTP-date formats.",
+        "relevant_sources": [
+            {
+                "document_id": "DOC011",
+                "page_number": 38
+            }
+        ],
+        "split": "development"
+    },
+    {
+        "question_id": "Q013",
+        "question": "Why does RFC 9110 prefer explicit message framing to ending a response by closing the connection?",
+        "category": "technical",
+        "question_type": "conceptual",
+        "difficulty": "medium",
+        "expected_answer": "An early connection closure can make an incomplete response indistinguishable from a complete one.",
+        "relevant_sources": [
+            {
+                "document_id": "DOC011",
+                "page_number": 41
+            }
+        ],
+        "split": "development"
+    },
+    {
+        "question_id": "Q014",
+        "question": "How does the meaning of request content differ between PUT and POST in RFC 9110?",
+        "category": "technical",
+        "question_type": "comparison",
+        "difficulty": "medium",
+        "expected_answer": "PUT content represents the desired state of the target resource; POST content supplies information for that resource to process.",
+        "relevant_sources": [
+            {
+                "document_id": "DOC011",
+                "page_number": 43
+            }
+        ],
+        "split": "development"
+    },
+    {
+        "question_id": "Q015",
+        "question": "Why should HTTP trailer fields be stored separately from headers, and when may a recipient merge them?",
+        "category": "technical",
+        "question_type": "multi_hop",
+        "difficulty": "hard",
+        "expected_answer": "Routing and processing decisions may already have been made before trailers arrive. A recipient may merge a trailer only if it understands the field definition and that definition explicitly permits and specifies safe merging.",
+        "relevant_sources": [
+            {
+                "document_id": "DOC011",
+                "page_number": 44
+            },
+            {
+                "document_id": "DOC011",
+                "page_number": 45
+            }
+        ],
+        "split": "development"
+    },
+    {
+        "question_id": "Q016",
+        "question": "What revenue did IBM report for 2023 in its management discussion snapshot?",
+        "category": "financial",
+        "question_type": "numerical",
+        "difficulty": "easy",
+        "expected_answer": "$61,860 million ($61.86 billion).",
+        "relevant_sources": [
+            {
+                "document_id": "DOC016",
+                "page_number": 10
+            }
+        ],
+        "split": "development"
+    },
+    {
+        "question_id": "Q017",
+        "question": "By how many percentage points did IBM gross profit margin increase from 2022 to 2023?",
+        "category": "financial",
+        "question_type": "numerical",
+        "difficulty": "medium",
+        "expected_answer": "1.4 percentage points, from 54.0% to 55.4%.",
+        "relevant_sources": [
+            {
+                "document_id": "DOC016",
+                "page_number": 10
+            }
+        ],
+        "split": "development"
+    },
+    {
+        "question_id": "Q018",
+        "question": "Which platform underpins IBM’s hybrid cloud architecture in its 2023 annual report?",
+        "category": "financial",
+        "question_type": "factual",
+        "difficulty": "easy",
+        "expected_answer": "Red Hat OpenShift.",
+        "relevant_sources": [
+            {
+                "document_id": "DOC016",
+                "page_number": 5
+            }
+        ],
+        "split": "development"
+    },
+    {
+        "question_id": "Q019",
+        "question": "Why are Kyndryl historical results excluded from IBM continuing operations in the 2023 annual report?",
+        "category": "financial",
+        "question_type": "conceptual",
+        "difficulty": "medium",
+        "expected_answer": "IBM completed the separation on November 3, 2021, and the accounting criteria for discontinued operations were met.",
+        "relevant_sources": [
+            {
+                "document_id": "DOC016",
+                "page_number": 8
+            }
+        ],
+        "split": "development"
+    },
+    {
+        "question_id": "Q020",
+        "question": "What greenhouse gas reduction against 2010 did IBM report, and what was its 2023 operating non-GAAP earnings figure?",
+        "category": "financial",
+        "question_type": "multi_hop",
+        "difficulty": "hard",
+        "expected_answer": "A 63% emissions reduction and $8,870 million in operating non-GAAP earnings.",
+        "relevant_sources": [
+            {
+                "document_id": "DOC016",
+                "page_number": 6
+            },
+            {
+                "document_id": "DOC016",
+                "page_number": 10
+            }
+        ],
+        "split": "development"
+    },
+    {
+        "question_id": "Q021",
+        "question": "How does OpenStax Psychology 2e define psychology?",
+        "category": "educational",
+        "question_type": "factual",
+        "difficulty": "easy",
+        "expected_answer": "The scientific study of mind and behavior.",
+        "relevant_sources": [
+            {
+                "document_id": "DOC023",
+                "page_number": 19
+            },
+            {
+                "document_id": "DOC023",
+                "page_number": 20
+            }
+        ],
+        "split": "development"
+    },
+    {
+        "question_id": "Q022",
+        "question": "How does a hypothesis differ from a scientific theory in Psychology 2e section 1.1?",
+        "category": "educational",
+        "question_type": "comparison",
+        "difficulty": "medium",
+        "expected_answer": "A hypothesis is a tentative explanation to be tested; a theory is a broad explanation consistently supported by evidence over time.",
+        "relevant_sources": [
+            {
+                "document_id": "DOC023",
+                "page_number": 20
+            }
+        ],
+        "split": "development"
+    },
+    {
+        "question_id": "Q023",
+        "question": "What critical thinking practices does Psychology 2e identify as useful for evaluating information?",
+        "category": "educational",
+        "question_type": "conceptual",
+        "difficulty": "medium",
+        "expected_answer": "Skepticism, recognizing personal biases, logical reasoning, asking appropriate questions, and making observations.",
+        "relevant_sources": [
+            {
+                "document_id": "DOC023",
+                "page_number": 21
+            }
+        ],
+        "split": "development"
+    },
+    {
+        "question_id": "Q024",
+        "question": "How did functionalism differ from structuralism in its focus on the mind?",
+        "category": "educational",
+        "question_type": "comparison",
+        "difficulty": "medium",
+        "expected_answer": "Functionalism examined how mental activities help organisms adapt and how the whole mind operates; structuralism focused on its individual parts.",
+        "relevant_sources": [
+            {
+                "document_id": "DOC023",
+                "page_number": 22
+            }
+        ],
+        "split": "development"
+    },
+    {
+        "question_id": "Q025",
+        "question": "What limitation did Wundt encounter with introspection, and what methods did Freud propose to access unconscious processes?",
+        "category": "educational",
+        "question_type": "multi_hop",
+        "difficulty": "hard",
+        "expected_answer": "Introspection remained subjective with little agreement among individuals. Freud proposed dream analysis, examining spontaneous words, and slips of the tongue.",
+        "relevant_sources": [
+            {
+                "document_id": "DOC023",
+                "page_number": 22
+            },
+            {
+                "document_id": "DOC023",
+                "page_number": 23
+            }
+        ],
+        "split": "development"
+    },
+    {
+        "question_id": "Q026",
+        "question": "How much water does the fictional Brookfield treatment facility process daily?",
+        "category": "scanned",
+        "question_type": "numerical",
+        "difficulty": "easy",
+        "expected_answer": "Approximately 12 million liters.",
+        "relevant_sources": [
+            {
+                "document_id": "DOC026",
+                "page_number": 1
+            }
+        ],
+        "split": "development"
+    },
+    {
+        "question_id": "Q027",
+        "question": "What chemical is added during coagulation at Brookfield?",
+        "category": "scanned",
+        "question_type": "factual",
+        "difficulty": "easy",
+        "expected_answer": "Aluminum sulfate.",
+        "relevant_sources": [
+            {
+                "document_id": "DOC026",
+                "page_number": 1
+            }
+        ],
+        "split": "development"
+    },
+    {
+        "question_id": "Q028",
+        "question": "What is Brookfield’s filtered-water turbidity target and routine filter inspection interval?",
+        "category": "scanned",
+        "question_type": "numerical",
+        "difficulty": "medium",
+        "expected_answer": "Below 0.3 NTU; every two hours.",
+        "relevant_sources": [
+            {
+                "document_id": "DOC026",
+                "page_number": 2
+            }
+        ],
+        "split": "development"
+    },
+    {
+        "question_id": "Q029",
+        "question": "Under what conditions are Brookfield’s filters backwashed?",
+        "category": "scanned",
+        "question_type": "conceptual",
+        "difficulty": "medium",
+        "expected_answer": "Every 48 hours or when the pressure difference exceeds the operating limit.",
+        "relevant_sources": [
+            {
+                "document_id": "DOC026",
+                "page_number": 2
+            }
+        ],
+        "split": "development"
+    },
+    {
+        "question_id": "Q030",
+        "question": "How long can Brookfield’s backup generator support essential operations, and what equipment is prioritized during an outage?",
+        "category": "scanned",
+        "question_type": "factual",
+        "difficulty": "medium",
+        "expected_answer": "72 hours; disinfection and monitoring equipment.",
+        "relevant_sources": [
+            {
+                "document_id": "DOC026",
+                "page_number": 3
+            }
+        ],
+        "split": "development"
+    },
+    {
+        "question_id": "Q031",
+        "question": "What was the estimated total daily US water withdrawal in 2015 according to the USGS report?",
+        "category": "government",
+        "question_type": "numerical",
+        "difficulty": "easy",
+        "expected_answer": "Approximately 322 billion gallons per day.",
+        "relevant_sources": [
+            {
+                "document_id": "DOC002",
+                "page_number": 9
+            }
+        ],
+        "split": "test"
+    },
+    {
+        "question_id": "Q032",
+        "question": "How did fresh surface-water and fresh groundwater withdrawals change between 2010 and 2015?",
+        "category": "government",
+        "question_type": "comparison",
+        "difficulty": "medium",
+        "expected_answer": "Fresh surface-water withdrawals fell 14%, while fresh groundwater withdrawals rose about 8%.",
+        "relevant_sources": [
+            {
+                "document_id": "DOC002",
+                "page_number": 9
+            }
+        ],
+        "split": "test"
+    },
+    {
+        "question_id": "Q033",
+        "question": "Which two water-use categories were the largest in the United States in 2015?",
+        "category": "government",
+        "question_type": "factual",
+        "difficulty": "easy",
+        "expected_answer": "Thermoelectric power and irrigation.",
+        "relevant_sources": [
+            {
+                "document_id": "DOC002",
+                "page_number": 9
+            }
+        ],
+        "split": "test"
+    },
+    {
+        "question_id": "Q034",
+        "question": "What were US aquaculture water withdrawals in 2015, and what proportion came from surface water?",
+        "category": "government",
+        "question_type": "numerical",
+        "difficulty": "medium",
+        "expected_answer": "7.55 billion gallons per day; 79% from surface water.",
+        "relevant_sources": [
+            {
+                "document_id": "DOC002",
+                "page_number": 10
+            }
+        ],
+        "split": "test"
+    },
+    {
+        "question_id": "Q035",
+        "question": "How did US thermoelectric power and mining water withdrawals change from 2010 to 2015?",
+        "category": "government",
+        "question_type": "multi_hop",
+        "difficulty": "hard",
+        "expected_answer": "Thermoelectric withdrawals decreased 18%, whereas mining withdrawals increased 1%.",
+        "relevant_sources": [
+            {
+                "document_id": "DOC002",
+                "page_number": 9
+            },
+            {
+                "document_id": "DOC002",
+                "page_number": 10
+            }
+        ],
+        "split": "test"
+    },
+    {
+        "question_id": "Q036",
+        "question": "What was the US median household income in 2023 according to the Census Bureau report?",
+        "category": "government",
+        "question_type": "numerical",
+        "difficulty": "easy",
+        "expected_answer": "$80,610.",
+        "relevant_sources": [
+            {
+                "document_id": "DOC003",
+                "page_number": 9
+            }
+        ],
+        "split": "test"
+    },
+    {
+        "question_id": "Q037",
+        "question": "Was the 2023 median US household income statistically different from its 2019 level?",
+        "category": "government",
+        "question_type": "comparison",
+        "difficulty": "medium",
+        "expected_answer": "No; the 2023 estimate of $80,610 was not statistically different from the 2019 estimate of $81,210.",
+        "relevant_sources": [
+            {
+                "document_id": "DOC003",
+                "page_number": 9
+            }
+        ],
+        "split": "test"
+    },
+    {
+        "question_id": "Q038",
+        "question": "What was the 2023 median income for married-couple family households in the Census report?",
+        "category": "government",
+        "question_type": "numerical",
+        "difficulty": "easy",
+        "expected_answer": "$119,400.",
+        "relevant_sources": [
+            {
+                "document_id": "DOC003",
+                "page_number": 10
+            }
+        ],
+        "split": "test"
+    },
+    {
+        "question_id": "Q039",
+        "question": "How did 2023 median household income compare inside metropolitan areas outside principal cities versus outside metropolitan areas?",
+        "category": "government",
+        "question_type": "comparison",
+        "difficulty": "medium",
+        "expected_answer": "$90,140 inside metropolitan areas outside principal cities versus $62,520 outside metropolitan areas.",
+        "relevant_sources": [
+            {
+                "document_id": "DOC003",
+                "page_number": 11
+            }
+        ],
+        "split": "test"
+    },
+    {
+        "question_id": "Q040",
+        "question": "Which US region had the highest 2023 median household income, and which had the lowest?",
+        "category": "government",
+        "question_type": "numerical",
+        "difficulty": "medium",
+        "expected_answer": "West, $88,290; South, $73,280.",
+        "relevant_sources": [
+            {
+                "document_id": "DOC003",
+                "page_number": 11
+            }
+        ],
+        "split": "test"
+    },
+    {
+        "question_id": "Q041",
+        "question": "Which three embeddings are summed to construct a BERT input token representation?",
+        "category": "academic",
+        "question_type": "factual",
+        "difficulty": "easy",
+        "expected_answer": "Token, segment, and position embeddings.",
+        "relevant_sources": [
+            {
+                "document_id": "DOC007",
+                "page_number": 4
+            }
+        ],
+        "split": "test"
+    },
+    {
+        "question_id": "Q042",
+        "question": "What percentage of WordPiece tokens is randomly selected for masked language modeling in the original BERT experiments?",
+        "category": "academic",
+        "question_type": "numerical",
+        "difficulty": "easy",
+        "expected_answer": "15%.",
+        "relevant_sources": [
+            {
+                "document_id": "DOC007",
+                "page_number": 4
+            }
+        ],
+        "split": "test"
+    },
+    {
+        "question_id": "Q043",
+        "question": "Why would ordinary bidirectional conditional language modeling allow trivial prediction of target words?",
+        "category": "academic",
+        "question_type": "conceptual",
+        "difficulty": "medium",
+        "expected_answer": "In a multilayer bidirectional context, a target word could indirectly access itself; masking prevents this direct prediction shortcut.",
+        "relevant_sources": [
+            {
+                "document_id": "DOC007",
+                "page_number": 4
+            }
+        ],
+        "split": "test"
+    },
+    {
+        "question_id": "Q044",
+        "question": "Which corpora were used to pre-train BERT and how many words did each contain?",
+        "category": "academic",
+        "question_type": "numerical",
+        "difficulty": "medium",
+        "expected_answer": "BooksCorpus (800 million words) and English Wikipedia (2.5 billion words).",
+        "relevant_sources": [
+            {
+                "document_id": "DOC007",
+                "page_number": 5
+            }
+        ],
+        "split": "test"
+    },
+    {
+        "question_id": "Q045",
+        "question": "How does BERT distinguish two input sentences, and how does it use the resulting representation for classification during fine-tuning?",
+        "category": "academic",
+        "question_type": "multi_hop",
+        "difficulty": "hard",
+        "expected_answer": "It separates sentences with [SEP] and uses learned segment embeddings to identify sentence membership. The final [CLS] representation is passed to a classification output layer, with parameters fine-tuned end to end.",
+        "relevant_sources": [
+            {
+                "document_id": "DOC007",
+                "page_number": 4
+            },
+            {
+                "document_id": "DOC007",
+                "page_number": 5
+            }
+        ],
+        "split": "test"
+    },
+    {
+        "question_id": "Q046",
+        "question": "What was the maximum ImageNet residual network depth evaluated in Deep Residual Learning for Image Recognition?",
+        "category": "academic",
+        "question_type": "numerical",
+        "difficulty": "easy",
+        "expected_answer": "152 layers.",
+        "relevant_sources": [
+            {
+                "document_id": "DOC008",
+                "page_number": 1
+            }
+        ],
+        "split": "test"
+    },
+    {
+        "question_id": "Q047",
+        "question": "What ImageNet test error did the residual-network ensemble achieve in the ResNet paper abstract?",
+        "category": "academic",
+        "question_type": "numerical",
+        "difficulty": "easy",
+        "expected_answer": "3.57%.",
+        "relevant_sources": [
+            {
+                "document_id": "DOC008",
+                "page_number": 1
+            }
+        ],
+        "split": "test"
+    },
+    {
+        "question_id": "Q048",
+        "question": "How does residual learning reformulate the desired mapping H(x) when input and output dimensions match?",
+        "category": "academic",
+        "question_type": "conceptual",
+        "difficulty": "medium",
+        "expected_answer": "The stacked layers learn F(x) = H(x) - x, so the desired output is F(x) + x.",
+        "relevant_sources": [
+            {
+                "document_id": "DOC008",
+                "page_number": 3
+            }
+        ],
+        "split": "test"
+    },
+    {
+        "question_id": "Q049",
+        "question": "Why can residual learning make an identity mapping easier to optimize?",
+        "category": "academic",
+        "question_type": "conceptual",
+        "difficulty": "medium",
+        "expected_answer": "If identity is optimal, the solver can drive the residual-layer weights toward zero rather than learning the identity directly through nonlinear layers.",
+        "relevant_sources": [
+            {
+                "document_id": "DOC008",
+                "page_number": 3
+            }
+        ],
+        "split": "test"
+    },
+    {
+        "question_id": "Q050",
+        "question": "What degradation phenomenon was observed in the CIFAR-10 plain-network experiment, and how does residual learning address the optimization issue?",
+        "category": "academic",
+        "question_type": "multi_hop",
+        "difficulty": "hard",
+        "expected_answer": "The 56-layer plain network had higher training and test error than the 20-layer network. Residual learning adds identity shortcuts so layers learn deviations from identity, making identity-like mappings easier to optimize.",
+        "relevant_sources": [
+            {
+                "document_id": "DOC008",
+                "page_number": 1
+            },
+            {
+                "document_id": "DOC008",
+                "page_number": 3
+            }
+        ],
+        "split": "test"
+    },
+    {
+        "question_id": "Q051",
+        "question": "What does the TCP Data Offset field indicate in RFC 9293?",
+        "category": "technical",
+        "question_type": "factual",
+        "difficulty": "easy",
+        "expected_answer": "The number of 32-bit words in the TCP header, indicating where data begins.",
+        "relevant_sources": [
+            {
+                "document_id": "DOC012",
+                "page_number": 8
+            }
+        ],
+        "split": "test"
+    },
+    {
+        "question_id": "Q052",
+        "question": "What does the TCP acknowledgment number represent when the ACK flag is set?",
+        "category": "technical",
+        "question_type": "conceptual",
+        "difficulty": "medium",
+        "expected_answer": "The next sequence number the segment sender expects to receive.",
+        "relevant_sources": [
+            {
+                "document_id": "DOC012",
+                "page_number": 8
+            }
+        ],
+        "split": "test"
+    },
+    {
+        "question_id": "Q053",
+        "question": "How large are the IPv4 and IPv6 pseudo-headers used for TCP checksum computation?",
+        "category": "technical",
+        "question_type": "comparison",
+        "difficulty": "medium",
+        "expected_answer": "96 bits for IPv4 and 320 bits for IPv6.",
+        "relevant_sources": [
+            {
+                "document_id": "DOC012",
+                "page_number": 9
+            }
+        ],
+        "split": "test"
+    },
+    {
+        "question_id": "Q054",
+        "question": "How does TCP handle an odd number of octets when computing its checksum?",
+        "category": "technical",
+        "question_type": "conceptual",
+        "difficulty": "medium",
+        "expected_answer": "It pads the final octet with zeros on the right for the calculation; the padding is not transmitted.",
+        "relevant_sources": [
+            {
+                "document_id": "DOC012",
+                "page_number": 9
+            }
+        ],
+        "split": "test"
+    },
+    {
+        "question_id": "Q055",
+        "question": "Why does the TCP checksum cover a pseudo-header, and what obligations do the sender and receiver have regarding the checksum?",
+        "category": "technical",
+        "question_type": "multi_hop",
+        "difficulty": "hard",
+        "expected_answer": "It protects against misrouted segments. The sender must generate the checksum and the receiver must verify it.",
+        "relevant_sources": [
+            {
+                "document_id": "DOC012",
+                "page_number": 9
+            },
+            {
+                "document_id": "DOC012",
+                "page_number": 10
+            }
+        ],
+        "split": "test"
+    },
+    {
+        "question_id": "Q056",
+        "question": "What does UUID stand for in RFC 9562?",
+        "category": "technical",
+        "question_type": "factual",
+        "difficulty": "easy",
+        "expected_answer": "Universally Unique Identifier.",
+        "relevant_sources": [
+            {
+                "document_id": "DOC013",
+                "page_number": 7
+            }
+        ],
+        "split": "test"
+    },
+    {
+        "question_id": "Q057",
+        "question": "Why can UUIDv4 lead to poor database index locality?",
+        "category": "technical",
+        "question_type": "conceptual",
+        "difficulty": "medium",
+        "expected_answer": "Successive random identifiers are not near each other in the index, causing insertions at scattered locations and potentially degrading B-tree performance.",
+        "relevant_sources": [
+            {
+                "document_id": "DOC013",
+                "page_number": 5
+            }
+        ],
+        "split": "test"
+    },
+    {
+        "question_id": "Q058",
+        "question": "What privacy and uniqueness concerns does RFC 9562 identify with MAC addresses in UUIDv1?",
+        "category": "technical",
+        "question_type": "conceptual",
+        "difficulty": "medium",
+        "expected_answer": "Exposed MAC addresses can reveal network interface and machine information, and MAC uniqueness is not guaranteed in virtual machines and containers.",
+        "relevant_sources": [
+            {
+                "document_id": "DOC013",
+                "page_number": 5
+            }
+        ],
+        "split": "test"
+    },
+    {
+        "question_id": "Q059",
+        "question": "What time unit does RFC 9562 identify for the Gregorian epoch timestamp used by UUIDv1?",
+        "category": "technical",
+        "question_type": "numerical",
+        "difficulty": "easy",
+        "expected_answer": "100 nanoseconds.",
+        "relevant_sources": [
+            {
+                "document_id": "DOC013",
+                "page_number": 5
+            }
+        ],
+        "split": "test"
+    },
+    {
+        "question_id": "Q060",
+        "question": "What database-key problem motivated newer UUID formats, and what additional implementation option did RFC 9562 seek to standardize?",
+        "category": "technical",
+        "question_type": "multi_hop",
+        "difficulty": "hard",
+        "expected_answer": "A need for sortable, time-based unique identifiers with better index locality; a standards-based option for implementation-specific or experimental UUID designs.",
+        "relevant_sources": [
+            {
+                "document_id": "DOC013",
+                "page_number": 5
+            },
+            {
+                "document_id": "DOC013",
+                "page_number": 6
+            }
+        ],
+        "split": "test"
+    },
+    {
+        "question_id": "Q061",
+        "question": "What operating earnings did Berkshire Hathaway report for 2023 in its shareholder letter?",
+        "category": "financial",
+        "question_type": "numerical",
+        "difficulty": "easy",
+        "expected_answer": "$37.4 billion.",
+        "relevant_sources": [
+            {
+                "document_id": "DOC017",
+                "page_number": 6
+            }
+        ],
+        "split": "test"
+    },
+    {
+        "question_id": "Q062",
+        "question": "How much did Berkshire operating earnings increase from 2021 to 2023 according to the shareholder letter?",
+        "category": "financial",
+        "question_type": "numerical",
+        "difficulty": "medium",
+        "expected_answer": "$9.8 billion, from $27.6 billion to $37.4 billion.",
+        "relevant_sources": [
+            {
+                "document_id": "DOC017",
+                "page_number": 6
+            }
+        ],
+        "split": "test"
+    },
+    {
+        "question_id": "Q063",
+        "question": "What is the main difference between Berkshire’s preferred earnings measure and mandated earnings, according to the 2023 shareholder letter?",
+        "category": "financial",
+        "question_type": "conceptual",
+        "difficulty": "medium",
+        "expected_answer": "The preferred measure excludes unrealized capital gains and losses.",
+        "relevant_sources": [
+            {
+                "document_id": "DOC017",
+                "page_number": 7
+            }
+        ],
+        "split": "test"
+    },
+    {
+        "question_id": "Q064",
+        "question": "What type of business does Berkshire particularly favor for deploying additional capital?",
+        "category": "financial",
+        "question_type": "factual",
+        "difficulty": "easy",
+        "expected_answer": "Businesses able to reinvest additional capital at high returns.",
+        "relevant_sources": [
+            {
+                "document_id": "DOC017",
+                "page_number": 7
+            }
+        ],
+        "split": "test"
+    },
+    {
+        "question_id": "Q065",
+        "question": "How did Berkshire’s reported net earnings change between 2022 and 2023, and why does the shareholder letter caution against relying on that measure?",
+        "category": "financial",
+        "question_type": "multi_hop",
+        "difficulty": "hard",
+        "expected_answer": "Reported net earnings moved from a roughly $23 billion loss to $96 billion profit. The measure includes unrealized market gains and losses, which can fluctuate sharply and obscure underlying business performance.",
+        "relevant_sources": [
+            {
+                "document_id": "DOC017",
+                "page_number": 6
+            },
+            {
+                "document_id": "DOC017",
+                "page_number": 7
+            }
+        ],
+        "split": "test"
+    },
+    {
+        "question_id": "Q066",
+        "question": "What three areas of effort make up the Toyota Mobility Concept in its 2023 integrated report?",
+        "category": "financial",
+        "question_type": "factual",
+        "difficulty": "easy",
+        "expected_answer": "Transitioning cars to mobility, expanding mobility access, and synergy between mobility and infrastructure.",
+        "relevant_sources": [
+            {
+                "document_id": "DOC018",
+                "page_number": 5
+            }
+        ],
+        "split": "test"
+    },
+    {
+        "question_id": "Q067",
+        "question": "Why does Toyota pursue a multi-pathway mobility strategy in its 2023 integrated report?",
+        "category": "financial",
+        "question_type": "conceptual",
+        "difficulty": "medium",
+        "expected_answer": "To offer customers worldwide multiple options while addressing carbon neutrality and differing energy conditions and customer expectations.",
+        "relevant_sources": [
+            {
+                "document_id": "DOC018",
+                "page_number": 5
+            }
+        ],
+        "split": "test"
+    },
+    {
+        "question_id": "Q068",
+        "question": "Which software platform did Toyota develop with Woven by Toyota to connect mobility with partners and services?",
+        "category": "financial",
+        "question_type": "factual",
+        "difficulty": "easy",
+        "expected_answer": "Arene.",
+        "relevant_sources": [
+            {
+                "document_id": "DOC018",
+                "page_number": 6
+            }
+        ],
+        "split": "test"
+    },
+    {
+        "question_id": "Q069",
+        "question": "Why does Toyota’s president emphasize hybrids in emerging countries in the 2023 integrated report?",
+        "category": "financial",
+        "question_type": "conceptual",
+        "difficulty": "medium",
+        "expected_answer": "Toyota considers hybrids a promising near-term option, particularly in emerging countries, while addressing diverse customer needs and energy conditions.",
+        "relevant_sources": [
+            {
+                "document_id": "DOC018",
+                "page_number": 6
+            }
+        ],
+        "split": "test"
+    },
+    {
+        "question_id": "Q070",
+        "question": "How does Toyota’s 2023 integrated report connect its long-term energy outlook with its short-term mobility strategy?",
+        "category": "financial",
+        "question_type": "multi_hop",
+        "difficulty": "hard",
+        "expected_answer": "It expects electricity and hydrogen to dominate in the medium to long term, but supports a range of near-term options, including hybrids and plug-in hybrids, to accommodate energy availability, environmental goals, and customer needs.",
+        "relevant_sources": [
+            {
+                "document_id": "DOC018",
+                "page_number": 5
+            },
+            {
+                "document_id": "DOC018",
+                "page_number": 6
+            }
+        ],
+        "split": "test"
+    },
+    {
+        "question_id": "Q071",
+        "question": "What does Think Python identify as the most important skill for a computer scientist?",
+        "category": "educational",
+        "question_type": "factual",
+        "difficulty": "easy",
+        "expected_answer": "Problem solving.",
+        "relevant_sources": [
+            {
+                "document_id": "DOC025",
+                "page_number": 23
+            }
+        ],
+        "split": "test"
+    },
+    {
+        "question_id": "Q072",
+        "question": "How does the Hello World print syntax differ between Python 2 and Python 3 in Think Python?",
+        "category": "educational",
+        "question_type": "comparison",
+        "difficulty": "medium",
+        "expected_answer": "Python 3 uses print as a function with parentheses; Python 2 uses a print statement without requiring parentheses.",
+        "relevant_sources": [
+            {
+                "document_id": "DOC025",
+                "page_number": 25
+            }
+        ],
+        "split": "test"
+    },
+    {
+        "question_id": "Q073",
+        "question": "What result does Think Python show for the expression 6**2 + 6?",
+        "category": "educational",
+        "question_type": "numerical",
+        "difficulty": "easy",
+        "expected_answer": "42.",
+        "relevant_sources": [
+            {
+                "document_id": "DOC025",
+                "page_number": 25
+            }
+        ],
+        "split": "test"
+    },
+    {
+        "question_id": "Q074",
+        "question": "Why does Think Python classify the quoted value '42.0' as a string rather than a floating-point number?",
+        "category": "educational",
+        "question_type": "conceptual",
+        "difficulty": "medium",
+        "expected_answer": "The quotation marks make it a string literal, regardless of its numeric-looking contents.",
+        "relevant_sources": [
+            {
+                "document_id": "DOC025",
+                "page_number": 26
+            }
+        ],
+        "split": "test"
+    },
+    {
+        "question_id": "Q075",
+        "question": "How does Think Python distinguish formal from natural languages, and what two aspects do formal-language syntax rules govern?",
+        "category": "educational",
+        "question_type": "multi_hop",
+        "difficulty": "hard",
+        "expected_answer": "Formal languages are deliberately designed for specific applications, whereas natural languages evolve. Syntax governs valid tokens and the structures in which tokens can be combined.",
+        "relevant_sources": [
+            {
+                "document_id": "DOC025",
+                "page_number": 26
+            },
+            {
+                "document_id": "DOC025",
+                "page_number": 27
+            }
+        ],
+        "split": "test"
+    },
+    {
+        "question_id": "Q076",
+        "question": "How many storage aisles and pallet positions does the fictional Northfield distribution center have?",
+        "category": "scanned",
+        "question_type": "numerical",
+        "difficulty": "easy",
+        "expected_answer": "24 aisles and 1,200 pallet positions.",
+        "relevant_sources": [
+            {
+                "document_id": "DOC027",
+                "page_number": 1
+            }
+        ],
+        "split": "test"
+    },
+    {
+        "question_id": "Q077",
+        "question": "What inventory rotation method does Northfield use for products with expiration dates?",
+        "category": "scanned",
+        "question_type": "factual",
+        "difficulty": "easy",
+        "expected_answer": "First-in, first-out (FIFO).",
+        "relevant_sources": [
+            {
+                "document_id": "DOC027",
+                "page_number": 1
+            }
+        ],
+        "split": "test"
+    },
+    {
+        "question_id": "Q078",
+        "question": "How do Northfield’s category A and category C products differ in ABC inventory analysis?",
+        "category": "scanned",
+        "question_type": "comparison",
+        "difficulty": "medium",
+        "expected_answer": "Category A contains high-value products requiring frequent monitoring; category C contains lower-value products requiring less frequent monitoring.",
+        "relevant_sources": [
+            {
+                "document_id": "DOC027",
+                "page_number": 2
+            }
+        ],
+        "split": "test"
+    },
+    {
+        "question_id": "Q079",
+        "question": "What is Northfield’s same-day dispatch cutoff and how long are shipping records retained?",
+        "category": "scanned",
+        "question_type": "numerical",
+        "difficulty": "medium",
+        "expected_answer": "Orders received before 2 PM qualify for same-day dispatch; records are retained for three years.",
+        "relevant_sources": [
+            {
+                "document_id": "DOC027",
+                "page_number": 3
+            }
+        ],
+        "split": "test"
+    },
+    {
+        "question_id": "Q080",
+        "question": "What are Northfield’s inventory accuracy and order fulfillment accuracy targets, and how often is overall warehouse performance reviewed?",
+        "category": "scanned",
+        "question_type": "multi_hop",
+        "difficulty": "hard",
+        "expected_answer": "99.5% inventory accuracy and at least 98% fulfillment accuracy; performance is reviewed monthly.",
+        "relevant_sources": [
+            {
+                "document_id": "DOC027",
+                "page_number": 2
+            },
+            {
+                "document_id": "DOC027",
+                "page_number": 3
+            }
+        ],
+        "split": "test"
+    }
+]
