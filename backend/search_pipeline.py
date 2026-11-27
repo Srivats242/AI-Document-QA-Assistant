@@ -4,7 +4,10 @@ def run_search_pipeline(
     limit,
     collection,
     model,
-    rerank_fn
+    rerank_fn,
+    *,
+    apply_source_quality=True,
+    unique_pages=False
 ):
     if not question.strip():
         return []
@@ -68,9 +71,26 @@ def run_search_pipeline(
 
     ranked_matches = rerank_fn(question, matches)
 
-    quality_ranked_matches = rerank_for_source_quality(
-        question,
-        ranked_matches
-    )
+    if apply_source_quality:
+        ranked_matches = rerank_for_source_quality(
+            question,
+            ranked_matches
+        )
 
-    return quality_ranked_matches[:limit]
+    if unique_pages:
+        seen_pages = set()
+        unique_matches = []
+
+        for match in ranked_matches:
+            page_key = (
+                match["document_id"],
+                match["page_number"]
+            )
+
+            if page_key not in seen_pages:
+                seen_pages.add(page_key)
+                unique_matches.append(match)
+
+        ranked_matches = unique_matches
+
+    return ranked_matches[:limit]
