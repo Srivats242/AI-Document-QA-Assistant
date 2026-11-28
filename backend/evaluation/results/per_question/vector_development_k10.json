@@ -1,0 +1,1136 @@
+{
+  "k": 10,
+  "summary": {
+    "total_questions": 30,
+    "average_latency_ms": 29.54214666582023,
+    "metrics": {
+      "precision@10": 0.11,
+      "recall@10": 0.9,
+      "hit_rate@10": 0.9333333333333333,
+      "reciprocal_rank@10": 0.6992063492063492,
+      "ndcg@10": 0.7235971544335292
+    }
+  },
+  "by_category": {
+    "academic": {
+      "total_questions": 5,
+      "average_latency_ms": 51.38211997691542,
+      "metrics": {
+        "precision@10": 0.14,
+        "recall@10": 1.0,
+        "hit_rate@10": 1.0,
+        "reciprocal_rank@10": 1.0,
+        "ndcg@10": 0.9276256451932704
+      }
+    },
+    "educational": {
+      "total_questions": 5,
+      "average_latency_ms": 25.2057199832052,
+      "metrics": {
+        "precision@10": 0.12000000000000001,
+        "recall@10": 0.9,
+        "hit_rate@10": 1.0,
+        "reciprocal_rank@10": 0.4785714285714286,
+        "ndcg@10": 0.5780078458474349
+      }
+    },
+    "financial": {
+      "total_questions": 5,
+      "average_latency_ms": 24.356440035626292,
+      "metrics": {
+        "precision@10": 0.060000000000000005,
+        "recall@10": 0.5,
+        "hit_rate@10": 0.6,
+        "reciprocal_rank@10": 0.4,
+        "ndcg@10": 0.3750013399816747
+      }
+    },
+    "government": {
+      "total_questions": 5,
+      "average_latency_ms": 27.387799974530935,
+      "metrics": {
+        "precision@10": 0.12000000000000001,
+        "recall@10": 1.0,
+        "hit_rate@10": 1.0,
+        "reciprocal_rank@10": 0.65,
+        "ndcg@10": 0.7085761941502126
+      }
+    },
+    "scanned": {
+      "total_questions": 5,
+      "average_latency_ms": 23.823640029877424,
+      "metrics": {
+        "precision@10": 0.1,
+        "recall@10": 1.0,
+        "hit_rate@10": 1.0,
+        "reciprocal_rank@10": 1.0,
+        "ndcg@10": 1.0
+      }
+    },
+    "technical": {
+      "total_questions": 5,
+      "average_latency_ms": 25.097159994766116,
+      "metrics": {
+        "precision@10": 0.12000000000000001,
+        "recall@10": 1.0,
+        "hit_rate@10": 1.0,
+        "reciprocal_rank@10": 0.6666666666666666,
+        "ndcg@10": 0.752371901428583
+      }
+    }
+  },
+  "by_difficulty": {
+    "easy": {
+      "total_questions": 10,
+      "average_latency_ms": 32.31201998423785,
+      "metrics": {
+        "precision@10": 0.1,
+        "recall@10": 0.85,
+        "hit_rate@10": 0.9,
+        "reciprocal_rank@10": 0.6476190476190476,
+        "ndcg@10": 0.677281550111413
+      }
+    },
+    "hard": {
+      "total_questions": 5,
+      "average_latency_ms": 25.646819942630827,
+      "metrics": {
+        "precision@10": 0.18000000000000002,
+        "recall@10": 0.9,
+        "hit_rate@10": 1.0,
+        "reciprocal_rank@10": 0.9,
+        "ndcg@10": 0.7838194495775347
+      }
+    },
+    "medium": {
+      "total_questions": 15,
+      "average_latency_ms": 28.994006694604952,
+      "metrics": {
+        "precision@10": 0.09333333333333334,
+        "recall@10": 0.9333333333333333,
+        "hit_rate@10": 0.9333333333333333,
+        "reciprocal_rank@10": 0.6666666666666666,
+        "ndcg@10": 0.7344001256002716
+      }
+    }
+  },
+  "by_question_type": {
+    "comparison": {
+      "total_questions": 6,
+      "average_latency_ms": 27.504316666939605,
+      "metrics": {
+        "precision@10": 0.1,
+        "recall@10": 1.0,
+        "hit_rate@10": 1.0,
+        "reciprocal_rank@10": 0.5833333333333334,
+        "ndcg@10": 0.6872021038816168
+      }
+    },
+    "conceptual": {
+      "total_questions": 7,
+      "average_latency_ms": 30.980657154162014,
+      "metrics": {
+        "precision@10": 0.1,
+        "recall@10": 1.0,
+        "hit_rate@10": 1.0,
+        "reciprocal_rank@10": 0.7857142857142857,
+        "ndcg@10": 0.8418270372449104
+      }
+    },
+    "factual": {
+      "total_questions": 7,
+      "average_latency_ms": 25.409900001250207,
+      "metrics": {
+        "precision@10": 0.1,
+        "recall@10": 0.9285714285714286,
+        "hit_rate@10": 1.0,
+        "reciprocal_rank@10": 0.6394557823129252,
+        "ndcg@10": 0.709463129247343
+      }
+    },
+    "multi_hop": {
+      "total_questions": 5,
+      "average_latency_ms": 25.646819942630827,
+      "metrics": {
+        "precision@10": 0.18000000000000002,
+        "recall@10": 0.9,
+        "hit_rate@10": 1.0,
+        "reciprocal_rank@10": 0.9,
+        "ndcg@10": 0.7838194495775347
+      }
+    },
+    "numerical": {
+      "total_questions": 5,
+      "average_latency_ms": 39.65410003438592,
+      "metrics": {
+        "precision@10": 0.08,
+        "recall@10": 0.6,
+        "hit_rate@10": 0.6,
+        "reciprocal_rank@10": 0.6,
+        "ndcg@10": 0.5613147192765459
+      }
+    }
+  },
+  "by_split": {
+    "development": {
+      "total_questions": 30,
+      "average_latency_ms": 29.54214666582023,
+      "metrics": {
+        "precision@10": 0.11,
+        "recall@10": 0.9,
+        "hit_rate@10": 0.9333333333333333,
+        "reciprocal_rank@10": 0.6992063492063492,
+        "ndcg@10": 0.7235971544335292
+      }
+    }
+  },
+  "results": [
+    {
+      "question_id": "Q001",
+      "question": "What are the four core functions of the NIST AI Risk Management Framework?",
+      "category": "government",
+      "question_type": "factual",
+      "difficulty": "easy",
+      "split": "development",
+      "retrieved_sources": [
+        "DOC001:page:25",
+        "DOC001:page:8",
+        "DOC001:page:37",
+        "DOC001:page:1",
+        "DOC001:page:2",
+        "DOC001:page:44",
+        "DOC001:page:33",
+        "DOC001:page:30",
+        "DOC001:page:34",
+        "DOC001:page:9"
+      ],
+      "relevant_sources": [
+        "DOC001:page:8"
+      ],
+      "latency_ms": 23.175999987870455,
+      "metrics": {
+        "precision@10": 0.1,
+        "recall@10": 1.0,
+        "hit_rate@10": 1.0,
+        "reciprocal_rank@10": 0.5,
+        "ndcg@10": 0.6309297535714575
+      }
+    },
+    {
+      "question_id": "Q002",
+      "question": "According to the NIST AI RMF, what two factors determine the risk associated with a potential negative AI event?",
+      "category": "government",
+      "question_type": "conceptual",
+      "difficulty": "easy",
+      "split": "development",
+      "retrieved_sources": [
+        "DOC001:page:9",
+        "DOC001:page:13",
+        "DOC001:page:37",
+        "DOC001:page:34",
+        "DOC001:page:14",
+        "DOC001:page:1",
+        "DOC001:page:30",
+        "DOC001:page:6",
+        "DOC001:page:10",
+        "DOC001:page:24"
+      ],
+      "relevant_sources": [
+        "DOC001:page:9"
+      ],
+      "latency_ms": 24.896099930629134,
+      "metrics": {
+        "precision@10": 0.1,
+        "recall@10": 1.0,
+        "hit_rate@10": 1.0,
+        "reciprocal_rank@10": 1.0,
+        "ndcg@10": 1.0
+      }
+    },
+    {
+      "question_id": "Q003",
+      "question": "Why can third-party software, hardware, and data complicate AI risk measurement according to the NIST AI RMF?",
+      "category": "government",
+      "question_type": "conceptual",
+      "difficulty": "medium",
+      "split": "development",
+      "retrieved_sources": [
+        "DOC001:page:44",
+        "DOC001:page:10",
+        "DOC001:page:24",
+        "DOC001:page:6",
+        "DOC001:page:37",
+        "DOC001:page:8",
+        "DOC001:page:1",
+        "DOC001:page:35",
+        "DOC001:page:9",
+        "DOC001:page:11"
+      ],
+      "relevant_sources": [
+        "DOC001:page:10"
+      ],
+      "latency_ms": 20.72190004400909,
+      "metrics": {
+        "precision@10": 0.1,
+        "recall@10": 1.0,
+        "hit_rate@10": 1.0,
+        "reciprocal_rank@10": 0.5,
+        "ndcg@10": 0.6309297535714575
+      }
+    },
+    {
+      "question_id": "Q004",
+      "question": "How does AI risk measurement in controlled environments differ from measurement in real-world settings according to the NIST AI RMF?",
+      "category": "government",
+      "question_type": "comparison",
+      "difficulty": "medium",
+      "split": "development",
+      "retrieved_sources": [
+        "DOC001:page:34",
+        "DOC001:page:9",
+        "DOC001:page:37",
+        "DOC001:page:11",
+        "DOC001:page:24",
+        "DOC001:page:1",
+        "DOC001:page:10",
+        "DOC001:page:35",
+        "DOC001:page:8",
+        "DOC001:page:12"
+      ],
+      "relevant_sources": [
+        "DOC001:page:11"
+      ],
+      "latency_ms": 39.7007999708876,
+      "metrics": {
+        "precision@10": 0.1,
+        "recall@10": 1.0,
+        "hit_rate@10": 1.0,
+        "reciprocal_rank@10": 0.25,
+        "ndcg@10": 0.43067655807339306
+      }
+    },
+    {
+      "question_id": "Q005",
+      "question": "According to the NIST AI RMF, how should organizations establish risk tolerance and respond when an AI system presents unacceptable negative risks?",
+      "category": "government",
+      "question_type": "multi_hop",
+      "difficulty": "hard",
+      "split": "development",
+      "retrieved_sources": [
+        "DOC001:page:12",
+        "DOC001:page:14",
+        "DOC001:page:9",
+        "DOC001:page:10",
+        "DOC001:page:13",
+        "DOC001:page:7",
+        "DOC001:page:27",
+        "DOC001:page:37",
+        "DOC001:page:20",
+        "DOC001:page:8"
+      ],
+      "relevant_sources": [
+        "DOC001:page:12",
+        "DOC001:page:13"
+      ],
+      "latency_ms": 28.444199939258397,
+      "metrics": {
+        "precision@10": 0.2,
+        "recall@10": 1.0,
+        "hit_rate@10": 1.0,
+        "reciprocal_rank@10": 1.0,
+        "ndcg@10": 0.8503449055347546
+      }
+    },
+    {
+      "question_id": "Q006",
+      "question": "What are the two sub-layers in each encoder layer of the original Transformer architecture?",
+      "category": "academic",
+      "question_type": "factual",
+      "difficulty": "easy",
+      "split": "development",
+      "retrieved_sources": [
+        "DOC006:page:3",
+        "DOC007:page:3",
+        "DOC006:page:8",
+        "DOC006:page:2",
+        "DOC006:page:5",
+        "DOC008:page:7",
+        "DOC010:page:13",
+        "DOC008:page:4",
+        "DOC008:page:10",
+        "DOC007:page:1"
+      ],
+      "relevant_sources": [
+        "DOC006:page:3"
+      ],
+      "latency_ms": 33.10879995115101,
+      "metrics": {
+        "precision@10": 0.1,
+        "recall@10": 1.0,
+        "hit_rate@10": 1.0,
+        "reciprocal_rank@10": 1.0,
+        "ndcg@10": 1.0
+      }
+    },
+    {
+      "question_id": "Q007",
+      "question": "Why does scaled dot-product attention divide the dot products by the square root of the key dimension?",
+      "category": "academic",
+      "question_type": "conceptual",
+      "difficulty": "medium",
+      "split": "development",
+      "retrieved_sources": [
+        "DOC006:page:4",
+        "DOC006:page:5",
+        "DOC008:page:4",
+        "DOC006:page:1",
+        "DOC024:page:192",
+        "DOC024:page:198",
+        "DOC023:page:181",
+        "DOC006:page:6",
+        "DOC008:page:6",
+        "DOC010:page:12"
+      ],
+      "relevant_sources": [
+        "DOC006:page:4"
+      ],
+      "latency_ms": 70.60890004504472,
+      "metrics": {
+        "precision@10": 0.1,
+        "recall@10": 1.0,
+        "hit_rate@10": 1.0,
+        "reciprocal_rank@10": 1.0,
+        "ndcg@10": 1.0
+      }
+    },
+    {
+      "question_id": "Q008",
+      "question": "How many attention heads are used in the original base Transformer model, and what is the dimension of each head's keys and values?",
+      "category": "academic",
+      "question_type": "numerical",
+      "difficulty": "easy",
+      "split": "development",
+      "retrieved_sources": [
+        "DOC006:page:5",
+        "DOC007:page:3",
+        "DOC006:page:2",
+        "DOC006:page:3",
+        "DOC006:page:1",
+        "DOC007:page:8",
+        "DOC006:page:4",
+        "DOC006:page:9",
+        "DOC006:page:8",
+        "DOC006:page:6"
+      ],
+      "relevant_sources": [
+        "DOC006:page:5",
+        "DOC006:page:9"
+      ],
+      "latency_ms": 101.44749993924052,
+      "metrics": {
+        "precision@10": 0.2,
+        "recall@10": 1.0,
+        "hit_rate@10": 1.0,
+        "reciprocal_rank@10": 1.0,
+        "ndcg@10": 0.8065735963827293
+      }
+    },
+    {
+      "question_id": "Q009",
+      "question": "According to Attention Is All You Need, how do unrestricted self-attention layers compare with recurrent layers in sequential operations and maximum path length?",
+      "category": "academic",
+      "question_type": "comparison",
+      "difficulty": "medium",
+      "split": "development",
+      "retrieved_sources": [
+        "DOC006:page:6",
+        "DOC006:page:5",
+        "DOC006:page:2",
+        "DOC006:page:7",
+        "DOC006:page:3",
+        "DOC006:page:10",
+        "DOC010:page:12",
+        "DOC006:page:4",
+        "DOC007:page:1",
+        "DOC006:page:1"
+      ],
+      "relevant_sources": [
+        "DOC006:page:6"
+      ],
+      "latency_ms": 25.974299991503358,
+      "metrics": {
+        "precision@10": 0.1,
+        "recall@10": 1.0,
+        "hit_rate@10": 1.0,
+        "reciprocal_rank@10": 1.0,
+        "ndcg@10": 1.0
+      }
+    },
+    {
+      "question_id": "Q010",
+      "question": "Why does the original Transformer require positional encodings, and how did the authors' experiments support their choice of sinusoidal encodings over learned positional embeddings?",
+      "category": "academic",
+      "question_type": "multi_hop",
+      "difficulty": "hard",
+      "split": "development",
+      "retrieved_sources": [
+        "DOC006:page:6",
+        "DOC007:page:3",
+        "DOC006:page:1",
+        "DOC006:page:2",
+        "DOC006:page:8",
+        "DOC006:page:9",
+        "DOC006:page:3",
+        "DOC006:page:5",
+        "DOC007:page:12",
+        "DOC011:page:60"
+      ],
+      "relevant_sources": [
+        "DOC006:page:6",
+        "DOC006:page:9"
+      ],
+      "latency_ms": 25.77109995763749,
+      "metrics": {
+        "precision@10": 0.2,
+        "recall@10": 1.0,
+        "hit_rate@10": 1.0,
+        "reciprocal_rank@10": 1.0,
+        "ndcg@10": 0.8315546295836225
+      }
+    },
+    {
+      "question_id": "Q011",
+      "question": "What are the four components of the HTTP message abstraction in RFC 9110?",
+      "category": "technical",
+      "question_type": "factual",
+      "difficulty": "easy",
+      "split": "development",
+      "retrieved_sources": [
+        "DOC011:page:42",
+        "DOC011:page:19",
+        "DOC011:page:40",
+        "DOC011:page:13",
+        "DOC011:page:1",
+        "DOC011:page:172",
+        "DOC011:page:41",
+        "DOC011:page:14",
+        "DOC011:page:147",
+        "DOC011:page:18"
+      ],
+      "relevant_sources": [
+        "DOC011:page:40"
+      ],
+      "latency_ms": 24.301499943248928,
+      "metrics": {
+        "precision@10": 0.1,
+        "recall@10": 1.0,
+        "hit_rate@10": 1.0,
+        "reciprocal_rank@10": 0.3333333333333333,
+        "ndcg@10": 0.5
+      }
+    },
+    {
+      "question_id": "Q012",
+      "question": "How do RFC 9110 timestamp format requirements differ for senders and recipients?",
+      "category": "technical",
+      "question_type": "comparison",
+      "difficulty": "medium",
+      "split": "development",
+      "retrieved_sources": [
+        "DOC011:page:40",
+        "DOC011:page:38",
+        "DOC011:page:176",
+        "DOC015:page:143",
+        "DOC011:page:46",
+        "DOC015:page:102",
+        "DOC011:page:66",
+        "DOC011:page:168",
+        "DOC011:page:118",
+        "DOC012:page:4"
+      ],
+      "relevant_sources": [
+        "DOC011:page:38"
+      ],
+      "latency_ms": 28.00799999386072,
+      "metrics": {
+        "precision@10": 0.1,
+        "recall@10": 1.0,
+        "hit_rate@10": 1.0,
+        "reciprocal_rank@10": 0.5,
+        "ndcg@10": 0.6309297535714575
+      }
+    },
+    {
+      "question_id": "Q013",
+      "question": "Why does RFC 9110 prefer explicit message framing to ending a response by closing the connection?",
+      "category": "technical",
+      "question_type": "conceptual",
+      "difficulty": "medium",
+      "split": "development",
+      "retrieved_sources": [
+        "DOC011:page:41",
+        "DOC012:page:48",
+        "DOC015:page:60",
+        "DOC015:page:58",
+        "DOC015:page:120",
+        "DOC015:page:59",
+        "DOC012:page:47",
+        "DOC015:page:61",
+        "DOC015:page:66",
+        "DOC012:page:29"
+      ],
+      "relevant_sources": [
+        "DOC011:page:41"
+      ],
+      "latency_ms": 27.37420005723834,
+      "metrics": {
+        "precision@10": 0.1,
+        "recall@10": 1.0,
+        "hit_rate@10": 1.0,
+        "reciprocal_rank@10": 1.0,
+        "ndcg@10": 1.0
+      }
+    },
+    {
+      "question_id": "Q014",
+      "question": "How does the meaning of request content differ between PUT and POST in RFC 9110?",
+      "category": "technical",
+      "question_type": "comparison",
+      "difficulty": "medium",
+      "split": "development",
+      "retrieved_sources": [
+        "DOC011:page:78",
+        "DOC011:page:43",
+        "DOC011:page:76",
+        "DOC011:page:19",
+        "DOC011:page:144",
+        "DOC011:page:75",
+        "DOC011:page:64",
+        "DOC011:page:77",
+        "DOC011:page:79",
+        "DOC011:page:71"
+      ],
+      "relevant_sources": [
+        "DOC011:page:43"
+      ],
+      "latency_ms": 22.497700061649084,
+      "metrics": {
+        "precision@10": 0.1,
+        "recall@10": 1.0,
+        "hit_rate@10": 1.0,
+        "reciprocal_rank@10": 0.5,
+        "ndcg@10": 0.6309297535714575
+      }
+    },
+    {
+      "question_id": "Q015",
+      "question": "Why should HTTP trailer fields be stored separately from headers, and when may a recipient merge them?",
+      "category": "technical",
+      "question_type": "multi_hop",
+      "difficulty": "hard",
+      "split": "development",
+      "retrieved_sources": [
+        "DOC011:page:44",
+        "DOC011:page:45",
+        "DOC011:page:178",
+        "DOC011:page:46",
+        "DOC011:page:146",
+        "DOC011:page:40",
+        "DOC011:page:31",
+        "DOC011:page:47",
+        "DOC011:page:86",
+        "DOC011:page:78"
+      ],
+      "relevant_sources": [
+        "DOC011:page:44",
+        "DOC011:page:45"
+      ],
+      "latency_ms": 23.304399917833507,
+      "metrics": {
+        "precision@10": 0.2,
+        "recall@10": 1.0,
+        "hit_rate@10": 1.0,
+        "reciprocal_rank@10": 1.0,
+        "ndcg@10": 1.0
+      }
+    },
+    {
+      "question_id": "Q016",
+      "question": "What revenue did IBM report for 2023 in its management discussion snapshot?",
+      "category": "financial",
+      "question_type": "numerical",
+      "difficulty": "easy",
+      "split": "development",
+      "retrieved_sources": [
+        "DOC016:page:71",
+        "DOC016:page:8",
+        "DOC016:page:69",
+        "DOC016:page:9",
+        "DOC016:page:125",
+        "DOC016:page:79",
+        "DOC016:page:80",
+        "DOC016:page:6",
+        "DOC016:page:3",
+        "DOC016:page:52"
+      ],
+      "relevant_sources": [
+        "DOC016:page:10"
+      ],
+      "latency_ms": 26.865100022405386,
+      "metrics": {
+        "precision@10": 0.0,
+        "recall@10": 0.0,
+        "hit_rate@10": 0.0,
+        "reciprocal_rank@10": 0.0,
+        "ndcg@10": 0.0
+      }
+    },
+    {
+      "question_id": "Q017",
+      "question": "By how many percentage points did IBM gross profit margin increase from 2022 to 2023?",
+      "category": "financial",
+      "question_type": "numerical",
+      "difficulty": "medium",
+      "split": "development",
+      "retrieved_sources": [
+        "DOC016:page:20",
+        "DOC016:page:41",
+        "DOC016:page:71",
+        "DOC016:page:21",
+        "DOC016:page:52",
+        "DOC016:page:22",
+        "DOC016:page:11",
+        "DOC016:page:104",
+        "DOC016:page:19",
+        "DOC016:page:40"
+      ],
+      "relevant_sources": [
+        "DOC016:page:10"
+      ],
+      "latency_ms": 24.71780008636415,
+      "metrics": {
+        "precision@10": 0.0,
+        "recall@10": 0.0,
+        "hit_rate@10": 0.0,
+        "reciprocal_rank@10": 0.0,
+        "ndcg@10": 0.0
+      }
+    },
+    {
+      "question_id": "Q018",
+      "question": "Which platform underpins IBM’s hybrid cloud architecture in its 2023 annual report?",
+      "category": "financial",
+      "question_type": "factual",
+      "difficulty": "easy",
+      "split": "development",
+      "retrieved_sources": [
+        "DOC016:page:13",
+        "DOC016:page:5",
+        "DOC016:page:14",
+        "DOC016:page:15",
+        "DOC016:page:4",
+        "DOC016:page:16",
+        "DOC016:page:3",
+        "DOC016:page:22",
+        "DOC016:page:17",
+        "DOC016:page:6"
+      ],
+      "relevant_sources": [
+        "DOC016:page:5"
+      ],
+      "latency_ms": 20.340400049462914,
+      "metrics": {
+        "precision@10": 0.1,
+        "recall@10": 1.0,
+        "hit_rate@10": 1.0,
+        "reciprocal_rank@10": 0.5,
+        "ndcg@10": 0.6309297535714575
+      }
+    },
+    {
+      "question_id": "Q019",
+      "question": "Why are Kyndryl historical results excluded from IBM continuing operations in the 2023 annual report?",
+      "category": "financial",
+      "question_type": "conceptual",
+      "difficulty": "medium",
+      "split": "development",
+      "retrieved_sources": [
+        "DOC016:page:79",
+        "DOC016:page:8",
+        "DOC016:page:52",
+        "DOC016:page:124",
+        "DOC016:page:29",
+        "DOC016:page:102",
+        "DOC016:page:9",
+        "DOC016:page:49",
+        "DOC016:page:69",
+        "DOC016:page:6"
+      ],
+      "relevant_sources": [
+        "DOC016:page:8"
+      ],
+      "latency_ms": 23.150400025770068,
+      "metrics": {
+        "precision@10": 0.1,
+        "recall@10": 1.0,
+        "hit_rate@10": 1.0,
+        "reciprocal_rank@10": 0.5,
+        "ndcg@10": 0.6309297535714575
+      }
+    },
+    {
+      "question_id": "Q020",
+      "question": "What greenhouse gas reduction against 2010 did IBM report, and what was its 2023 operating non-GAAP earnings figure?",
+      "category": "financial",
+      "question_type": "multi_hop",
+      "difficulty": "hard",
+      "split": "development",
+      "retrieved_sources": [
+        "DOC016:page:6",
+        "DOC016:page:71",
+        "DOC016:page:52",
+        "DOC016:page:125",
+        "DOC016:page:9",
+        "DOC016:page:80",
+        "DOC016:page:27",
+        "DOC017:page:13",
+        "DOC017:page:1",
+        "DOC020:page:19"
+      ],
+      "relevant_sources": [
+        "DOC016:page:10",
+        "DOC016:page:6"
+      ],
+      "latency_ms": 26.708499994128942,
+      "metrics": {
+        "precision@10": 0.1,
+        "recall@10": 0.5,
+        "hit_rate@10": 1.0,
+        "reciprocal_rank@10": 1.0,
+        "ndcg@10": 0.6131471927654584
+      }
+    },
+    {
+      "question_id": "Q021",
+      "question": "How does OpenStax Psychology 2e define psychology?",
+      "category": "educational",
+      "question_type": "factual",
+      "difficulty": "easy",
+      "split": "development",
+      "retrieved_sources": [
+        "DOC023:page:13",
+        "DOC023:page:14",
+        "DOC023:page:15",
+        "DOC023:page:68",
+        "DOC023:page:16",
+        "DOC023:page:54",
+        "DOC023:page:20",
+        "DOC023:page:6",
+        "DOC023:page:40",
+        "DOC023:page:458"
+      ],
+      "relevant_sources": [
+        "DOC023:page:19",
+        "DOC023:page:20"
+      ],
+      "latency_ms": 26.330000022426248,
+      "metrics": {
+        "precision@10": 0.1,
+        "recall@10": 0.5,
+        "hit_rate@10": 1.0,
+        "reciprocal_rank@10": 0.14285714285714285,
+        "ndcg@10": 0.20438239758848611
+      }
+    },
+    {
+      "question_id": "Q022",
+      "question": "How does a hypothesis differ from a scientific theory in Psychology 2e section 1.1?",
+      "category": "educational",
+      "question_type": "comparison",
+      "difficulty": "medium",
+      "split": "development",
+      "retrieved_sources": [
+        "DOC023:page:44",
+        "DOC023:page:52",
+        "DOC023:page:78",
+        "DOC023:page:20",
+        "DOC023:page:48",
+        "DOC023:page:19",
+        "DOC023:page:75",
+        "DOC023:page:31",
+        "DOC023:page:63",
+        "DOC023:page:69"
+      ],
+      "relevant_sources": [
+        "DOC023:page:20"
+      ],
+      "latency_ms": 25.745099992491305,
+      "metrics": {
+        "precision@10": 0.1,
+        "recall@10": 1.0,
+        "hit_rate@10": 1.0,
+        "reciprocal_rank@10": 0.25,
+        "ndcg@10": 0.43067655807339306
+      }
+    },
+    {
+      "question_id": "Q023",
+      "question": "What critical thinking practices does Psychology 2e identify as useful for evaluating information?",
+      "category": "educational",
+      "question_type": "conceptual",
+      "difficulty": "medium",
+      "split": "development",
+      "retrieved_sources": [
+        "DOC023:page:20",
+        "DOC023:page:21",
+        "DOC023:page:53",
+        "DOC023:page:8",
+        "DOC023:page:7",
+        "DOC024:page:21",
+        "DOC023:page:226",
+        "DOC023:page:9",
+        "DOC023:page:668",
+        "DOC023:page:15"
+      ],
+      "relevant_sources": [
+        "DOC023:page:21"
+      ],
+      "latency_ms": 26.847600005567074,
+      "metrics": {
+        "precision@10": 0.1,
+        "recall@10": 1.0,
+        "hit_rate@10": 1.0,
+        "reciprocal_rank@10": 0.5,
+        "ndcg@10": 0.6309297535714575
+      }
+    },
+    {
+      "question_id": "Q024",
+      "question": "How did functionalism differ from structuralism in its focus on the mind?",
+      "category": "educational",
+      "question_type": "comparison",
+      "difficulty": "medium",
+      "split": "development",
+      "retrieved_sources": [
+        "DOC023:page:22",
+        "DOC023:page:42",
+        "DOC023:page:24",
+        "DOC023:page:237",
+        "DOC023:page:43",
+        "DOC023:page:21",
+        "DOC023:page:108",
+        "DOC023:page:202",
+        "DOC023:page:44",
+        "DOC023:page:19"
+      ],
+      "relevant_sources": [
+        "DOC023:page:22"
+      ],
+      "latency_ms": 23.099999991245568,
+      "metrics": {
+        "precision@10": 0.1,
+        "recall@10": 1.0,
+        "hit_rate@10": 1.0,
+        "reciprocal_rank@10": 1.0,
+        "ndcg@10": 1.0
+      }
+    },
+    {
+      "question_id": "Q025",
+      "question": "What limitation did Wundt encounter with introspection, and what methods did Freud propose to access unconscious processes?",
+      "category": "educational",
+      "question_type": "multi_hop",
+      "difficulty": "hard",
+      "split": "development",
+      "retrieved_sources": [
+        "DOC023:page:21",
+        "DOC023:page:23",
+        "DOC023:page:43",
+        "DOC023:page:375",
+        "DOC023:page:22",
+        "DOC023:page:53",
+        "DOC023:page:380",
+        "DOC023:page:617",
+        "DOC023:page:42",
+        "DOC023:page:374"
+      ],
+      "relevant_sources": [
+        "DOC023:page:22",
+        "DOC023:page:23"
+      ],
+      "latency_ms": 24.005899904295802,
+      "metrics": {
+        "precision@10": 0.2,
+        "recall@10": 1.0,
+        "hit_rate@10": 1.0,
+        "reciprocal_rank@10": 0.5,
+        "ndcg@10": 0.6240505200038379
+      }
+    },
+    {
+      "question_id": "Q026",
+      "question": "How much water does the fictional Brookfield treatment facility process daily?",
+      "category": "scanned",
+      "question_type": "numerical",
+      "difficulty": "easy",
+      "split": "development",
+      "retrieved_sources": [
+        "DOC026:page:1",
+        "DOC002:page:21",
+        "DOC002:page:22",
+        "DOC002:page:18",
+        "DOC002:page:12",
+        "DOC002:page:29",
+        "DOC002:page:59",
+        "DOC002:page:24",
+        "DOC002:page:10",
+        "DOC002:page:43"
+      ],
+      "relevant_sources": [
+        "DOC026:page:1"
+      ],
+      "latency_ms": 20.997900050133467,
+      "metrics": {
+        "precision@10": 0.1,
+        "recall@10": 1.0,
+        "hit_rate@10": 1.0,
+        "reciprocal_rank@10": 1.0,
+        "ndcg@10": 1.0
+      }
+    },
+    {
+      "question_id": "Q027",
+      "question": "What chemical is added during coagulation at Brookfield?",
+      "category": "scanned",
+      "question_type": "factual",
+      "difficulty": "easy",
+      "split": "development",
+      "retrieved_sources": [
+        "DOC026:page:1",
+        "DOC005:page:27",
+        "DOC002:page:68",
+        "DOC002:page:61",
+        "DOC002:page:47",
+        "DOC005:page:50",
+        "DOC005:page:32",
+        "DOC002:page:58",
+        "DOC005:page:25",
+        "DOC002:page:49"
+      ],
+      "relevant_sources": [
+        "DOC026:page:1"
+      ],
+      "latency_ms": 21.656899945810437,
+      "metrics": {
+        "precision@10": 0.1,
+        "recall@10": 1.0,
+        "hit_rate@10": 1.0,
+        "reciprocal_rank@10": 1.0,
+        "ndcg@10": 1.0
+      }
+    },
+    {
+      "question_id": "Q028",
+      "question": "What is Brookfield’s filtered-water turbidity target and routine filter inspection interval?",
+      "category": "scanned",
+      "question_type": "numerical",
+      "difficulty": "medium",
+      "split": "development",
+      "retrieved_sources": [
+        "DOC026:page:2",
+        "DOC026:page:1",
+        "DOC009:page:2",
+        "DOC002:page:27",
+        "DOC002:page:11",
+        "DOC002:page:13",
+        "DOC002:page:42",
+        "DOC005:page:39",
+        "DOC020:page:126",
+        "DOC026:page:3"
+      ],
+      "relevant_sources": [
+        "DOC026:page:2"
+      ],
+      "latency_ms": 24.24220007378608,
+      "metrics": {
+        "precision@10": 0.1,
+        "recall@10": 1.0,
+        "hit_rate@10": 1.0,
+        "reciprocal_rank@10": 1.0,
+        "ndcg@10": 1.0
+      }
+    },
+    {
+      "question_id": "Q029",
+      "question": "Under what conditions are Brookfield’s filters backwashed?",
+      "category": "scanned",
+      "question_type": "conceptual",
+      "difficulty": "medium",
+      "split": "development",
+      "retrieved_sources": [
+        "DOC026:page:2",
+        "DOC026:page:1",
+        "DOC002:page:11",
+        "DOC024:page:296",
+        "DOC024:page:298",
+        "DOC024:page:313",
+        "DOC024:page:300",
+        "DOC024:page:312",
+        "DOC002:page:68",
+        "DOC024:page:301"
+      ],
+      "relevant_sources": [
+        "DOC026:page:2"
+      ],
+      "latency_ms": 23.26549997087568,
+      "metrics": {
+        "precision@10": 0.1,
+        "recall@10": 1.0,
+        "hit_rate@10": 1.0,
+        "reciprocal_rank@10": 1.0,
+        "ndcg@10": 1.0
+      }
+    },
+    {
+      "question_id": "Q030",
+      "question": "How long can Brookfield’s backup generator support essential operations, and what equipment is prioritized during an outage?",
+      "category": "scanned",
+      "question_type": "factual",
+      "difficulty": "medium",
+      "split": "development",
+      "retrieved_sources": [
+        "DOC026:page:3",
+        "DOC017:page:102",
+        "DOC016:page:54",
+        "DOC026:page:1",
+        "DOC017:page:52",
+        "DOC017:page:54",
+        "DOC002:page:64",
+        "DOC018:page:83",
+        "DOC017:page:39",
+        "DOC027:page:3"
+      ],
+      "relevant_sources": [
+        "DOC026:page:3"
+      ],
+      "latency_ms": 28.955700108781457,
+      "metrics": {
+        "precision@10": 0.1,
+        "recall@10": 1.0,
+        "hit_rate@10": 1.0,
+        "reciprocal_rank@10": 1.0,
+        "ndcg@10": 1.0
+      }
+    }
+  ],
+  "configuration": {
+    "strategy": "vector",
+    "split": "development",
+    "k": 10,
+    "embedding_model": "sentence-transformers/all-MiniLM-L6-v2",
+    "indexed_documents": 25,
+    "indexed_chunks": 19570,
+    "unique_pages": true,
+    "run_id": "20261128_161901_940915"
+  }
+}

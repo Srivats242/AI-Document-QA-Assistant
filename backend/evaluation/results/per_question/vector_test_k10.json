@@ -1,0 +1,1758 @@
+{
+  "k": 10,
+  "summary": {
+    "total_questions": 50,
+    "average_latency_ms": 2039.746256005019,
+    "metrics": {
+      "precision@10": 0.10400000000000001,
+      "recall@10": 0.87,
+      "hit_rate@10": 0.88,
+      "reciprocal_rank@10": 0.5365555555555556,
+      "ndcg@10": 0.618962713858367
+    }
+  },
+  "by_category": {
+    "academic": {
+      "total_questions": 10,
+      "average_latency_ms": 585.6451900210232,
+      "metrics": {
+        "precision@10": 0.12000000000000001,
+        "recall@10": 1.0,
+        "hit_rate@10": 1.0,
+        "reciprocal_rank@10": 0.5027777777777778,
+        "ndcg@10": 0.6328878212040233
+      }
+    },
+    "educational": {
+      "total_questions": 5,
+      "average_latency_ms": 235.6415000045672,
+      "metrics": {
+        "precision@10": 0.12000000000000001,
+        "recall@10": 1.0,
+        "hit_rate@10": 1.0,
+        "reciprocal_rank@10": 0.7666666666666666,
+        "ndcg@10": 0.8261859507142915
+      }
+    },
+    "financial": {
+      "total_questions": 10,
+      "average_latency_ms": 248.44336999813095,
+      "metrics": {
+        "precision@10": 0.09000000000000001,
+        "recall@10": 0.7,
+        "hit_rate@10": 0.7,
+        "reciprocal_rank@10": 0.21,
+        "ndcg@10": 0.3325119005188157
+      }
+    },
+    "government": {
+      "total_questions": 10,
+      "average_latency_ms": 1263.280699995812,
+      "metrics": {
+        "precision@10": 0.09000000000000001,
+        "recall@10": 0.85,
+        "hit_rate@10": 0.9,
+        "reciprocal_rank@10": 0.5533333333333333,
+        "ndcg@10": 0.6185709273335515
+      }
+    },
+    "scanned": {
+      "total_questions": 5,
+      "average_latency_ms": 297.6314600324258,
+      "metrics": {
+        "precision@10": 0.12000000000000001,
+        "recall@10": 1.0,
+        "hit_rate@10": 1.0,
+        "reciprocal_rank@10": 1.0,
+        "ndcg@10": 0.9839441578296375
+      }
+    },
+    "technical": {
+      "total_questions": 10,
+      "average_latency_ms": 7834.725539991632,
+      "metrics": {
+        "precision@10": 0.1,
+        "recall@10": 0.8,
+        "hit_rate@10": 0.8,
+        "reciprocal_rank@10": 0.5333333333333333,
+        "ndcg@10": 0.6057778659634799
+      }
+    }
+  },
+  "by_difficulty": {
+    "easy": {
+      "total_questions": 19,
+      "average_latency_ms": 506.5784684174057,
+      "metrics": {
+        "precision@10": 0.07894736842105264,
+        "recall@10": 0.7894736842105263,
+        "hit_rate@10": 0.7894736842105263,
+        "reciprocal_rank@10": 0.4076023391812865,
+        "ndcg@10": 0.49770354945337547
+      }
+    },
+    "hard": {
+      "total_questions": 9,
+      "average_latency_ms": 362.1055889072725,
+      "metrics": {
+        "precision@10": 0.1888888888888889,
+        "recall@10": 0.9444444444444444,
+        "hit_rate@10": 1.0,
+        "reciprocal_rank@10": 0.5740740740740741,
+        "ndcg@10": 0.6716766456918609
+      }
+    },
+    "medium": {
+      "total_questions": 22,
+      "average_latency_ms": 4050.15325455249,
+      "metrics": {
+        "precision@10": 0.09090909090909091,
+        "recall@10": 0.9090909090909091,
+        "hit_rate@10": 0.9090909090909091,
+        "reciprocal_rank@10": 0.6325757575757576,
+        "ndcg@10": 0.7021217473671576
+      }
+    }
+  },
+  "by_question_type": {
+    "comparison": {
+      "total_questions": 6,
+      "average_latency_ms": 2823.7191333513088,
+      "metrics": {
+        "precision@10": 0.1,
+        "recall@10": 1.0,
+        "hit_rate@10": 1.0,
+        "reciprocal_rank@10": 1.0,
+        "ndcg@10": 1.0
+      }
+    },
+    "conceptual": {
+      "total_questions": 11,
+      "average_latency_ms": 6025.125609096986,
+      "metrics": {
+        "precision@10": 0.08181818181818182,
+        "recall@10": 0.8181818181818182,
+        "hit_rate@10": 0.8181818181818182,
+        "reciprocal_rank@10": 0.5303030303030303,
+        "ndcg@10": 0.604968069805208
+      }
+    },
+    "factual": {
+      "total_questions": 9,
+      "average_latency_ms": 416.21343332291065,
+      "metrics": {
+        "precision@10": 0.05555555555555556,
+        "recall@10": 0.5555555555555556,
+        "hit_rate@10": 0.5555555555555556,
+        "reciprocal_rank@10": 0.3148148148148148,
+        "ndcg@10": 0.3734836795718651
+      }
+    },
+    "multi_hop": {
+      "total_questions": 9,
+      "average_latency_ms": 362.1055889072725,
+      "metrics": {
+        "precision@10": 0.1888888888888889,
+        "recall@10": 0.9444444444444444,
+        "hit_rate@10": 1.0,
+        "reciprocal_rank@10": 0.5740740740740741,
+        "ndcg@10": 0.6716766456918609
+      }
+    },
+    "numerical": {
+      "total_questions": 15,
+      "average_latency_ms": 784.2496733336399,
+      "metrics": {
+        "precision@10": 0.1,
+        "recall@10": 1.0,
+        "hit_rate@10": 1.0,
+        "reciprocal_rank@10": 0.4662962962962963,
+        "ndcg@10": 0.5924695998458351
+      }
+    }
+  },
+  "by_split": {
+    "test": {
+      "total_questions": 50,
+      "average_latency_ms": 2039.746256005019,
+      "metrics": {
+        "precision@10": 0.10400000000000001,
+        "recall@10": 0.87,
+        "hit_rate@10": 0.88,
+        "reciprocal_rank@10": 0.5365555555555556,
+        "ndcg@10": 0.618962713858367
+      }
+    }
+  },
+  "results": [
+    {
+      "question_id": "Q031",
+      "question": "What was the estimated total daily US water withdrawal in 2015 according to the USGS report?",
+      "category": "government",
+      "question_type": "numerical",
+      "difficulty": "easy",
+      "split": "test",
+      "retrieved_sources": [
+        "DOC002:page:46",
+        "DOC002:page:32",
+        "DOC002:page:12",
+        "DOC002:page:13",
+        "DOC002:page:9",
+        "DOC002:page:15",
+        "DOC002:page:59",
+        "DOC002:page:60",
+        "DOC002:page:26",
+        "DOC002:page:3"
+      ],
+      "relevant_sources": [
+        "DOC002:page:9"
+      ],
+      "latency_ms": 778.6656999960542,
+      "metrics": {
+        "precision@10": 0.1,
+        "recall@10": 1.0,
+        "hit_rate@10": 1.0,
+        "reciprocal_rank@10": 0.2,
+        "ndcg@10": 0.38685280723454163
+      }
+    },
+    {
+      "question_id": "Q032",
+      "question": "How did fresh surface-water and fresh groundwater withdrawals change between 2010 and 2015?",
+      "category": "government",
+      "question_type": "comparison",
+      "difficulty": "medium",
+      "split": "test",
+      "retrieved_sources": [
+        "DOC002:page:9",
+        "DOC002:page:61",
+        "DOC002:page:60",
+        "DOC002:page:47",
+        "DOC002:page:59",
+        "DOC002:page:13",
+        "DOC002:page:15",
+        "DOC002:page:10",
+        "DOC002:page:36",
+        "DOC002:page:26"
+      ],
+      "relevant_sources": [
+        "DOC002:page:9"
+      ],
+      "latency_ms": 631.6751999547705,
+      "metrics": {
+        "precision@10": 0.1,
+        "recall@10": 1.0,
+        "hit_rate@10": 1.0,
+        "reciprocal_rank@10": 1.0,
+        "ndcg@10": 1.0
+      }
+    },
+    {
+      "question_id": "Q033",
+      "question": "Which two water-use categories were the largest in the United States in 2015?",
+      "category": "government",
+      "question_type": "factual",
+      "difficulty": "easy",
+      "split": "test",
+      "retrieved_sources": [
+        "DOC002:page:64",
+        "DOC002:page:15",
+        "DOC002:page:52",
+        "DOC002:page:54",
+        "DOC002:page:58",
+        "DOC002:page:3",
+        "DOC002:page:76",
+        "DOC002:page:20",
+        "DOC002:page:70",
+        "DOC002:page:32"
+      ],
+      "relevant_sources": [
+        "DOC002:page:9"
+      ],
+      "latency_ms": 1325.7787000620738,
+      "metrics": {
+        "precision@10": 0.0,
+        "recall@10": 0.0,
+        "hit_rate@10": 0.0,
+        "reciprocal_rank@10": 0.0,
+        "ndcg@10": 0.0
+      }
+    },
+    {
+      "question_id": "Q034",
+      "question": "What were US aquaculture water withdrawals in 2015, and what proportion came from surface water?",
+      "category": "government",
+      "question_type": "numerical",
+      "difficulty": "medium",
+      "split": "test",
+      "retrieved_sources": [
+        "DOC002:page:42",
+        "DOC002:page:63",
+        "DOC002:page:43",
+        "DOC002:page:10",
+        "DOC002:page:58",
+        "DOC002:page:15",
+        "DOC002:page:9",
+        "DOC002:page:60",
+        "DOC002:page:59",
+        "DOC002:page:18"
+      ],
+      "relevant_sources": [
+        "DOC002:page:10"
+      ],
+      "latency_ms": 1932.0722999982536,
+      "metrics": {
+        "precision@10": 0.1,
+        "recall@10": 1.0,
+        "hit_rate@10": 1.0,
+        "reciprocal_rank@10": 0.25,
+        "ndcg@10": 0.43067655807339306
+      }
+    },
+    {
+      "question_id": "Q035",
+      "question": "How did US thermoelectric power and mining water withdrawals change from 2010 to 2015?",
+      "category": "government",
+      "question_type": "multi_hop",
+      "difficulty": "hard",
+      "split": "test",
+      "retrieved_sources": [
+        "DOC002:page:63",
+        "DOC002:page:50",
+        "DOC002:page:9",
+        "DOC002:page:15",
+        "DOC002:page:11",
+        "DOC002:page:64",
+        "DOC002:page:60",
+        "DOC002:page:65",
+        "DOC002:page:52",
+        "DOC002:page:58"
+      ],
+      "relevant_sources": [
+        "DOC002:page:10",
+        "DOC002:page:9"
+      ],
+      "latency_ms": 751.1561000719666,
+      "metrics": {
+        "precision@10": 0.1,
+        "recall@10": 0.5,
+        "hit_rate@10": 1.0,
+        "reciprocal_rank@10": 0.3333333333333333,
+        "ndcg@10": 0.3065735963827292
+      }
+    },
+    {
+      "question_id": "Q036",
+      "question": "What was the US median household income in 2023 according to the Census Bureau report?",
+      "category": "government",
+      "question_type": "numerical",
+      "difficulty": "easy",
+      "split": "test",
+      "retrieved_sources": [
+        "DOC003:page:10",
+        "DOC003:page:9",
+        "DOC003:page:7",
+        "DOC003:page:39",
+        "DOC003:page:41",
+        "DOC003:page:40",
+        "DOC003:page:38",
+        "DOC003:page:16",
+        "DOC003:page:33",
+        "DOC003:page:29"
+      ],
+      "relevant_sources": [
+        "DOC003:page:9"
+      ],
+      "latency_ms": 526.5530999749899,
+      "metrics": {
+        "precision@10": 0.1,
+        "recall@10": 1.0,
+        "hit_rate@10": 1.0,
+        "reciprocal_rank@10": 0.5,
+        "ndcg@10": 0.6309297535714575
+      }
+    },
+    {
+      "question_id": "Q037",
+      "question": "Was the 2023 median US household income statistically different from its 2019 level?",
+      "category": "government",
+      "question_type": "comparison",
+      "difficulty": "medium",
+      "split": "test",
+      "retrieved_sources": [
+        "DOC003:page:9",
+        "DOC003:page:10",
+        "DOC003:page:7",
+        "DOC003:page:50",
+        "DOC003:page:57",
+        "DOC003:page:18",
+        "DOC003:page:16",
+        "DOC003:page:8",
+        "DOC003:page:14",
+        "DOC003:page:40"
+      ],
+      "relevant_sources": [
+        "DOC003:page:9"
+      ],
+      "latency_ms": 516.6266000596806,
+      "metrics": {
+        "precision@10": 0.1,
+        "recall@10": 1.0,
+        "hit_rate@10": 1.0,
+        "reciprocal_rank@10": 1.0,
+        "ndcg@10": 1.0
+      }
+    },
+    {
+      "question_id": "Q038",
+      "question": "What was the 2023 median income for married-couple family households in the Census report?",
+      "category": "government",
+      "question_type": "numerical",
+      "difficulty": "easy",
+      "split": "test",
+      "retrieved_sources": [
+        "DOC003:page:10",
+        "DOC003:page:9",
+        "DOC003:page:7",
+        "DOC003:page:8",
+        "DOC024:page:385",
+        "DOC003:page:55",
+        "DOC003:page:38",
+        "DOC003:page:49",
+        "DOC003:page:39",
+        "DOC003:page:50"
+      ],
+      "relevant_sources": [
+        "DOC003:page:10"
+      ],
+      "latency_ms": 1146.715399925597,
+      "metrics": {
+        "precision@10": 0.1,
+        "recall@10": 1.0,
+        "hit_rate@10": 1.0,
+        "reciprocal_rank@10": 1.0,
+        "ndcg@10": 1.0
+      }
+    },
+    {
+      "question_id": "Q039",
+      "question": "How did 2023 median household income compare inside metropolitan areas outside principal cities versus outside metropolitan areas?",
+      "category": "government",
+      "question_type": "comparison",
+      "difficulty": "medium",
+      "split": "test",
+      "retrieved_sources": [
+        "DOC003:page:11",
+        "DOC003:page:17",
+        "DOC003:page:7",
+        "DOC003:page:41",
+        "DOC003:page:10",
+        "DOC003:page:9",
+        "DOC003:page:50",
+        "DOC003:page:8",
+        "DOC003:page:57",
+        "DOC024:page:385"
+      ],
+      "relevant_sources": [
+        "DOC003:page:11"
+      ],
+      "latency_ms": 2141.1459000082687,
+      "metrics": {
+        "precision@10": 0.1,
+        "recall@10": 1.0,
+        "hit_rate@10": 1.0,
+        "reciprocal_rank@10": 1.0,
+        "ndcg@10": 1.0
+      }
+    },
+    {
+      "question_id": "Q040",
+      "question": "Which US region had the highest 2023 median household income, and which had the lowest?",
+      "category": "government",
+      "question_type": "numerical",
+      "difficulty": "medium",
+      "split": "test",
+      "retrieved_sources": [
+        "DOC003:page:10",
+        "DOC003:page:9",
+        "DOC024:page:385",
+        "DOC003:page:11",
+        "DOC003:page:50",
+        "DOC003:page:40",
+        "DOC003:page:16",
+        "DOC003:page:38",
+        "DOC003:page:7",
+        "DOC024:page:386"
+      ],
+      "relevant_sources": [
+        "DOC003:page:11"
+      ],
+      "latency_ms": 2882.4179999064654,
+      "metrics": {
+        "precision@10": 0.1,
+        "recall@10": 1.0,
+        "hit_rate@10": 1.0,
+        "reciprocal_rank@10": 0.25,
+        "ndcg@10": 0.43067655807339306
+      }
+    },
+    {
+      "question_id": "Q041",
+      "question": "Which three embeddings are summed to construct a BERT input token representation?",
+      "category": "academic",
+      "question_type": "factual",
+      "difficulty": "easy",
+      "split": "test",
+      "retrieved_sources": [
+        "DOC007:page:4",
+        "DOC007:page:5",
+        "DOC007:page:14",
+        "DOC007:page:2",
+        "DOC007:page:7",
+        "DOC007:page:9",
+        "DOC007:page:16",
+        "DOC007:page:13",
+        "DOC007:page:3",
+        "DOC007:page:1"
+      ],
+      "relevant_sources": [
+        "DOC007:page:4"
+      ],
+      "latency_ms": 704.9205000512302,
+      "metrics": {
+        "precision@10": 0.1,
+        "recall@10": 1.0,
+        "hit_rate@10": 1.0,
+        "reciprocal_rank@10": 1.0,
+        "ndcg@10": 1.0
+      }
+    },
+    {
+      "question_id": "Q042",
+      "question": "What percentage of WordPiece tokens is randomly selected for masked language modeling in the original BERT experiments?",
+      "category": "academic",
+      "question_type": "numerical",
+      "difficulty": "easy",
+      "split": "test",
+      "retrieved_sources": [
+        "DOC007:page:12",
+        "DOC007:page:16",
+        "DOC007:page:4",
+        "DOC007:page:14",
+        "DOC007:page:13",
+        "DOC007:page:1",
+        "DOC007:page:9",
+        "DOC007:page:3",
+        "DOC007:page:2",
+        "DOC007:page:7"
+      ],
+      "relevant_sources": [
+        "DOC007:page:4"
+      ],
+      "latency_ms": 99.17459997814149,
+      "metrics": {
+        "precision@10": 0.1,
+        "recall@10": 1.0,
+        "hit_rate@10": 1.0,
+        "reciprocal_rank@10": 0.3333333333333333,
+        "ndcg@10": 0.5
+      }
+    },
+    {
+      "question_id": "Q043",
+      "question": "Why would ordinary bidirectional conditional language modeling allow trivial prediction of target words?",
+      "category": "academic",
+      "question_type": "conceptual",
+      "difficulty": "medium",
+      "split": "test",
+      "retrieved_sources": [
+        "DOC007:page:4",
+        "DOC010:page:3",
+        "DOC010:page:1",
+        "DOC007:page:2",
+        "DOC010:page:2",
+        "DOC010:page:13",
+        "DOC007:page:9",
+        "DOC007:page:10",
+        "DOC007:page:12",
+        "DOC010:page:7"
+      ],
+      "relevant_sources": [
+        "DOC007:page:4"
+      ],
+      "latency_ms": 100.446299999021,
+      "metrics": {
+        "precision@10": 0.1,
+        "recall@10": 1.0,
+        "hit_rate@10": 1.0,
+        "reciprocal_rank@10": 1.0,
+        "ndcg@10": 1.0
+      }
+    },
+    {
+      "question_id": "Q044",
+      "question": "Which corpora were used to pre-train BERT and how many words did each contain?",
+      "category": "academic",
+      "question_type": "numerical",
+      "difficulty": "medium",
+      "split": "test",
+      "retrieved_sources": [
+        "DOC007:page:14",
+        "DOC007:page:3",
+        "DOC007:page:4",
+        "DOC007:page:5",
+        "DOC007:page:2",
+        "DOC007:page:8",
+        "DOC007:page:16",
+        "DOC007:page:9",
+        "DOC007:page:12",
+        "DOC007:page:13"
+      ],
+      "relevant_sources": [
+        "DOC007:page:5"
+      ],
+      "latency_ms": 90.29449999798089,
+      "metrics": {
+        "precision@10": 0.1,
+        "recall@10": 1.0,
+        "hit_rate@10": 1.0,
+        "reciprocal_rank@10": 0.25,
+        "ndcg@10": 0.43067655807339306
+      }
+    },
+    {
+      "question_id": "Q045",
+      "question": "How does BERT distinguish two input sentences, and how does it use the resulting representation for classification during fine-tuning?",
+      "category": "academic",
+      "question_type": "multi_hop",
+      "difficulty": "hard",
+      "split": "test",
+      "retrieved_sources": [
+        "DOC007:page:14",
+        "DOC007:page:4",
+        "DOC007:page:5",
+        "DOC007:page:3",
+        "DOC007:page:13",
+        "DOC007:page:9",
+        "DOC007:page:8",
+        "DOC007:page:15",
+        "DOC007:page:12",
+        "DOC007:page:16"
+      ],
+      "relevant_sources": [
+        "DOC007:page:4",
+        "DOC007:page:5"
+      ],
+      "latency_ms": 132.3923000600189,
+      "metrics": {
+        "precision@10": 0.2,
+        "recall@10": 1.0,
+        "hit_rate@10": 1.0,
+        "reciprocal_rank@10": 0.5,
+        "ndcg@10": 0.6934264036172708
+      }
+    },
+    {
+      "question_id": "Q046",
+      "question": "What was the maximum ImageNet residual network depth evaluated in Deep Residual Learning for Image Recognition?",
+      "category": "academic",
+      "question_type": "numerical",
+      "difficulty": "easy",
+      "split": "test",
+      "retrieved_sources": [
+        "DOC008:page:2",
+        "DOC008:page:1",
+        "DOC008:page:6",
+        "DOC008:page:7",
+        "DOC008:page:3",
+        "DOC008:page:5",
+        "DOC008:page:8",
+        "DOC008:page:4",
+        "DOC008:page:10",
+        "DOC006:page:11"
+      ],
+      "relevant_sources": [
+        "DOC008:page:1"
+      ],
+      "latency_ms": 526.9622000632808,
+      "metrics": {
+        "precision@10": 0.1,
+        "recall@10": 1.0,
+        "hit_rate@10": 1.0,
+        "reciprocal_rank@10": 0.5,
+        "ndcg@10": 0.6309297535714575
+      }
+    },
+    {
+      "question_id": "Q047",
+      "question": "What ImageNet test error did the residual-network ensemble achieve in the ResNet paper abstract?",
+      "category": "academic",
+      "question_type": "numerical",
+      "difficulty": "easy",
+      "split": "test",
+      "retrieved_sources": [
+        "DOC008:page:6",
+        "DOC008:page:5",
+        "DOC008:page:4",
+        "DOC008:page:2",
+        "DOC008:page:7",
+        "DOC008:page:8",
+        "DOC008:page:12",
+        "DOC008:page:3",
+        "DOC008:page:1",
+        "DOC008:page:11"
+      ],
+      "relevant_sources": [
+        "DOC008:page:1"
+      ],
+      "latency_ms": 1920.1061000349,
+      "metrics": {
+        "precision@10": 0.1,
+        "recall@10": 1.0,
+        "hit_rate@10": 1.0,
+        "reciprocal_rank@10": 0.1111111111111111,
+        "ndcg@10": 0.3010299956639812
+      }
+    },
+    {
+      "question_id": "Q048",
+      "question": "How does residual learning reformulate the desired mapping H(x) when input and output dimensions match?",
+      "category": "academic",
+      "question_type": "conceptual",
+      "difficulty": "medium",
+      "split": "test",
+      "retrieved_sources": [
+        "DOC008:page:2",
+        "DOC008:page:3",
+        "DOC008:page:1",
+        "DOC008:page:6",
+        "DOC006:page:5",
+        "DOC008:page:4",
+        "DOC008:page:5",
+        "DOC010:page:14",
+        "DOC008:page:9",
+        "DOC008:page:8"
+      ],
+      "relevant_sources": [
+        "DOC008:page:3"
+      ],
+      "latency_ms": 1374.5573000051081,
+      "metrics": {
+        "precision@10": 0.1,
+        "recall@10": 1.0,
+        "hit_rate@10": 1.0,
+        "reciprocal_rank@10": 0.5,
+        "ndcg@10": 0.6309297535714575
+      }
+    },
+    {
+      "question_id": "Q049",
+      "question": "Why can residual learning make an identity mapping easier to optimize?",
+      "category": "academic",
+      "question_type": "conceptual",
+      "difficulty": "medium",
+      "split": "test",
+      "retrieved_sources": [
+        "DOC008:page:2",
+        "DOC008:page:3",
+        "DOC008:page:1",
+        "DOC008:page:6",
+        "DOC008:page:4",
+        "DOC006:page:11",
+        "DOC008:page:5",
+        "DOC008:page:9",
+        "DOC008:page:8",
+        "DOC006:page:4"
+      ],
+      "relevant_sources": [
+        "DOC008:page:3"
+      ],
+      "latency_ms": 487.3175999382511,
+      "metrics": {
+        "precision@10": 0.1,
+        "recall@10": 1.0,
+        "hit_rate@10": 1.0,
+        "reciprocal_rank@10": 0.5,
+        "ndcg@10": 0.6309297535714575
+      }
+    },
+    {
+      "question_id": "Q050",
+      "question": "What degradation phenomenon was observed in the CIFAR-10 plain-network experiment, and how does residual learning address the optimization issue?",
+      "category": "academic",
+      "question_type": "multi_hop",
+      "difficulty": "hard",
+      "split": "test",
+      "retrieved_sources": [
+        "DOC008:page:7",
+        "DOC008:page:5",
+        "DOC008:page:1",
+        "DOC008:page:6",
+        "DOC008:page:4",
+        "DOC008:page:2",
+        "DOC008:page:3",
+        "DOC008:page:8",
+        "DOC006:page:12",
+        "DOC006:page:11"
+      ],
+      "relevant_sources": [
+        "DOC008:page:1",
+        "DOC008:page:3"
+      ],
+      "latency_ms": 420.2805000822991,
+      "metrics": {
+        "precision@10": 0.2,
+        "recall@10": 1.0,
+        "hit_rate@10": 1.0,
+        "reciprocal_rank@10": 0.3333333333333333,
+        "ndcg@10": 0.5109559939712153
+      }
+    },
+    {
+      "question_id": "Q051",
+      "question": "What does the TCP Data Offset field indicate in RFC 9293?",
+      "category": "technical",
+      "question_type": "factual",
+      "difficulty": "easy",
+      "split": "test",
+      "retrieved_sources": [
+        "DOC012:page:76",
+        "DOC012:page:77",
+        "DOC012:page:83",
+        "DOC011:page:117",
+        "DOC012:page:1",
+        "DOC012:page:10",
+        "DOC012:page:75",
+        "DOC011:page:118",
+        "DOC015:page:112",
+        "DOC012:page:73"
+      ],
+      "relevant_sources": [
+        "DOC012:page:8"
+      ],
+      "latency_ms": 341.1076999036595,
+      "metrics": {
+        "precision@10": 0.0,
+        "recall@10": 0.0,
+        "hit_rate@10": 0.0,
+        "reciprocal_rank@10": 0.0,
+        "ndcg@10": 0.0
+      }
+    },
+    {
+      "question_id": "Q052",
+      "question": "What does the TCP acknowledgment number represent when the ACK flag is set?",
+      "category": "technical",
+      "question_type": "conceptual",
+      "difficulty": "medium",
+      "split": "test",
+      "retrieved_sources": [
+        "DOC015:page:106",
+        "DOC015:page:105",
+        "DOC012:page:8",
+        "DOC012:page:25",
+        "DOC012:page:70",
+        "DOC012:page:15",
+        "DOC012:page:66",
+        "DOC015:page:77",
+        "DOC012:page:29",
+        "DOC012:page:21"
+      ],
+      "relevant_sources": [
+        "DOC012:page:8"
+      ],
+      "latency_ms": 1062.0169000467286,
+      "metrics": {
+        "precision@10": 0.1,
+        "recall@10": 1.0,
+        "hit_rate@10": 1.0,
+        "reciprocal_rank@10": 0.3333333333333333,
+        "ndcg@10": 0.5
+      }
+    },
+    {
+      "question_id": "Q053",
+      "question": "How large are the IPv4 and IPv6 pseudo-headers used for TCP checksum computation?",
+      "category": "technical",
+      "question_type": "comparison",
+      "difficulty": "medium",
+      "split": "test",
+      "retrieved_sources": [
+        "DOC012:page:9",
+        "DOC012:page:10",
+        "DOC012:page:81",
+        "DOC012:page:80",
+        "DOC012:page:33",
+        "DOC012:page:35",
+        "DOC015:page:94",
+        "DOC015:page:69",
+        "DOC015:page:145",
+        "DOC014:page:18"
+      ],
+      "relevant_sources": [
+        "DOC012:page:9"
+      ],
+      "latency_ms": 12608.278000028804,
+      "metrics": {
+        "precision@10": 0.1,
+        "recall@10": 1.0,
+        "hit_rate@10": 1.0,
+        "reciprocal_rank@10": 1.0,
+        "ndcg@10": 1.0
+      }
+    },
+    {
+      "question_id": "Q054",
+      "question": "How does TCP handle an odd number of octets when computing its checksum?",
+      "category": "technical",
+      "question_type": "conceptual",
+      "difficulty": "medium",
+      "split": "test",
+      "retrieved_sources": [
+        "DOC012:page:9",
+        "DOC012:page:10",
+        "DOC012:page:51",
+        "DOC015:page:89",
+        "DOC012:page:12",
+        "DOC015:page:148",
+        "DOC012:page:39",
+        "DOC015:page:87",
+        "DOC012:page:76",
+        "DOC012:page:11"
+      ],
+      "relevant_sources": [
+        "DOC012:page:9"
+      ],
+      "latency_ms": 61913.22109999601,
+      "metrics": {
+        "precision@10": 0.1,
+        "recall@10": 1.0,
+        "hit_rate@10": 1.0,
+        "reciprocal_rank@10": 1.0,
+        "ndcg@10": 1.0
+      }
+    },
+    {
+      "question_id": "Q055",
+      "question": "Why does the TCP checksum cover a pseudo-header, and what obligations do the sender and receiver have regarding the checksum?",
+      "category": "technical",
+      "question_type": "multi_hop",
+      "difficulty": "hard",
+      "split": "test",
+      "retrieved_sources": [
+        "DOC012:page:9",
+        "DOC012:page:10",
+        "DOC012:page:51",
+        "DOC012:page:7",
+        "DOC012:page:78",
+        "DOC012:page:81",
+        "DOC012:page:6",
+        "DOC012:page:5",
+        "DOC015:page:88",
+        "DOC012:page:77"
+      ],
+      "relevant_sources": [
+        "DOC012:page:10",
+        "DOC012:page:9"
+      ],
+      "latency_ms": 1199.2532999720424,
+      "metrics": {
+        "precision@10": 0.2,
+        "recall@10": 1.0,
+        "hit_rate@10": 1.0,
+        "reciprocal_rank@10": 1.0,
+        "ndcg@10": 1.0
+      }
+    },
+    {
+      "question_id": "Q056",
+      "question": "What does UUID stand for in RFC 9562?",
+      "category": "technical",
+      "question_type": "factual",
+      "difficulty": "easy",
+      "split": "test",
+      "retrieved_sources": [
+        "DOC013:page:33",
+        "DOC013:page:34",
+        "DOC013:page:29",
+        "DOC013:page:11",
+        "DOC013:page:13",
+        "DOC013:page:3",
+        "DOC013:page:4",
+        "DOC013:page:10",
+        "DOC013:page:2",
+        "DOC013:page:20"
+      ],
+      "relevant_sources": [
+        "DOC013:page:7"
+      ],
+      "latency_ms": 417.2512999502942,
+      "metrics": {
+        "precision@10": 0.0,
+        "recall@10": 0.0,
+        "hit_rate@10": 0.0,
+        "reciprocal_rank@10": 0.0,
+        "ndcg@10": 0.0
+      }
+    },
+    {
+      "question_id": "Q057",
+      "question": "Why can UUIDv4 lead to poor database index locality?",
+      "category": "technical",
+      "question_type": "conceptual",
+      "difficulty": "medium",
+      "split": "test",
+      "retrieved_sources": [
+        "DOC013:page:14",
+        "DOC013:page:5",
+        "DOC013:page:32",
+        "DOC013:page:17",
+        "DOC013:page:6",
+        "DOC013:page:3",
+        "DOC013:page:23",
+        "DOC013:page:20",
+        "DOC013:page:4",
+        "DOC013:page:11"
+      ],
+      "relevant_sources": [
+        "DOC013:page:5"
+      ],
+      "latency_ms": 374.65479993261397,
+      "metrics": {
+        "precision@10": 0.1,
+        "recall@10": 1.0,
+        "hit_rate@10": 1.0,
+        "reciprocal_rank@10": 0.5,
+        "ndcg@10": 0.6309297535714575
+      }
+    },
+    {
+      "question_id": "Q058",
+      "question": "What privacy and uniqueness concerns does RFC 9562 identify with MAC addresses in UUIDv1?",
+      "category": "technical",
+      "question_type": "conceptual",
+      "difficulty": "medium",
+      "split": "test",
+      "retrieved_sources": [
+        "DOC013:page:5",
+        "DOC013:page:35",
+        "DOC013:page:17",
+        "DOC013:page:31",
+        "DOC013:page:34",
+        "DOC013:page:6",
+        "DOC013:page:27",
+        "DOC013:page:13",
+        "DOC013:page:1",
+        "DOC013:page:11"
+      ],
+      "relevant_sources": [
+        "DOC013:page:5"
+      ],
+      "latency_ms": 146.65750006679446,
+      "metrics": {
+        "precision@10": 0.1,
+        "recall@10": 1.0,
+        "hit_rate@10": 1.0,
+        "reciprocal_rank@10": 1.0,
+        "ndcg@10": 1.0
+      }
+    },
+    {
+      "question_id": "Q059",
+      "question": "What time unit does RFC 9562 identify for the Gregorian epoch timestamp used by UUIDv1?",
+      "category": "technical",
+      "question_type": "numerical",
+      "difficulty": "easy",
+      "split": "test",
+      "retrieved_sources": [
+        "DOC013:page:22",
+        "DOC013:page:11",
+        "DOC013:page:39",
+        "DOC013:page:18",
+        "DOC013:page:10",
+        "DOC013:page:5",
+        "DOC013:page:44",
+        "DOC013:page:17",
+        "DOC013:page:33",
+        "DOC013:page:21"
+      ],
+      "relevant_sources": [
+        "DOC013:page:5"
+      ],
+      "latency_ms": 137.88319996092469,
+      "metrics": {
+        "precision@10": 0.1,
+        "recall@10": 1.0,
+        "hit_rate@10": 1.0,
+        "reciprocal_rank@10": 0.16666666666666666,
+        "ndcg@10": 0.3562071871080222
+      }
+    },
+    {
+      "question_id": "Q060",
+      "question": "What database-key problem motivated newer UUID formats, and what additional implementation option did RFC 9562 seek to standardize?",
+      "category": "technical",
+      "question_type": "multi_hop",
+      "difficulty": "hard",
+      "split": "test",
+      "retrieved_sources": [
+        "DOC013:page:4",
+        "DOC013:page:32",
+        "DOC013:page:5",
+        "DOC013:page:6",
+        "DOC013:page:33",
+        "DOC013:page:11",
+        "DOC013:page:34",
+        "DOC013:page:14",
+        "DOC013:page:3",
+        "DOC013:page:13"
+      ],
+      "relevant_sources": [
+        "DOC013:page:5",
+        "DOC013:page:6"
+      ],
+      "latency_ms": 146.9316000584513,
+      "metrics": {
+        "precision@10": 0.2,
+        "recall@10": 1.0,
+        "hit_rate@10": 1.0,
+        "reciprocal_rank@10": 0.3333333333333333,
+        "ndcg@10": 0.5706417189553201
+      }
+    },
+    {
+      "question_id": "Q061",
+      "question": "What operating earnings did Berkshire Hathaway report for 2023 in its shareholder letter?",
+      "category": "financial",
+      "question_type": "numerical",
+      "difficulty": "easy",
+      "split": "test",
+      "retrieved_sources": [
+        "DOC017:page:1",
+        "DOC017:page:13",
+        "DOC017:page:71",
+        "DOC017:page:143",
+        "DOC017:page:144",
+        "DOC017:page:3",
+        "DOC017:page:90",
+        "DOC017:page:91",
+        "DOC017:page:106",
+        "DOC017:page:6"
+      ],
+      "relevant_sources": [
+        "DOC017:page:6"
+      ],
+      "latency_ms": 252.43410002440214,
+      "metrics": {
+        "precision@10": 0.1,
+        "recall@10": 1.0,
+        "hit_rate@10": 1.0,
+        "reciprocal_rank@10": 0.1,
+        "ndcg@10": 0.2890648263178879
+      }
+    },
+    {
+      "question_id": "Q062",
+      "question": "How much did Berkshire operating earnings increase from 2021 to 2023 according to the shareholder letter?",
+      "category": "financial",
+      "question_type": "numerical",
+      "difficulty": "medium",
+      "split": "test",
+      "retrieved_sources": [
+        "DOC017:page:13",
+        "DOC017:page:1",
+        "DOC017:page:6",
+        "DOC017:page:71",
+        "DOC017:page:144",
+        "DOC017:page:106",
+        "DOC017:page:82",
+        "DOC017:page:19",
+        "DOC017:page:7",
+        "DOC017:page:8"
+      ],
+      "relevant_sources": [
+        "DOC017:page:6"
+      ],
+      "latency_ms": 686.9691000320017,
+      "metrics": {
+        "precision@10": 0.1,
+        "recall@10": 1.0,
+        "hit_rate@10": 1.0,
+        "reciprocal_rank@10": 0.3333333333333333,
+        "ndcg@10": 0.5
+      }
+    },
+    {
+      "question_id": "Q063",
+      "question": "What is the main difference between Berkshire’s preferred earnings measure and mandated earnings, according to the 2023 shareholder letter?",
+      "category": "financial",
+      "question_type": "conceptual",
+      "difficulty": "medium",
+      "split": "test",
+      "retrieved_sources": [
+        "DOC017:page:106",
+        "DOC017:page:7",
+        "DOC017:page:6",
+        "DOC017:page:13",
+        "DOC017:page:71",
+        "DOC017:page:97",
+        "DOC017:page:96",
+        "DOC017:page:5",
+        "DOC017:page:82",
+        "DOC017:page:3"
+      ],
+      "relevant_sources": [
+        "DOC017:page:7"
+      ],
+      "latency_ms": 247.23109998740256,
+      "metrics": {
+        "precision@10": 0.1,
+        "recall@10": 1.0,
+        "hit_rate@10": 1.0,
+        "reciprocal_rank@10": 0.5,
+        "ndcg@10": 0.6309297535714575
+      }
+    },
+    {
+      "question_id": "Q064",
+      "question": "What type of business does Berkshire particularly favor for deploying additional capital?",
+      "category": "financial",
+      "question_type": "factual",
+      "difficulty": "easy",
+      "split": "test",
+      "retrieved_sources": [
+        "DOC017:page:8",
+        "DOC017:page:9",
+        "DOC017:page:59",
+        "DOC017:page:7",
+        "DOC017:page:13",
+        "DOC017:page:5",
+        "DOC017:page:4",
+        "DOC017:page:10",
+        "DOC017:page:20",
+        "DOC017:page:25"
+      ],
+      "relevant_sources": [
+        "DOC017:page:7"
+      ],
+      "latency_ms": 467.77769993059337,
+      "metrics": {
+        "precision@10": 0.1,
+        "recall@10": 1.0,
+        "hit_rate@10": 1.0,
+        "reciprocal_rank@10": 0.25,
+        "ndcg@10": 0.43067655807339306
+      }
+    },
+    {
+      "question_id": "Q065",
+      "question": "How did Berkshire’s reported net earnings change between 2022 and 2023, and why does the shareholder letter caution against relying on that measure?",
+      "category": "financial",
+      "question_type": "multi_hop",
+      "difficulty": "hard",
+      "split": "test",
+      "retrieved_sources": [
+        "DOC017:page:13",
+        "DOC017:page:1",
+        "DOC017:page:6",
+        "DOC017:page:106",
+        "DOC017:page:71",
+        "DOC017:page:142",
+        "DOC017:page:82",
+        "DOC017:page:7",
+        "DOC017:page:19",
+        "DOC017:page:8"
+      ],
+      "relevant_sources": [
+        "DOC017:page:6",
+        "DOC017:page:7"
+      ],
+      "latency_ms": 182.1135999634862,
+      "metrics": {
+        "precision@10": 0.2,
+        "recall@10": 1.0,
+        "hit_rate@10": 1.0,
+        "reciprocal_rank@10": 0.3333333333333333,
+        "ndcg@10": 0.5
+      }
+    },
+    {
+      "question_id": "Q066",
+      "question": "What three areas of effort make up the Toyota Mobility Concept in its 2023 integrated report?",
+      "category": "financial",
+      "question_type": "factual",
+      "difficulty": "easy",
+      "split": "test",
+      "retrieved_sources": [
+        "DOC018:page:24",
+        "DOC018:page:25",
+        "DOC018:page:61",
+        "DOC018:page:38",
+        "DOC018:page:58",
+        "DOC018:page:64",
+        "DOC018:page:42",
+        "DOC018:page:40",
+        "DOC018:page:28",
+        "DOC018:page:30"
+      ],
+      "relevant_sources": [
+        "DOC018:page:5"
+      ],
+      "latency_ms": 123.29080002382398,
+      "metrics": {
+        "precision@10": 0.0,
+        "recall@10": 0.0,
+        "hit_rate@10": 0.0,
+        "reciprocal_rank@10": 0.0,
+        "ndcg@10": 0.0
+      }
+    },
+    {
+      "question_id": "Q067",
+      "question": "Why does Toyota pursue a multi-pathway mobility strategy in its 2023 integrated report?",
+      "category": "financial",
+      "question_type": "conceptual",
+      "difficulty": "medium",
+      "split": "test",
+      "retrieved_sources": [
+        "DOC018:page:61",
+        "DOC018:page:64",
+        "DOC018:page:24",
+        "DOC018:page:65",
+        "DOC018:page:42",
+        "DOC018:page:25",
+        "DOC018:page:77",
+        "DOC018:page:38",
+        "DOC018:page:58",
+        "DOC018:page:16"
+      ],
+      "relevant_sources": [
+        "DOC018:page:5"
+      ],
+      "latency_ms": 139.86510003451258,
+      "metrics": {
+        "precision@10": 0.0,
+        "recall@10": 0.0,
+        "hit_rate@10": 0.0,
+        "reciprocal_rank@10": 0.0,
+        "ndcg@10": 0.0
+      }
+    },
+    {
+      "question_id": "Q068",
+      "question": "Which software platform did Toyota develop with Woven by Toyota to connect mobility with partners and services?",
+      "category": "financial",
+      "question_type": "factual",
+      "difficulty": "easy",
+      "split": "test",
+      "retrieved_sources": [
+        "DOC018:page:85",
+        "DOC018:page:59",
+        "DOC018:page:53",
+        "DOC018:page:6",
+        "DOC018:page:24",
+        "DOC018:page:64",
+        "DOC018:page:65",
+        "DOC018:page:62",
+        "DOC018:page:93",
+        "DOC018:page:56"
+      ],
+      "relevant_sources": [
+        "DOC018:page:6"
+      ],
+      "latency_ms": 135.94750000629574,
+      "metrics": {
+        "precision@10": 0.1,
+        "recall@10": 1.0,
+        "hit_rate@10": 1.0,
+        "reciprocal_rank@10": 0.25,
+        "ndcg@10": 0.43067655807339306
+      }
+    },
+    {
+      "question_id": "Q069",
+      "question": "Why does Toyota’s president emphasize hybrids in emerging countries in the 2023 integrated report?",
+      "category": "financial",
+      "question_type": "conceptual",
+      "difficulty": "medium",
+      "split": "test",
+      "retrieved_sources": [
+        "DOC018:page:39",
+        "DOC018:page:61",
+        "DOC018:page:58",
+        "DOC018:page:47",
+        "DOC018:page:36",
+        "DOC018:page:49",
+        "DOC018:page:30",
+        "DOC018:page:51",
+        "DOC018:page:48",
+        "DOC018:page:64"
+      ],
+      "relevant_sources": [
+        "DOC018:page:6"
+      ],
+      "latency_ms": 130.42739999946207,
+      "metrics": {
+        "precision@10": 0.0,
+        "recall@10": 0.0,
+        "hit_rate@10": 0.0,
+        "reciprocal_rank@10": 0.0,
+        "ndcg@10": 0.0
+      }
+    },
+    {
+      "question_id": "Q070",
+      "question": "How does Toyota’s 2023 integrated report connect its long-term energy outlook with its short-term mobility strategy?",
+      "category": "financial",
+      "question_type": "multi_hop",
+      "difficulty": "hard",
+      "split": "test",
+      "retrieved_sources": [
+        "DOC018:page:61",
+        "DOC018:page:42",
+        "DOC018:page:5",
+        "DOC018:page:24",
+        "DOC018:page:6",
+        "DOC018:page:80",
+        "DOC018:page:52",
+        "DOC018:page:38",
+        "DOC018:page:36",
+        "DOC018:page:31"
+      ],
+      "relevant_sources": [
+        "DOC018:page:5",
+        "DOC018:page:6"
+      ],
+      "latency_ms": 118.37729997932911,
+      "metrics": {
+        "precision@10": 0.2,
+        "recall@10": 1.0,
+        "hit_rate@10": 1.0,
+        "reciprocal_rank@10": 0.3333333333333333,
+        "ndcg@10": 0.5437713091520254
+      }
+    },
+    {
+      "question_id": "Q071",
+      "question": "What does Think Python identify as the most important skill for a computer scientist?",
+      "category": "educational",
+      "question_type": "factual",
+      "difficulty": "easy",
+      "split": "test",
+      "retrieved_sources": [
+        "DOC025:page:3",
+        "DOC025:page:7",
+        "DOC025:page:23",
+        "DOC025:page:6",
+        "DOC025:page:1",
+        "DOC025:page:28",
+        "DOC025:page:24",
+        "DOC025:page:5",
+        "DOC025:page:183",
+        "DOC025:page:43"
+      ],
+      "relevant_sources": [
+        "DOC025:page:23"
+      ],
+      "latency_ms": 133.62149999011308,
+      "metrics": {
+        "precision@10": 0.1,
+        "recall@10": 1.0,
+        "hit_rate@10": 1.0,
+        "reciprocal_rank@10": 0.3333333333333333,
+        "ndcg@10": 0.5
+      }
+    },
+    {
+      "question_id": "Q072",
+      "question": "How does the Hello World print syntax differ between Python 2 and Python 3 in Think Python?",
+      "category": "educational",
+      "question_type": "comparison",
+      "difficulty": "medium",
+      "split": "test",
+      "retrieved_sources": [
+        "DOC025:page:25",
+        "DOC025:page:1",
+        "DOC025:page:7",
+        "DOC025:page:6",
+        "DOC025:page:3",
+        "DOC025:page:33",
+        "DOC025:page:41",
+        "DOC025:page:4",
+        "DOC025:page:24",
+        "DOC025:page:185"
+      ],
+      "relevant_sources": [
+        "DOC025:page:25"
+      ],
+      "latency_ms": 208.83410004898906,
+      "metrics": {
+        "precision@10": 0.1,
+        "recall@10": 1.0,
+        "hit_rate@10": 1.0,
+        "reciprocal_rank@10": 1.0,
+        "ndcg@10": 1.0
+      }
+    },
+    {
+      "question_id": "Q073",
+      "question": "What result does Think Python show for the expression 6**2 + 6?",
+      "category": "educational",
+      "question_type": "numerical",
+      "difficulty": "easy",
+      "split": "test",
+      "retrieved_sources": [
+        "DOC025:page:25",
+        "DOC025:page:33",
+        "DOC025:page:34",
+        "DOC025:page:81",
+        "DOC025:page:13",
+        "DOC025:page:79",
+        "DOC025:page:82",
+        "DOC025:page:221",
+        "DOC025:page:80",
+        "DOC025:page:115"
+      ],
+      "relevant_sources": [
+        "DOC025:page:25"
+      ],
+      "latency_ms": 411.6954000201076,
+      "metrics": {
+        "precision@10": 0.1,
+        "recall@10": 1.0,
+        "hit_rate@10": 1.0,
+        "reciprocal_rank@10": 1.0,
+        "ndcg@10": 1.0
+      }
+    },
+    {
+      "question_id": "Q074",
+      "question": "Why does Think Python classify the quoted value '42.0' as a string rather than a floating-point number?",
+      "category": "educational",
+      "question_type": "conceptual",
+      "difficulty": "medium",
+      "split": "test",
+      "retrieved_sources": [
+        "DOC025:page:39",
+        "DOC025:page:26",
+        "DOC025:page:29",
+        "DOC025:page:25",
+        "DOC025:page:33",
+        "DOC025:page:62",
+        "DOC025:page:41",
+        "DOC025:page:89",
+        "DOC025:page:160",
+        "DOC025:page:55"
+      ],
+      "relevant_sources": [
+        "DOC025:page:26"
+      ],
+      "latency_ms": 299.98660006094724,
+      "metrics": {
+        "precision@10": 0.1,
+        "recall@10": 1.0,
+        "hit_rate@10": 1.0,
+        "reciprocal_rank@10": 0.5,
+        "ndcg@10": 0.6309297535714575
+      }
+    },
+    {
+      "question_id": "Q075",
+      "question": "How does Think Python distinguish formal from natural languages, and what two aspects do formal-language syntax rules govern?",
+      "category": "educational",
+      "question_type": "multi_hop",
+      "difficulty": "hard",
+      "split": "test",
+      "retrieved_sources": [
+        "DOC025:page:27",
+        "DOC025:page:26",
+        "DOC025:page:35",
+        "DOC025:page:41",
+        "DOC025:page:29",
+        "DOC025:page:28",
+        "DOC025:page:215",
+        "DOC025:page:205",
+        "DOC023:page:230",
+        "DOC025:page:33"
+      ],
+      "relevant_sources": [
+        "DOC025:page:26",
+        "DOC025:page:27"
+      ],
+      "latency_ms": 124.06989990267903,
+      "metrics": {
+        "precision@10": 0.2,
+        "recall@10": 1.0,
+        "hit_rate@10": 1.0,
+        "reciprocal_rank@10": 1.0,
+        "ndcg@10": 1.0
+      }
+    },
+    {
+      "question_id": "Q076",
+      "question": "How many storage aisles and pallet positions does the fictional Northfield distribution center have?",
+      "category": "scanned",
+      "question_type": "numerical",
+      "difficulty": "easy",
+      "split": "test",
+      "retrieved_sources": [
+        "DOC027:page:1",
+        "DOC017:page:47",
+        "DOC017:page:55",
+        "DOC017:page:132",
+        "DOC017:page:44",
+        "DOC017:page:45",
+        "DOC017:page:149",
+        "DOC024:page:196",
+        "DOC017:page:21",
+        "DOC020:page:97"
+      ],
+      "relevant_sources": [
+        "DOC027:page:1"
+      ],
+      "latency_ms": 78.88020004611462,
+      "metrics": {
+        "precision@10": 0.1,
+        "recall@10": 1.0,
+        "hit_rate@10": 1.0,
+        "reciprocal_rank@10": 1.0,
+        "ndcg@10": 1.0
+      }
+    },
+    {
+      "question_id": "Q077",
+      "question": "What inventory rotation method does Northfield use for products with expiration dates?",
+      "category": "scanned",
+      "question_type": "factual",
+      "difficulty": "easy",
+      "split": "test",
+      "retrieved_sources": [
+        "DOC027:page:1",
+        "DOC027:page:2",
+        "DOC020:page:95",
+        "DOC020:page:80",
+        "DOC017:page:39",
+        "DOC017:page:47",
+        "DOC017:page:101",
+        "DOC016:page:102",
+        "DOC016:page:58",
+        "DOC027:page:3"
+      ],
+      "relevant_sources": [
+        "DOC027:page:1"
+      ],
+      "latency_ms": 96.22519998811185,
+      "metrics": {
+        "precision@10": 0.1,
+        "recall@10": 1.0,
+        "hit_rate@10": 1.0,
+        "reciprocal_rank@10": 1.0,
+        "ndcg@10": 1.0
+      }
+    },
+    {
+      "question_id": "Q078",
+      "question": "How do Northfield’s category A and category C products differ in ABC inventory analysis?",
+      "category": "scanned",
+      "question_type": "comparison",
+      "difficulty": "medium",
+      "split": "test",
+      "retrieved_sources": [
+        "DOC027:page:2",
+        "DOC027:page:1",
+        "DOC024:page:552",
+        "DOC020:page:95",
+        "DOC017:page:136",
+        "DOC017:page:47",
+        "DOC017:page:56",
+        "DOC024:page:833",
+        "DOC017:page:110",
+        "DOC020:page:80"
+      ],
+      "relevant_sources": [
+        "DOC027:page:2"
+      ],
+      "latency_ms": 835.7550000073388,
+      "metrics": {
+        "precision@10": 0.1,
+        "recall@10": 1.0,
+        "hit_rate@10": 1.0,
+        "reciprocal_rank@10": 1.0,
+        "ndcg@10": 1.0
+      }
+    },
+    {
+      "question_id": "Q079",
+      "question": "What is Northfield’s same-day dispatch cutoff and how long are shipping records retained?",
+      "category": "scanned",
+      "question_type": "numerical",
+      "difficulty": "medium",
+      "split": "test",
+      "retrieved_sources": [
+        "DOC027:page:3",
+        "DOC027:page:1",
+        "DOC017:page:103",
+        "DOC017:page:85",
+        "DOC020:page:132",
+        "DOC012:page:84",
+        "DOC024:page:353",
+        "DOC011:page:89",
+        "DOC020:page:67",
+        "DOC016:page:54"
+      ],
+      "relevant_sources": [
+        "DOC027:page:3"
+      ],
+      "latency_ms": 292.92120004538447,
+      "metrics": {
+        "precision@10": 0.1,
+        "recall@10": 1.0,
+        "hit_rate@10": 1.0,
+        "reciprocal_rank@10": 1.0,
+        "ndcg@10": 1.0
+      }
+    },
+    {
+      "question_id": "Q080",
+      "question": "What are Northfield’s inventory accuracy and order fulfillment accuracy targets, and how often is overall warehouse performance reviewed?",
+      "category": "scanned",
+      "question_type": "multi_hop",
+      "difficulty": "hard",
+      "split": "test",
+      "retrieved_sources": [
+        "DOC027:page:3",
+        "DOC027:page:1",
+        "DOC027:page:2",
+        "DOC017:page:47",
+        "DOC020:page:95",
+        "DOC017:page:79",
+        "DOC017:page:38",
+        "DOC018:page:91",
+        "DOC017:page:132",
+        "DOC017:page:13"
+      ],
+      "relevant_sources": [
+        "DOC027:page:2",
+        "DOC027:page:3"
+      ],
+      "latency_ms": 184.37570007517934,
+      "metrics": {
+        "precision@10": 0.2,
+        "recall@10": 1.0,
+        "hit_rate@10": 1.0,
+        "reciprocal_rank@10": 1.0,
+        "ndcg@10": 0.9197207891481876
+      }
+    }
+  ],
+  "configuration": {
+    "strategy": "vector",
+    "split": "test",
+    "k": 10,
+    "embedding_model": "sentence-transformers/all-MiniLM-L6-v2",
+    "indexed_documents": 25,
+    "indexed_chunks": 19570,
+    "unique_pages": true,
+    "run_id": "20261128_164206_606969"
+  }
+}
